@@ -5,10 +5,8 @@ const { JWT_SECRET_KEY } = process.env;
 
 const bcryptHelper = require("../helpers/bcrypt.helper");
 const validator = require("../validator/authentication");
+const regisValidator = require('../validator/regis.auth');
 
-const valid = require('fastest-validator');
-const v = new valid();
-const bcrypt = require('bcrypt')
 
 module.exports = {
   register : async (req,res) => {
@@ -25,23 +23,17 @@ module.exports = {
           return res.conflict();
         }
 
-        const schema = {
-            name: {type: 'string'},
-            email: {type: 'email'},
-            password: {type: 'string', min: 8}
-        }
+        const check = regisValidator.validateRegis(req.body);
 
-        const validate = v.validate(req.body, schema)
-
-        if(validate.length) {
-            return res.badRequest(validate)
+        if (check.length) {
+          return res.badRequest("Invalid input");
         }
 
         if(!name || !email || !password) {
             return res.badRequest('name, email, and password is required!')
         }
 
-        const encryptedPassword = await bcrypt.hash(password, 10);
+        const encryptedPassword = await bcryptHelper.hashPassword(password);
 
         let new_user = await User.create({
             name,
