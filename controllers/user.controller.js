@@ -5,7 +5,10 @@ const { JWT_SECRET_KEY } = process.env;
 const { User } = require("../models");
 
 const bcryptHelper = require("../helpers/bcrypt.helper");
+
 const validator = require("../validator/user");
+
+const callApi = require("../services/callApi.service");
 
 const { imagekit } = require("../helpers/imagekit.helper");
 
@@ -119,6 +122,28 @@ module.exports = {
       return res.success("User updated", updateProfile);
     } catch (err) {
       return res.serverError(err.message);
+    }
+  },
+
+  getProvinces: async (req, res) => {
+    try {
+      const provinces = await callApi.getProvinces();
+
+      return res.success("Provinces found", provinces);
+    } catch (err) {
+      return res.serverError();
+    }
+  },
+
+  getCities: async (req, res) => {
+    try {
+      const { provinceId } = req.params;
+
+      const cities = await callApi.getCities(provinceId);
+
+      return res.success("Cities found", cities);
+    } catch (err) {
+      return res.serverError();
     }
   },
 };
