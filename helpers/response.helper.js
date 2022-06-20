@@ -31,6 +31,10 @@ module.exports = (req, res, next) => {
     res.respond(data, message, 400);
   };
 
+  res.unauthorized = (message = "Unauthorized") => {
+    res.respond(null, message, 401);
+  };
+
   res.conflict = (message = "Data already exist") => {
     res.respond(null, message, 409);
   };

@@ -1,3 +1,7 @@
+const jwt = require("jsonwebtoken");
+
+const { JWT_SECRET_KEY } = process.env;
+
 const { User } = require("../models");
 
 const bcryptHelper = require("../helpers/bcrypt.helper");
@@ -39,6 +43,37 @@ module.exports = {
       return res.success("User created", newUser);
     } catch (err) {
       return res.serverError();
+    }
+  },
+
+  getProfile: async (req, res) => {
+    try {
+      const token = req.headers.authorization.split(" ")[1];
+
+      if (!token) {
+        return res.unauthorized("Token is required");
+      }
+
+      const decoded = jwt.verify(token, JWT_SECRET_KEY);
+
+      const user = await User.findOne({
+        where: {
+          id: decoded.id,
+        },
+      });
+
+      const payload = {
+        id: user.id,
+        name: user.name,
+        city: user.city,
+        address: user.address,
+        phone: user.phone,
+        avatar: user.avatar,
+      };
+
+      return res.success("User found", payload);
+    } catch (err) {
+      return res.serverError(err.message);
     }
   },
 };
