@@ -1,8 +1,9 @@
 const express = require("express");
+
 const router = express.Router();
+const userRoutes = require("./user.routes");
 const authRoutes = require("./auth.routes");
-const productRoutes = require('./product.routes');
-const categoryRoutes = require('./category.routes');
+const productRoutes = require("./product.routes");
 /* GET home page. */
 router.get("/", (req, res, next) => {
   res.status(200).json({
@@ -11,7 +12,7 @@ router.get("/", (req, res, next) => {
   });
 });
 
+router.use("/users", userRoutes);
 router.use("/auth", authRoutes);
-router.use('/products', productRoutes);
-router.use('/category', categoryRoutes);
+router.use("/products", productRoutes);
 module.exports = router;

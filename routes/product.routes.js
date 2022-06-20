@@ -1,13 +1,15 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
-const upload = require('../middlewares/upload.middleware');
-const storage = require('../middlewares/storage.middleware');
-const products = require('../controllers/product.controller');
+const passport = require("../lib/passport");
+const upload = require("../middlewares/upload.middleware");
+const productController = require("../controllers/product.controller");
 
-
-router.get('/', products.getAllProduct);
-router.post('/', upload.array('images', 4),products.createProduct);
-// router.put('/:id', upload.array('images', 4), products.updateProductById);
-router.get('/:id', products.getProductById);
+router.post(
+  "/create",
+  [passport.authenticate("jwt", { session: false })],
+  upload.array("images", 4),
+  productController.createProduct
+);
 
 module.exports = router;
