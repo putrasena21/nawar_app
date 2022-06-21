@@ -16,6 +16,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      province: {
+        type: Sequelize.STRING,
+      },
       city: {
         type: Sequelize.STRING,
       },
@@ -27,6 +30,10 @@ module.exports = {
       },
       avatar: {
         type: Sequelize.STRING,
+      },
+      completed: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

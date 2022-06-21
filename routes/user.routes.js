@@ -11,6 +11,7 @@ router.post("/register", userController.register);
 
 router.get("/provinces", userController.getProvinces);
 router.get("/provinces/:provinceId", userController.getCities);
+
 router.get(
   "/profile",
   [passport.authenticate("jwt", { session: false })],

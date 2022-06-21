@@ -37,8 +37,9 @@ module.exports = {
           file: imageUrl,
           fileName,
         });
+
         const image = await ProductImage.create({
-          products_id: newProduct.id,
+          productId: newProduct.id,
           image: fileName,
           url: uploadImage.url,
         });

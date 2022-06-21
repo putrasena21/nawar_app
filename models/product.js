@@ -1,4 +1,5 @@
 const { Model } = require("sequelize");
+const products = require("../validator/products");
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
@@ -9,10 +10,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Product.belongsTo(models.User, {
+        foreignKey: "userId",
+        as: "user",
+      });
+
+      Product.hasMany(models.ProductImage, {
+        foreignKey: "productId",
+        as: "productImages",
+      });
     }
   }
   Product.init(
     {
+      userId: DataTypes.STRING,
       name: DataTypes.STRING,
       price: DataTypes.INTEGER,
       description: DataTypes.TEXT,
