@@ -19,5 +19,8 @@ app.use(responseHelper);
 
 app.use("/api/v1", indexRouter);
 
+app.use((err, req, res, next) => {
+  res.serverError(err.message);
+});
 
 module.exports = app;
