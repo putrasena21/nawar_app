@@ -92,7 +92,7 @@ module.exports = {
 
       const decoded = jwt.verify(token, JWT_SECRET_KEY);
 
-      const { name, city, address, phone } = req.body;
+      const { name, province, city, address, phone } = req.body;
 
       const check = validator.validateProfile(req.body);
 
@@ -111,10 +111,12 @@ module.exports = {
       const updateProfile = await User.update(
         {
           name,
+          province,
           city,
           address,
           phone,
           avatar: uploadAvatar.url,
+          completed: true,
         },
         { where: { id: decoded.id } }
       );
