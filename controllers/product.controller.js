@@ -48,6 +48,23 @@ module.exports = {
 
       return res.created("Success add data product!", newProduct);
     } catch (err) {
+      return res.serverError();
+    }
+  },
+  getProduct: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const product = await Product.findOne({
+        where: { id },
+        include: "productImages",
+      });
+
+      if (!product) {
+        return res.notFound("Product not found");
+      }
+
+      return res.success("Success get data product!", product);
+    } catch (err) {
       return res.serverError(err.message);
     }
   },

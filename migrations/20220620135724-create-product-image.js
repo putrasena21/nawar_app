@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       productId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       url: {
         type: Sequelize.STRING,
