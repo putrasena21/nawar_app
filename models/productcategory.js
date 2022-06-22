@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   ProductCategory.init(
     {
-      categoryId: DataTypes.STRING,
-      productId: DataTypes.STRING,
+      categoryId: DataTypes.INTEGER,
+      productId: DataTypes.INTEGER,
     },
     {
       sequelize,
