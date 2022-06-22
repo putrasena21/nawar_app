@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const { JWT_SECRET_KEY } = process.env;
-const { Product, ProductImage, ProductCategory } = require("../models");
+const { Product, ProductImage, ProductCategory, Category } = require("../models");
 const { imagekit } = require("../lib/imagekit");
 const validator = require("../validator/products");
 
@@ -59,7 +59,8 @@ module.exports = {
       return res.serverError(err.message);
     }
   },
-  getProduct: async (req, res) => {
+
+  getProductById: async (req, res) => {
     try {
       const { id } = req.params;
       const product = await Product.findOne({
@@ -70,10 +71,39 @@ module.exports = {
       if (!product) {
         return res.notFound("Product not found");
       }
-
       return res.success("Success get data product!", product);
     } catch (err) {
       return res.serverError(err.message);
     }
   },
+
+  // getProductByCategory: async (req, res) => {
+  //   try {
+  //     const { categoryId } = req.params;
+  //     const category = await Category.findOne({
+  //       where: {id: categoryId },
+  //       include: ["products"],
+  //     });
+  //     if (!category){
+  //       return res.notFound("Category not found");
+  //     }
+  //     return res.success("Success get data product!", category);
+  //   } catch (err) {
+  //     return res.serverError(err.message);
+  //   }
+  // },
+
+  getAllProduct: async (req, res) => {
+    try {
+      const products = await Product.findAll({
+        include: ["categories", "productImages"],
+      });
+      if (!products) {
+        return res.notFound("Product not found");
+      }
+      return res.success("Success get data product!", products);
+    } catch (err) {
+      return res.serverError(err.message);
+    }
+  }
 };

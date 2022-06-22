@@ -14,6 +14,8 @@ router.post(
   productController.createProduct
 );
 
-router.get("/:id", productController.getProduct);
+router.get("/", productController.getAllProduct);
+router.get("/:id", productController.getProductById);
+// router.get("/category/:categoryId", productController.getProductByCategory);
 
 module.exports = router;
