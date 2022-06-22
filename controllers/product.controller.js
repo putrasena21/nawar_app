@@ -64,7 +64,7 @@ module.exports = {
       const { id } = req.params;
       const product = await Product.findOne({
         where: { id },
-        include: "productImages",
+        include: ["categories", "productImages"],
       });
 
       if (!product) {
