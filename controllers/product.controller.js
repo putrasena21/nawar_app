@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const { JWT_SECRET_KEY } = process.env;
-const { Product, ProductImage } = require("../models");
+const { Product, ProductImage, ProductCategory } = require("../models");
 const { imagekit } = require("../lib/imagekit");
 const validator = require("../validator/products");
 
@@ -30,6 +30,14 @@ module.exports = {
         userId: decoded.id,
       });
 
+      const categories = category;
+      categories.map(async (element) => {
+        await ProductCategory.create({
+          productId: newProduct.id,
+          categoryId: element,
+        });
+      });
+
       req.files.map(async (file) => {
         const imageUrl = file.buffer.toString("base64");
         const fileName = `${Date.now()}-${file.originalname}`;
@@ -48,7 +56,7 @@ module.exports = {
 
       return res.created("Success add data product!", newProduct);
     } catch (err) {
-      return res.serverError();
+      return res.serverError(err.message);
     }
   },
   getProduct: async (req, res) => {
@@ -56,7 +64,7 @@ module.exports = {
       const { id } = req.params;
       const product = await Product.findOne({
         where: { id },
-        include: "productImages",
+        include: ["categories", "productImages"],
       });
 
       if (!product) {
