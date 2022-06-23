@@ -92,22 +92,6 @@ module.exports = {
     }
   },
 
-  // getProductByCategory: async (req, res) => {
-  //   try {
-  //     const { categoryId } = req.params;
-  //     const category = await Category.findOne({
-  //       where: {id: categoryId },
-  //       include: ["products"],
-  //     });
-  //     if (!category){
-  //       return res.notFound("Category not found");
-  //     }
-  //     return res.success("Success get data product!", category);
-  //   } catch (err) {
-  //     return res.serverError(err.message);
-  //   }
-  // },
-
   getAllProduct: async (req, res) => {
     try {
       const products = await Product.findAll({
@@ -122,7 +106,7 @@ module.exports = {
     }
   },
 
-  getProductAll: async (req, res) => {
+  getAllProductByName: async (req, res) => {
     try {
       const { page, size, name } = req.query;
       const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
