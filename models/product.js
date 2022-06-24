@@ -25,6 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "productId",
         as: "categories",
       });
+
+      Product.hasMany(models.Wishlist, {
+        foreignKey: 'id_product',
+        as: 'produk'
+      });
     }
   }
   Product.init(
@@ -33,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       price: DataTypes.INTEGER,
       description: DataTypes.TEXT,
+      publish: DataTypes.BOOLEAN
     },
     {
       sequelize,

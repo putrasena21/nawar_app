@@ -76,4 +76,21 @@ module.exports = {
       return res.serverError(err.message);
     }
   },
+
+  deleteProduct: async (req,res) => {
+    try{
+      const {id} = req.params.id;
+
+      let deleted = await Product.destroy({
+        where: {
+          id
+        }
+      });
+
+      return res.success('success deleted product!', deleted)
+
+    }catch(err){
+      return res.serverError(err.message);
+    }
+  }
 };
