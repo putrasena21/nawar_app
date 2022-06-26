@@ -31,12 +31,19 @@ module.exports = {
       });
 
       const categories = category;
-      categories.map(async (element) => {
+      if (categories.length > 1) {
+        categories.map(async (element) => {
+          await ProductCategory.create({
+            productId: newProduct.id,
+            categoryId: element,
+          });
+        });
+      } else{
         await ProductCategory.create({
           productId: newProduct.id,
-          categoryId: element,
-        });
-      });
+          categoryId: category,
+        })
+      }
 
       req.files.map(async (file) => {
         const imageUrl = file.buffer.toString("base64");
