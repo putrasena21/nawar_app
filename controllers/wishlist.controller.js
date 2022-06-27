@@ -1,10 +1,19 @@
 const {User, Wishlist, Product} = require('../models');
+const jwt = require("jsonwebtoken");
 
-// const responseHelper = require('../helpers/response.helper')
+const { JWT_SECRET_KEY } = process.env;
+
 
 module.exports = {
     addWishlist : async (req,res) => {
         try {
+            const token = req.headers.authorization.split(" ")[1];
+
+            if (!token) {
+                return res.unauthorized("Token is required");
+            }
+
+            const decoded = jwt.verify(token, JWT_SECRET_KEY);
             const {id_user, id_product} = req.body;
 
             const isUserExist = await User.findOne({
@@ -32,7 +41,7 @@ module.exports = {
             }
 
             let new_wishlist = await Wishlist.create({
-                id_user,
+                id_user: decoded.id,
                 id_product
             })
 
