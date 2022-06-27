@@ -5,20 +5,7 @@ const { Product, ProductImage, ProductCategory, Category } = require("../models"
 const Op = require("sequelize").Op;
 const { imagekit } = require("../lib/imagekit");
 const validator = require("../validator/products");
-
-
-const getPagination = (page, size) =>{
-  const limit = size ? +size : 10;
-  const offset = page ? page * limit : 0;
-  return { limit, offset };
-}
-
-const getPaginationData = (page, size, total) => {
-  const limit = size ? +size : 10;
-  const offset = page ? page * limit : 0;
-  const totalPage = Math.ceil(total / limit);
-  return { limit, offset, totalPage };
-}
+const pagination = require("../helpers/pagination.helper");
 
 module.exports = {
   createProduct: async (req, res) => {
@@ -110,14 +97,14 @@ module.exports = {
     try {
       const { page, size, name } = req.query;
       const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
-      const { limit, offset } = getPagination(page, size);
+      const { limit, offset } = pagination.getPagination(page, size);
       const products = await Product.findAndCountAll({
         where: condition,
         include: ["categories", "productImages"],
         limit,
         offset,
       });
-      const { totalPage } = getPaginationData(page, size, products.count);
+      const { totalPage } = pagination.getPaginationData(page, size, products.count);
       return res.success("Success get data product!", {
         products: products.rows,
         pagination: {
@@ -126,6 +113,25 @@ module.exports = {
           totalPage,
         },
       });
+    } catch (err) {
+      return res.serverError(err.message);
+    }
+  },
+
+  deleteProduct: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const product = await Product.findOne({
+        where: { id },
+        include: ["categories", "productImages"],
+      });
+
+      if (!product) {
+        return res.notFound("Product not found");
+      }
+
+      await product.destroy();
+      return res.success("Success delete data product!");
     } catch (err) {
       return res.serverError(err.message);
     }

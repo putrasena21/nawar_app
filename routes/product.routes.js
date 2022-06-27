@@ -15,7 +15,7 @@ router.post(
 );
 
 router.get("/", productController.getAllProduct);
-router.get("/", productController.getAllProductByName);
+router.get("/name", productController.getAllProductByName);
 router.get("/:id", productController.getProductById);
 
 module.exports = router;
