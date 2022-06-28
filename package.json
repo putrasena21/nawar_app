@@ -6,10 +6,14 @@
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "db:create": "sequelize db:create",
+    "db:drop": "sequelize db:drop",
     "db:migrate": "sequelize db:migrate",
-    "db:undo": "sequelize db:migrate:undo:all"
+    "db:undo": "sequelize db:migrate:undo:all",
+    "db:seed": "sequelize db:seed:all",
+    "db:seed:undo": "sequelize db:seed:undo:all"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
