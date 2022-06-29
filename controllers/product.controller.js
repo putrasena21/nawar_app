@@ -77,9 +77,9 @@ module.exports = {
 
   getProductById: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { productId } = req.params;
       const product = await Product.findOne({
-        where: { id },
+        where: { id: productId },
         include: [
           {
             model: ProductCategory,
@@ -160,9 +160,13 @@ module.exports = {
         totalItem: products.count,
         data: products.rows,
         totalPages: Math.ceil(products.count / perPage),
-        previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${req.path}?page=${parseInt(page, 10) - 1}`,
+        previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
+          req.path
+        }?page=${parseInt(page, 10) - 1}`,
         currentPage: parseInt(page, 10),
-        nextPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${req.path}?page=${parseInt(page, 10) + 1}`,
+        nextPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
+          req.path
+        }?page=${parseInt(page, 10) + 1}`,
       };
 
       if (result.totalPages < page) {
@@ -185,9 +189,19 @@ module.exports = {
 
   deleteProductById: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { productId } = req.params;
+      const token = req.headers.authorization.split(" ")[1];
+
+      if (!token) {
+        return res.unauthorized("Token is required");
+      }
+
+      const decoded = jwt.verify(token, JWT_SECRET_KEY);
+
       const product = await Product.findOne({
-        where: { id },
+        where: {
+          id: productId,
+        },
         include: [
           {
             model: ProductCategory,
@@ -203,6 +217,12 @@ module.exports = {
           },
         ],
       });
+
+      if (decoded.id !== product.userId) {
+        return res.unauthorized(
+          "You are not authorized to delete this product"
+        );
+      }
 
       if (!product) {
         return res.notFound("Product not found");
