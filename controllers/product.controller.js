@@ -108,7 +108,20 @@ module.exports = {
   getAllProduct: async (req, res) => {
     try {
       const products = await Product.findAll({
-        include: ["categories", "productImages"],
+        include: [
+          {
+            model: ProductCategory,
+            as: "productCategories",
+            attributes: ["categoryId"],
+            include: [
+              {
+                model: Category,
+                as: "category",
+                attributes: ["name"],
+              },
+            ],
+          },
+        ],
       });
       if (!products) {
         return res.notFound("Product not found");
@@ -119,22 +132,80 @@ module.exports = {
     }
   },
 
+  getAllProductPagination: async (req, res) => {
+    try {
+      const perPage = 10;
+      const { page } = req.query;
+
+      const products = await Product.findAndCountAll({
+        limit: perPage,
+        offset: perPage * (page - 1),
+        include: [
+          {
+            model: ProductCategory,
+            as: "productCategories",
+            attributes: ["categoryId"],
+            include: [
+              {
+                model: Category,
+                as: "category",
+                attributes: ["name"],
+              },
+            ],
+          },
+        ],
+      });
+
+      const result = {
+        totalItem: products.count,
+        data: products.rows,
+        totalPages: Math.ceil(products.count / perPage),
+        previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${req.path}?page=${parseInt(page, 10) - 1}`,
+        currentPage: parseInt(page, 10),
+        nextPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${req.path}?page=${parseInt(page, 10) + 1}`,
+      };
+
+      if(!products.rows.length) {
+        return res.notFound("Product not found");
+      }
+
+      if(result.totalPages < page) {
+        return res.notFound("Product not found");
+      }
+
+      if(result.totalPages === result.currentPage) {
+        result.nextPage = null;
+      }
+
+      if(result.currentPage === 1) {
+        result.previosusPage = null;
+      }
+
+      return res.success("Success get data product!", result);
+    } catch (err) {
+      return res.serverError(err.message);
+    }
+  },
+
   getAllProductByName: async (req, res) => {
     try {
       const { page, size, name } = req.query;
       const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
       const { limit, offset } = pagination.getPagination(page, size);
+
       const products = await Product.findAndCountAll({
         where: condition,
         include: ["categories", "productImages"],
         limit,
         offset,
       });
+
       const { totalPage } = pagination.getPaginationData(
         page,
         size,
         products.count
       );
+
       return res.success("Success get data product!", {
         products: products.rows,
         pagination: {

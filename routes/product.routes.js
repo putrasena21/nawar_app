@@ -14,7 +14,7 @@ router.post(
   productController.createProduct
 );
 
-router.get("/", productController.getAllProduct);
+router.get("/", productController.getAllProductPagination);
 router.get("/name", productController.getAllProductByName);
 router.get("/:id", productController.getProductById);
 
