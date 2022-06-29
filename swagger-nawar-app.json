@@ -1,0 +1,4110 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Nawar_app",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "operationId": "Login",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              },
+              "example": {
+                "email": "faisal@mail.com",
+                "password": "12345678"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "199"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"c7-WJYB8Q3MQyo0VQfZf9Dn1ukPy8M\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 08:11:12 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200LoginSuccess"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Login success",
+                  "data": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU2NDAzODcyLCJleHAiOjE2NTcwMDg2NzJ9.OULWwDjXDE8OjYTLYIuVHlWYkL6TTvBjrSE1lvj0xEI"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "57"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"39-ZTc8KCpTWg67UXQJcCEmBnerbtw\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 08:12:49 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/400WrongPassword1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "Wrong password!",
+                  "data": null
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "82"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"52-9E+Gj6rd0aH9FSwpYyUGQjz7QIg\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 08:12:01 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/404Usernotexist1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "User with email test1@mail.com not exist",
+                  "data": null
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/profile": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "summary": "Get User Profile",
+        "operationId": "GetUserProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "126"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"7e-MHHzy1YxGSxG49p98rDuRwTW7jg\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 08:36:02 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200Successgetuserprofile"
+                },
+                "example": {
+                  "success": true,
+                  "message": "User found",
+                  "data": {
+                    "id": 1,
+                    "name": "test123",
+                    "city": null,
+                    "address": null,
+                    "phone": null,
+                    "avatar": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Profile"
+        ],
+        "summary": "Update Profile",
+        "operationId": "UpdateProfile",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "avatar",
+                  "name",
+                  "province",
+                  "city",
+                  "address",
+                  "phone"
+                ],
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Moch Faisal Khoirudin"
+                  },
+                  "province": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 35
+                  },
+                  "city": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 3578
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Surabaya barat"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "082141089098"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "52"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"34-emTzZYxaBCBrdm8lJIRB0jCC4Cg\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 11:36:40 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200ProfileUpdated"
+                },
+                "example": {
+                  "success": true,
+                  "message": "User updated",
+                  "data": [
+                    1
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/users/provinces": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "summary": "Get All Provinces",
+        "operationId": "GetAllProvinces",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1217"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"4c1-/IPm5l85wvn7nNUzlspewZ13NzI\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 11:39:02 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200SuccessGetAllProvinces"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Provinces found",
+                  "data": [
+                    {
+                      "id": "11",
+                      "name": "ACEH"
+                    },
+                    {
+                      "id": "12",
+                      "name": "SUMATERA UTARA"
+                    },
+                    {
+                      "id": "13",
+                      "name": "SUMATERA BARAT"
+                    },
+                    {
+                      "id": "14",
+                      "name": "RIAU"
+                    },
+                    {
+                      "id": "15",
+                      "name": "JAMBI"
+                    },
+                    {
+                      "id": "16",
+                      "name": "SUMATERA SELATAN"
+                    },
+                    {
+                      "id": "17",
+                      "name": "BENGKULU"
+                    },
+                    {
+                      "id": "18",
+                      "name": "LAMPUNG"
+                    },
+                    {
+                      "id": "19",
+                      "name": "KEPULAUAN BANGKA BELITUNG"
+                    },
+                    {
+                      "id": "21",
+                      "name": "KEPULAUAN RIAU"
+                    },
+                    {
+                      "id": "31",
+                      "name": "DKI JAKARTA"
+                    },
+                    {
+                      "id": "32",
+                      "name": "JAWA BARAT"
+                    },
+                    {
+                      "id": "33",
+                      "name": "JAWA TENGAH"
+                    },
+                    {
+                      "id": "34",
+                      "name": "DI YOGYAKARTA"
+                    },
+                    {
+                      "id": "35",
+                      "name": "JAWA TIMUR"
+                    },
+                    {
+                      "id": "36",
+                      "name": "BANTEN"
+                    },
+                    {
+                      "id": "51",
+                      "name": "BALI"
+                    },
+                    {
+                      "id": "52",
+                      "name": "NUSA TENGGARA BARAT"
+                    },
+                    {
+                      "id": "53",
+                      "name": "NUSA TENGGARA TIMUR"
+                    },
+                    {
+                      "id": "61",
+                      "name": "KALIMANTAN BARAT"
+                    },
+                    {
+                      "id": "62",
+                      "name": "KALIMANTAN TENGAH"
+                    },
+                    {
+                      "id": "63",
+                      "name": "KALIMANTAN SELATAN"
+                    },
+                    {
+                      "id": "64",
+                      "name": "KALIMANTAN TIMUR"
+                    },
+                    {
+                      "id": "65",
+                      "name": "KALIMANTAN UTARA"
+                    },
+                    {
+                      "id": "71",
+                      "name": "SULAWESI UTARA"
+                    },
+                    {
+                      "id": "72",
+                      "name": "SULAWESI TENGAH"
+                    },
+                    {
+                      "id": "73",
+                      "name": "SULAWESI SELATAN"
+                    },
+                    {
+                      "id": "74",
+                      "name": "SULAWESI TENGGARA"
+                    },
+                    {
+                      "id": "75",
+                      "name": "GORONTALO"
+                    },
+                    {
+                      "id": "76",
+                      "name": "SULAWESI BARAT"
+                    },
+                    {
+                      "id": "81",
+                      "name": "MALUKU"
+                    },
+                    {
+                      "id": "82",
+                      "name": "MALUKU UTARA"
+                    },
+                    {
+                      "id": "91",
+                      "name": "PAPUA BARAT"
+                    },
+                    {
+                      "id": "94",
+                      "name": "PAPUA"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/provinces/{provincesId}": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "summary": "Get Cities",
+        "operationId": "GetCities",
+        "parameters": [
+          {
+            "name": "provincesId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "2308"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"904-7caD2QP8QGsZJHhdUBJ3n5+ImA8\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 11:40:51 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200SuccessGetCities"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Cities found",
+                  "data": [
+                    {
+                      "id": "3501",
+                      "province_id": "35",
+                      "name": "KABUPATEN PACITAN"
+                    },
+                    {
+                      "id": "3502",
+                      "province_id": "35",
+                      "name": "KABUPATEN PONOROGO"
+                    },
+                    {
+                      "id": "3503",
+                      "province_id": "35",
+                      "name": "KABUPATEN TRENGGALEK"
+                    },
+                    {
+                      "id": "3504",
+                      "province_id": "35",
+                      "name": "KABUPATEN TULUNGAGUNG"
+                    },
+                    {
+                      "id": "3505",
+                      "province_id": "35",
+                      "name": "KABUPATEN BLITAR"
+                    },
+                    {
+                      "id": "3506",
+                      "province_id": "35",
+                      "name": "KABUPATEN KEDIRI"
+                    },
+                    {
+                      "id": "3507",
+                      "province_id": "35",
+                      "name": "KABUPATEN MALANG"
+                    },
+                    {
+                      "id": "3508",
+                      "province_id": "35",
+                      "name": "KABUPATEN LUMAJANG"
+                    },
+                    {
+                      "id": "3509",
+                      "province_id": "35",
+                      "name": "KABUPATEN JEMBER"
+                    },
+                    {
+                      "id": "3510",
+                      "province_id": "35",
+                      "name": "KABUPATEN BANYUWANGI"
+                    },
+                    {
+                      "id": "3511",
+                      "province_id": "35",
+                      "name": "KABUPATEN BONDOWOSO"
+                    },
+                    {
+                      "id": "3512",
+                      "province_id": "35",
+                      "name": "KABUPATEN SITUBONDO"
+                    },
+                    {
+                      "id": "3513",
+                      "province_id": "35",
+                      "name": "KABUPATEN PROBOLINGGO"
+                    },
+                    {
+                      "id": "3514",
+                      "province_id": "35",
+                      "name": "KABUPATEN PASURUAN"
+                    },
+                    {
+                      "id": "3515",
+                      "province_id": "35",
+                      "name": "KABUPATEN SIDOARJO"
+                    },
+                    {
+                      "id": "3516",
+                      "province_id": "35",
+                      "name": "KABUPATEN MOJOKERTO"
+                    },
+                    {
+                      "id": "3517",
+                      "province_id": "35",
+                      "name": "KABUPATEN JOMBANG"
+                    },
+                    {
+                      "id": "3518",
+                      "province_id": "35",
+                      "name": "KABUPATEN NGANJUK"
+                    },
+                    {
+                      "id": "3519",
+                      "province_id": "35",
+                      "name": "KABUPATEN MADIUN"
+                    },
+                    {
+                      "id": "3520",
+                      "province_id": "35",
+                      "name": "KABUPATEN MAGETAN"
+                    },
+                    {
+                      "id": "3521",
+                      "province_id": "35",
+                      "name": "KABUPATEN NGAWI"
+                    },
+                    {
+                      "id": "3522",
+                      "province_id": "35",
+                      "name": "KABUPATEN BOJONEGORO"
+                    },
+                    {
+                      "id": "3523",
+                      "province_id": "35",
+                      "name": "KABUPATEN TUBAN"
+                    },
+                    {
+                      "id": "3524",
+                      "province_id": "35",
+                      "name": "KABUPATEN LAMONGAN"
+                    },
+                    {
+                      "id": "3525",
+                      "province_id": "35",
+                      "name": "KABUPATEN GRESIK"
+                    },
+                    {
+                      "id": "3526",
+                      "province_id": "35",
+                      "name": "KABUPATEN BANGKALAN"
+                    },
+                    {
+                      "id": "3527",
+                      "province_id": "35",
+                      "name": "KABUPATEN SAMPANG"
+                    },
+                    {
+                      "id": "3528",
+                      "province_id": "35",
+                      "name": "KABUPATEN PAMEKASAN"
+                    },
+                    {
+                      "id": "3529",
+                      "province_id": "35",
+                      "name": "KABUPATEN SUMENEP"
+                    },
+                    {
+                      "id": "3571",
+                      "province_id": "35",
+                      "name": "KOTA KEDIRI"
+                    },
+                    {
+                      "id": "3572",
+                      "province_id": "35",
+                      "name": "KOTA BLITAR"
+                    },
+                    {
+                      "id": "3573",
+                      "province_id": "35",
+                      "name": "KOTA MALANG"
+                    },
+                    {
+                      "id": "3574",
+                      "province_id": "35",
+                      "name": "KOTA PROBOLINGGO"
+                    },
+                    {
+                      "id": "3575",
+                      "province_id": "35",
+                      "name": "KOTA PASURUAN"
+                    },
+                    {
+                      "id": "3576",
+                      "province_id": "35",
+                      "name": "KOTA MOJOKERTO"
+                    },
+                    {
+                      "id": "3577",
+                      "province_id": "35",
+                      "name": "KOTA MADIUN"
+                    },
+                    {
+                      "id": "3578",
+                      "province_id": "35",
+                      "name": "KOTA SURABAYA"
+                    },
+                    {
+                      "id": "3579",
+                      "province_id": "35",
+                      "name": "KOTA BATU"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/users/register": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Register",
+        "operationId": "Register",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              },
+              "example": {
+                "name": "faisal",
+                "email": "faisal@mail.com",
+                "password": "12345678"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "338"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"152-6JGWiAukHvQ4+7cd787L6zTWGac\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 08:03:49 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/201UserCreated"
+                },
+                "example": {
+                  "success": true,
+                  "message": "User created",
+                  "data": {
+                    "id": 1,
+                    "name": "test123",
+                    "email": "test@mail.com",
+                    "password": "$2b$10$CmvyKmtgFW9j42vM/s11OuaBTbsRXZ32zBdm0/oQ5LXNOeY/UOV5S",
+                    "updatedAt": "2022-06-28T08:03:49.116Z",
+                    "createdAt": "2022-06-28T08:03:49.116Z",
+                    "province": null,
+                    "city": null,
+                    "address": null,
+                    "phone": null,
+                    "avatar": null,
+                    "completed": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "208"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"d0-TI+eqy5x0gTWd8KNP2csLf7Kls4\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 08:03:00 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/400Passwordmin8char1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "Invalid input",
+                  "data": [
+                    {
+                      "type": "stringMin",
+                      "message": "The 'password' field length must be greater than or equal to 8 characters long.",
+                      "field": "password",
+                      "expected": 8,
+                      "actual": 7
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "85"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"55-1W3whFgRVQHgwlHTWoV+MSvZaj8\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 08:06:06 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/409UserAlreadyExist1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "User with email test@mail.com already exist",
+                  "data": null
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/create": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Add New Product",
+        "operationId": "AddNewProduct",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "images",
+                  "name",
+                  "price",
+                  "description",
+                  "category"
+                ],
+                "type": "object",
+                "properties": {
+                  "images": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Vans Old-school"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1000000
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Lorem ipsum"
+                  },
+                  "category": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "217"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"d9-wn7CsTQCDJU9thwQuni0I03Kyxw\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 11:44:53 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewProduct"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success add data product!",
+                  "data": {
+                    "id": 1,
+                    "name": "Vans",
+                    "price": 1000000,
+                    "description": "Lorem ipsum",
+                    "userId": 1,
+                    "updatedAt": "2022-06-28T11:44:53.107Z",
+                    "createdAt": "2022-06-28T11:44:53.107Z"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "76"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"4c-LSnw31uRAkMWiUEb0/IVHxwQZFk\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 11:34:05 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/401Profilenotcompleted1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "Please complete your profile first",
+                  "data": null
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/products/{productId}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Product Detail",
+        "operationId": "GetProductDetail",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "331"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"14b-Tzo9egjsrYAY239oO2m3kLU81yc\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 11:57:57 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200SuccessGetProductDetail"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get data product!",
+                  "data": {
+                    "id": 2,
+                    "userId": 1,
+                    "name": "Vans",
+                    "price": 1000000,
+                    "description": "Lorem ipsum",
+                    "createdAt": "2022-06-28T11:46:31.157Z",
+                    "updatedAt": "2022-06-28T11:46:31.157Z",
+                    "productCategories": [
+                      {
+                        "categoryId": 1,
+                        "category": {
+                          "name": "Sneaker"
+                        }
+                      },
+                      {
+                        "categoryId": 2,
+                        "category": {
+                          "name": "Boots"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "59"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"3b-V1t6GZ7P4cu9fHrCBWeKOyLH1dM\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 11:44:28 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/404ProductNotFound1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "Product not found",
+                  "data": null
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Delete Product",
+        "operationId": "DeleteProduct",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "69"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"45-AXYAOhH+28yA0TbLzfB5Ohr8ab0\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 08:25:24 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200DeleteProduct"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success delete data product!",
+                  "data": null
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "87"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"57-Ofv+JCGQwiA8eutOVbl8e79dDyw\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 08:26:15 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/401DeleteProduct1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "You are not authorized to delete this product",
+                  "data": null
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get All Products",
+        "operationId": "GetAllProducts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "2631"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"a47-U1nxuy77ZDNafuL8sruDa7Mpn0Q\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 08:09:38 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200GetAllProductswithpagination"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get data product!",
+                  "data": {
+                    "totalItem": 25,
+                    "data": [
+                      {
+                        "id": 1,
+                        "userId": 1,
+                        "name": "Vans",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:34:33.823Z",
+                        "updatedAt": "2022-06-29T07:34:33.823Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          },
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 2,
+                        "userId": 1,
+                        "name": "Vans Retro",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:34:43.871Z",
+                        "updatedAt": "2022-06-29T07:34:43.871Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          },
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 3,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:34:57.791Z",
+                        "updatedAt": "2022-06-29T07:34:57.791Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 4,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:00.640Z",
+                        "updatedAt": "2022-06-29T07:35:00.640Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 5,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:02.074Z",
+                        "updatedAt": "2022-06-29T07:35:02.074Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 6,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:03.232Z",
+                        "updatedAt": "2022-06-29T07:35:03.232Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 7,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:04.687Z",
+                        "updatedAt": "2022-06-29T07:35:04.687Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 8,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:05.967Z",
+                        "updatedAt": "2022-06-29T07:35:05.967Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 9,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:07.346Z",
+                        "updatedAt": "2022-06-29T07:35:07.346Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 10,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:08.740Z",
+                        "updatedAt": "2022-06-29T07:35:08.740Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "totalPages": 3,
+                    "previosusPage": null,
+                    "currentPage": 1,
+                    "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get All Categories",
+        "operationId": "GetAllCategories",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "527"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"20f-zJHv1qUFXKfuKYiToquQtPX/G0g\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Tue, 28 Jun 2022 08:16:04 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/200OK"
+                  },
+                  "description": "",
+                  "example": [
+                    {
+                      "id": 1,
+                      "name": "Sneaker",
+                      "createdAt": "2022-06-28T08:02:17.476Z",
+                      "updatedAt": "2022-06-28T08:02:17.476Z"
+                    },
+                    {
+                      "id": 2,
+                      "name": "Boots",
+                      "createdAt": "2022-06-28T08:02:17.476Z",
+                      "updatedAt": "2022-06-28T08:02:17.476Z"
+                    },
+                    {
+                      "id": 3,
+                      "name": "Flip-Flops",
+                      "createdAt": "2022-06-28T08:02:17.476Z",
+                      "updatedAt": "2022-06-28T08:02:17.476Z"
+                    },
+                    {
+                      "id": 4,
+                      "name": "Flat-Shoes",
+                      "createdAt": "2022-06-28T08:02:17.476Z",
+                      "updatedAt": "2022-06-28T08:02:17.476Z"
+                    },
+                    {
+                      "id": 5,
+                      "name": "High-Heel",
+                      "createdAt": "2022-06-28T08:02:17.476Z",
+                      "updatedAt": "2022-06-28T08:02:17.476Z"
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "name": "Sneaker",
+                    "createdAt": "2022-06-28T08:02:17.476Z",
+                    "updatedAt": "2022-06-28T08:02:17.476Z"
+                  },
+                  {
+                    "id": 2,
+                    "name": "Boots",
+                    "createdAt": "2022-06-28T08:02:17.476Z",
+                    "updatedAt": "2022-06-28T08:02:17.476Z"
+                  },
+                  {
+                    "id": 3,
+                    "name": "Flip-Flops",
+                    "createdAt": "2022-06-28T08:02:17.476Z",
+                    "updatedAt": "2022-06-28T08:02:17.476Z"
+                  },
+                  {
+                    "id": 4,
+                    "name": "Flat-Shoes",
+                    "createdAt": "2022-06-28T08:02:17.476Z",
+                    "updatedAt": "2022-06-28T08:02:17.476Z"
+                  },
+                  {
+                    "id": 5,
+                    "name": "High-Heel",
+                    "createdAt": "2022-06-28T08:02:17.476Z",
+                    "updatedAt": "2022-06-28T08:02:17.476Z"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LoginRequest": {
+        "title": "LoginRequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "faisal@mail.com",
+          "password": "12345678"
+        }
+      },
+      "200LoginSuccess": {
+        "title": "200LoginSuccess",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Login success",
+          "data": {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU2NDAzODcyLCJleHAiOjE2NTcwMDg2NzJ9.OULWwDjXDE8OjYTLYIuVHlWYkL6TTvBjrSE1lvj0xEI"
+          }
+        }
+      },
+      "Data": {
+        "title": "Data",
+        "required": [
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU2NDAzODcyLCJleHAiOjE2NTcwMDg2NzJ9.OULWwDjXDE8OjYTLYIuVHlWYkL6TTvBjrSE1lvj0xEI"
+        }
+      },
+      "404Usernotexist1": {
+        "title": "404Usernotexist1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "User with email test1@mail.com not exist",
+          "data": null
+        }
+      },
+      "400WrongPassword1": {
+        "title": "400WrongPassword1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "Wrong password!",
+          "data": null
+        }
+      },
+      "200Successgetuserprofile": {
+        "title": "200Successgetuserprofile",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data1"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "User found",
+          "data": {
+            "id": 1,
+            "name": "test123",
+            "city": null,
+            "address": null,
+            "phone": null,
+            "avatar": null
+          }
+        }
+      },
+      "Data1": {
+        "title": "Data1",
+        "required": [
+          "id",
+          "name",
+          "city",
+          "address",
+          "phone",
+          "avatar"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "test123",
+          "city": null,
+          "address": null,
+          "phone": null,
+          "avatar": null
+        }
+      },
+      "200ProfileUpdated": {
+        "title": "200ProfileUpdated",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "User updated",
+          "data": [
+            1
+          ]
+        }
+      },
+      "200SuccessGetAllProvinces": {
+        "title": "200SuccessGetAllProvinces",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data2"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Provinces found",
+          "data": [
+            {
+              "id": "11",
+              "name": "ACEH"
+            },
+            {
+              "id": "12",
+              "name": "SUMATERA UTARA"
+            },
+            {
+              "id": "13",
+              "name": "SUMATERA BARAT"
+            },
+            {
+              "id": "14",
+              "name": "RIAU"
+            },
+            {
+              "id": "15",
+              "name": "JAMBI"
+            },
+            {
+              "id": "16",
+              "name": "SUMATERA SELATAN"
+            },
+            {
+              "id": "17",
+              "name": "BENGKULU"
+            },
+            {
+              "id": "18",
+              "name": "LAMPUNG"
+            },
+            {
+              "id": "19",
+              "name": "KEPULAUAN BANGKA BELITUNG"
+            },
+            {
+              "id": "21",
+              "name": "KEPULAUAN RIAU"
+            },
+            {
+              "id": "31",
+              "name": "DKI JAKARTA"
+            },
+            {
+              "id": "32",
+              "name": "JAWA BARAT"
+            },
+            {
+              "id": "33",
+              "name": "JAWA TENGAH"
+            },
+            {
+              "id": "34",
+              "name": "DI YOGYAKARTA"
+            },
+            {
+              "id": "35",
+              "name": "JAWA TIMUR"
+            },
+            {
+              "id": "36",
+              "name": "BANTEN"
+            },
+            {
+              "id": "51",
+              "name": "BALI"
+            },
+            {
+              "id": "52",
+              "name": "NUSA TENGGARA BARAT"
+            },
+            {
+              "id": "53",
+              "name": "NUSA TENGGARA TIMUR"
+            },
+            {
+              "id": "61",
+              "name": "KALIMANTAN BARAT"
+            },
+            {
+              "id": "62",
+              "name": "KALIMANTAN TENGAH"
+            },
+            {
+              "id": "63",
+              "name": "KALIMANTAN SELATAN"
+            },
+            {
+              "id": "64",
+              "name": "KALIMANTAN TIMUR"
+            },
+            {
+              "id": "65",
+              "name": "KALIMANTAN UTARA"
+            },
+            {
+              "id": "71",
+              "name": "SULAWESI UTARA"
+            },
+            {
+              "id": "72",
+              "name": "SULAWESI TENGAH"
+            },
+            {
+              "id": "73",
+              "name": "SULAWESI SELATAN"
+            },
+            {
+              "id": "74",
+              "name": "SULAWESI TENGGARA"
+            },
+            {
+              "id": "75",
+              "name": "GORONTALO"
+            },
+            {
+              "id": "76",
+              "name": "SULAWESI BARAT"
+            },
+            {
+              "id": "81",
+              "name": "MALUKU"
+            },
+            {
+              "id": "82",
+              "name": "MALUKU UTARA"
+            },
+            {
+              "id": "91",
+              "name": "PAPUA BARAT"
+            },
+            {
+              "id": "94",
+              "name": "PAPUA"
+            }
+          ]
+        }
+      },
+      "Data2": {
+        "title": "Data2",
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "11",
+          "name": "ACEH"
+        }
+      },
+      "200SuccessGetCities": {
+        "title": "200SuccessGetCities",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data3"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Cities found",
+          "data": [
+            {
+              "id": "3501",
+              "province_id": "35",
+              "name": "KABUPATEN PACITAN"
+            },
+            {
+              "id": "3502",
+              "province_id": "35",
+              "name": "KABUPATEN PONOROGO"
+            },
+            {
+              "id": "3503",
+              "province_id": "35",
+              "name": "KABUPATEN TRENGGALEK"
+            },
+            {
+              "id": "3504",
+              "province_id": "35",
+              "name": "KABUPATEN TULUNGAGUNG"
+            },
+            {
+              "id": "3505",
+              "province_id": "35",
+              "name": "KABUPATEN BLITAR"
+            },
+            {
+              "id": "3506",
+              "province_id": "35",
+              "name": "KABUPATEN KEDIRI"
+            },
+            {
+              "id": "3507",
+              "province_id": "35",
+              "name": "KABUPATEN MALANG"
+            },
+            {
+              "id": "3508",
+              "province_id": "35",
+              "name": "KABUPATEN LUMAJANG"
+            },
+            {
+              "id": "3509",
+              "province_id": "35",
+              "name": "KABUPATEN JEMBER"
+            },
+            {
+              "id": "3510",
+              "province_id": "35",
+              "name": "KABUPATEN BANYUWANGI"
+            },
+            {
+              "id": "3511",
+              "province_id": "35",
+              "name": "KABUPATEN BONDOWOSO"
+            },
+            {
+              "id": "3512",
+              "province_id": "35",
+              "name": "KABUPATEN SITUBONDO"
+            },
+            {
+              "id": "3513",
+              "province_id": "35",
+              "name": "KABUPATEN PROBOLINGGO"
+            },
+            {
+              "id": "3514",
+              "province_id": "35",
+              "name": "KABUPATEN PASURUAN"
+            },
+            {
+              "id": "3515",
+              "province_id": "35",
+              "name": "KABUPATEN SIDOARJO"
+            },
+            {
+              "id": "3516",
+              "province_id": "35",
+              "name": "KABUPATEN MOJOKERTO"
+            },
+            {
+              "id": "3517",
+              "province_id": "35",
+              "name": "KABUPATEN JOMBANG"
+            },
+            {
+              "id": "3518",
+              "province_id": "35",
+              "name": "KABUPATEN NGANJUK"
+            },
+            {
+              "id": "3519",
+              "province_id": "35",
+              "name": "KABUPATEN MADIUN"
+            },
+            {
+              "id": "3520",
+              "province_id": "35",
+              "name": "KABUPATEN MAGETAN"
+            },
+            {
+              "id": "3521",
+              "province_id": "35",
+              "name": "KABUPATEN NGAWI"
+            },
+            {
+              "id": "3522",
+              "province_id": "35",
+              "name": "KABUPATEN BOJONEGORO"
+            },
+            {
+              "id": "3523",
+              "province_id": "35",
+              "name": "KABUPATEN TUBAN"
+            },
+            {
+              "id": "3524",
+              "province_id": "35",
+              "name": "KABUPATEN LAMONGAN"
+            },
+            {
+              "id": "3525",
+              "province_id": "35",
+              "name": "KABUPATEN GRESIK"
+            },
+            {
+              "id": "3526",
+              "province_id": "35",
+              "name": "KABUPATEN BANGKALAN"
+            },
+            {
+              "id": "3527",
+              "province_id": "35",
+              "name": "KABUPATEN SAMPANG"
+            },
+            {
+              "id": "3528",
+              "province_id": "35",
+              "name": "KABUPATEN PAMEKASAN"
+            },
+            {
+              "id": "3529",
+              "province_id": "35",
+              "name": "KABUPATEN SUMENEP"
+            },
+            {
+              "id": "3571",
+              "province_id": "35",
+              "name": "KOTA KEDIRI"
+            },
+            {
+              "id": "3572",
+              "province_id": "35",
+              "name": "KOTA BLITAR"
+            },
+            {
+              "id": "3573",
+              "province_id": "35",
+              "name": "KOTA MALANG"
+            },
+            {
+              "id": "3574",
+              "province_id": "35",
+              "name": "KOTA PROBOLINGGO"
+            },
+            {
+              "id": "3575",
+              "province_id": "35",
+              "name": "KOTA PASURUAN"
+            },
+            {
+              "id": "3576",
+              "province_id": "35",
+              "name": "KOTA MOJOKERTO"
+            },
+            {
+              "id": "3577",
+              "province_id": "35",
+              "name": "KOTA MADIUN"
+            },
+            {
+              "id": "3578",
+              "province_id": "35",
+              "name": "KOTA SURABAYA"
+            },
+            {
+              "id": "3579",
+              "province_id": "35",
+              "name": "KOTA BATU"
+            }
+          ]
+        }
+      },
+      "Data3": {
+        "title": "Data3",
+        "required": [
+          "id",
+          "province_id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "province_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "3501",
+          "province_id": "35",
+          "name": "KABUPATEN PACITAN"
+        }
+      },
+      "RegisterRequest": {
+        "title": "RegisterRequest",
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "faisal",
+          "email": "faisal@mail.com",
+          "password": "12345678"
+        }
+      },
+      "Data4": {
+        "title": "Data4",
+        "required": [
+          "type",
+          "message",
+          "field",
+          "expected",
+          "actual"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "expected": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "actual": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "type": "stringMin",
+          "message": "The 'password' field length must be greater than or equal to 8 characters long.",
+          "field": "password",
+          "expected": 8,
+          "actual": 7
+        }
+      },
+      "400Passwordmin8char1": {
+        "title": "400Passwordmin8char1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data4"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "Invalid input",
+          "data": [
+            {
+              "type": "stringMin",
+              "message": "The 'password' field length must be greater than or equal to 8 characters long.",
+              "field": "password",
+              "expected": 8,
+              "actual": 7
+            }
+          ]
+        }
+      },
+      "201UserCreated": {
+        "title": "201UserCreated",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data6"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "User created",
+          "data": {
+            "id": 1,
+            "name": "test123",
+            "email": "test@mail.com",
+            "password": "$2b$10$CmvyKmtgFW9j42vM/s11OuaBTbsRXZ32zBdm0/oQ5LXNOeY/UOV5S",
+            "updatedAt": "2022-06-28T08:03:49.116Z",
+            "createdAt": "2022-06-28T08:03:49.116Z",
+            "province": null,
+            "city": null,
+            "address": null,
+            "phone": null,
+            "avatar": null,
+            "completed": false
+          }
+        }
+      },
+      "Data6": {
+        "title": "Data6",
+        "required": [
+          "id",
+          "name",
+          "email",
+          "password",
+          "updatedAt",
+          "createdAt",
+          "province",
+          "city",
+          "address",
+          "phone",
+          "avatar",
+          "completed"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": true
+          },
+          "completed": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "test123",
+          "email": "test@mail.com",
+          "password": "$2b$10$CmvyKmtgFW9j42vM/s11OuaBTbsRXZ32zBdm0/oQ5LXNOeY/UOV5S",
+          "updatedAt": "2022-06-28T08:03:49.116Z",
+          "createdAt": "2022-06-28T08:03:49.116Z",
+          "province": null,
+          "city": null,
+          "address": null,
+          "phone": null,
+          "avatar": null,
+          "completed": false
+        }
+      },
+      "409UserAlreadyExist1": {
+        "title": "409UserAlreadyExist1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "User with email test@mail.com already exist",
+          "data": null
+        }
+      },
+      "401Profilenotcompleted1": {
+        "title": "401Profilenotcompleted1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "Please complete your profile first",
+          "data": null
+        }
+      },
+      "AddNewProduct": {
+        "title": "AddNewProduct",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data7"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success add data product!",
+          "data": {
+            "id": 1,
+            "name": "Vans",
+            "price": 1000000,
+            "description": "Lorem ipsum",
+            "userId": 1,
+            "updatedAt": "2022-06-28T11:44:53.107Z",
+            "createdAt": "2022-06-28T11:44:53.107Z"
+          }
+        }
+      },
+      "Data7": {
+        "title": "Data7",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "description",
+          "userId",
+          "updatedAt",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "Vans",
+          "price": 1000000,
+          "description": "Lorem ipsum",
+          "userId": 1,
+          "updatedAt": "2022-06-28T11:44:53.107Z",
+          "createdAt": "2022-06-28T11:44:53.107Z"
+        }
+      },
+      "404ProductNotFound1": {
+        "title": "404ProductNotFound1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "Product not found",
+          "data": null
+        }
+      },
+      "200SuccessGetProductDetail": {
+        "title": "200SuccessGetProductDetail",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data8"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get data product!",
+          "data": {
+            "id": 2,
+            "userId": 1,
+            "name": "Vans",
+            "price": 1000000,
+            "description": "Lorem ipsum",
+            "createdAt": "2022-06-28T11:46:31.157Z",
+            "updatedAt": "2022-06-28T11:46:31.157Z",
+            "productCategories": [
+              {
+                "categoryId": 1,
+                "category": {
+                  "name": "Sneaker"
+                }
+              },
+              {
+                "categoryId": 2,
+                "category": {
+                  "name": "Boots"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "Data8": {
+        "title": "Data8",
+        "required": [
+          "id",
+          "userId",
+          "name",
+          "price",
+          "description",
+          "createdAt",
+          "updatedAt",
+          "productCategories"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "productCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCategory"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "id": 2,
+          "userId": 1,
+          "name": "Vans",
+          "price": 1000000,
+          "description": "Lorem ipsum",
+          "createdAt": "2022-06-28T11:46:31.157Z",
+          "updatedAt": "2022-06-28T11:46:31.157Z",
+          "productCategories": [
+            {
+              "categoryId": 1,
+              "category": {
+                "name": "Sneaker"
+              }
+            },
+            {
+              "categoryId": 2,
+              "category": {
+                "name": "Boots"
+              }
+            }
+          ]
+        }
+      },
+      "ProductCategory": {
+        "title": "ProductCategory",
+        "required": [
+          "categoryId",
+          "category"
+        ],
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          }
+        },
+        "example": {
+          "categoryId": 1,
+          "category": {
+            "name": "Sneaker"
+          }
+        }
+      },
+      "Category": {
+        "title": "Category",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "Sneaker"
+        }
+      },
+      "200GetAllProductswithpagination": {
+        "title": "200GetAllProductswithpagination",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data9"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get data product!",
+          "data": {
+            "totalItem": 25,
+            "data": [
+              {
+                "id": 1,
+                "userId": 1,
+                "name": "Vans",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:34:33.823Z",
+                "updatedAt": "2022-06-29T07:34:33.823Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  },
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "userId": 1,
+                "name": "Vans Retro",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:34:43.871Z",
+                "updatedAt": "2022-06-29T07:34:43.871Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  },
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:34:57.791Z",
+                "updatedAt": "2022-06-29T07:34:57.791Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:00.640Z",
+                "updatedAt": "2022-06-29T07:35:00.640Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 5,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:02.074Z",
+                "updatedAt": "2022-06-29T07:35:02.074Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 6,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:03.232Z",
+                "updatedAt": "2022-06-29T07:35:03.232Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 7,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:04.687Z",
+                "updatedAt": "2022-06-29T07:35:04.687Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 8,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:05.967Z",
+                "updatedAt": "2022-06-29T07:35:05.967Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 9,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:07.346Z",
+                "updatedAt": "2022-06-29T07:35:07.346Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 10,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:08.740Z",
+                "updatedAt": "2022-06-29T07:35:08.740Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              }
+            ],
+            "totalPages": 3,
+            "previosusPage": null,
+            "currentPage": 1,
+            "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+          }
+        }
+      },
+      "Data9": {
+        "title": "Data9",
+        "required": [
+          "totalItem",
+          "data",
+          "totalPages",
+          "previosusPage",
+          "currentPage",
+          "nextPage"
+        ],
+        "type": "object",
+        "properties": {
+          "totalItem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data8"
+            },
+            "description": ""
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "previosusPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nextPage": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "totalItem": 25,
+          "data": [
+            {
+              "id": 1,
+              "userId": 1,
+              "name": "Vans",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:34:33.823Z",
+              "updatedAt": "2022-06-29T07:34:33.823Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                },
+                {
+                  "categoryId": 2,
+                  "category": {
+                    "name": "Boots"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "userId": 1,
+              "name": "Vans Retro",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:34:43.871Z",
+              "updatedAt": "2022-06-29T07:34:43.871Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                },
+                {
+                  "categoryId": 2,
+                  "category": {
+                    "name": "Boots"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:34:57.791Z",
+              "updatedAt": "2022-06-29T07:34:57.791Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:00.640Z",
+              "updatedAt": "2022-06-29T07:35:00.640Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:02.074Z",
+              "updatedAt": "2022-06-29T07:35:02.074Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:03.232Z",
+              "updatedAt": "2022-06-29T07:35:03.232Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:04.687Z",
+              "updatedAt": "2022-06-29T07:35:04.687Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 8,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:05.967Z",
+              "updatedAt": "2022-06-29T07:35:05.967Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 9,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:07.346Z",
+              "updatedAt": "2022-06-29T07:35:07.346Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:08.740Z",
+              "updatedAt": "2022-06-29T07:35:08.740Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            }
+          ],
+          "totalPages": 3,
+          "previosusPage": null,
+          "currentPage": 1,
+          "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+        }
+      },
+      "200DeleteProduct": {
+        "title": "200DeleteProduct",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success delete data product!",
+          "data": null
+        }
+      },
+      "401DeleteProduct1": {
+        "title": "401DeleteProduct1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "You are not authorized to delete this product",
+          "data": null
+        }
+      },
+      "200OK": {
+        "title": "200OK",
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "Sneaker",
+          "createdAt": "2022-06-28T08:02:17.476Z",
+          "updatedAt": "2022-06-28T08:02:17.476Z"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Profile"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "Products"
+    },
+    {
+      "name": "Categories"
+    }
+  ]
+}
