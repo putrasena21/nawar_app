@@ -15,6 +15,7 @@ router.post(
 );
 
 router.get("/", productController.getAllProductPagination);
+router.get("/filter/:categoryId", productController.getAllProductByCategory);
 router.get("/:productId", productController.getProductById);
 
 router.delete(

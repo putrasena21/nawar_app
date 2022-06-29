@@ -82,33 +82,10 @@ module.exports = {
         where: { id: productId },
         include: [
           {
-            model: ProductCategory,
-            as: "productCategories",
-            attributes: ["categoryId"],
-            include: [
-              {
-                model: Category,
-                as: "category",
-                attributes: ["name"],
-              },
-            ],
+            model: ProductImage,
+            as: "productImages",
+            attributes: {exclude : ['id', 'createdAt', 'updatedAt']},
           },
-        ],
-      });
-
-      if (!product) {
-        return res.notFound("Product not found");
-      }
-      return res.success("Success get data product!", product);
-    } catch (err) {
-      return res.serverError(err.message);
-    }
-  },
-
-  getAllProduct: async (req, res) => {
-    try {
-      const products = await Product.findAll({
-        include: [
           {
             model: ProductCategory,
             as: "productCategories",
@@ -121,12 +98,13 @@ module.exports = {
               },
             ],
           },
-        ],
+        ], attributes: {exclude : ['createdAt', 'updatedAt']},
       });
-      if (!products) {
+
+      if (!product) {
         return res.notFound("Product not found");
       }
-      return res.success("Success get data product!", products);
+      return res.success("Success get data product!", product);
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -140,7 +118,6 @@ module.exports = {
       const products = await Product.findAndCountAll({
         where:
           condition,
-        
         limit: perPage,
         offset: perPage * (page - 1),
         include: [
@@ -156,7 +133,71 @@ module.exports = {
               },
             ],
           },
-        ],
+        ], attributes: {exclude :['updatedAt', 'createdAt']}
+      });
+
+      const result = {
+        totalItem: products.count,
+        data: products.rows,
+        totalPages: Math.ceil(products.count / perPage),
+        previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
+          req.path
+        }?page=${parseInt(page, 10) - 1}`,
+        currentPage: parseInt(page, 10),
+        nextPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
+          req.path
+        }?page=${parseInt(page, 10) + 1}`,
+      };
+
+      if (result.totalPages < page) {
+        return res.notFound("Product not found");
+      }
+
+      if (result.totalPages === result.currentPage) {
+        result.nextPage = null;
+      }
+
+      if (result.currentPage === 1) {
+        result.previosusPage = null;
+      }
+
+      return res.success("Success get data product!", result);
+    } catch (err) {
+      return res.serverError(err.message);
+    }
+  },
+
+  getAllProductByCategory: async (req, res) => {
+    try {
+      const perPage = 10;
+      const { page=1} = req.query;
+      const { categoryId } = req.params;
+      const products = await Category.findAndCountAll({
+        where: {id : categoryId},
+        limit: perPage,
+        offset: perPage * (page - 1),
+        include: [
+          {
+            model: ProductCategory,
+            as: "productCategories",
+            attributes: ["categoryId"],
+            include: [
+              {
+                model: Product,
+                as: "product",
+                attributes: ["name", "price", "description"],
+                include: [
+                  {                  
+                      model: ProductImage,
+                      as: "productImages",
+                      attributes: {exclude : ['id', 'createdAt', 'updatedAt']
+                      },
+                  },
+                ],
+              },
+            ],
+          },
+        ], attributes: {exclude :['updatedAt', 'createdAt']}
       });
 
       const result = {
