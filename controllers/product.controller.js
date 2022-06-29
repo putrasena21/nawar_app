@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 const { JWT_SECRET_KEY } = process.env;
-const { Op } = require("sequelize");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const {
   Product,
   ProductImage,
@@ -11,7 +12,6 @@ const {
 const { imagekit } = require("../lib/imagekit");
 
 const validator = require("../validator/products");
-const pagination = require("../helpers/pagination.helper");
 
 module.exports = {
   createProduct: async (req, res) => {
@@ -135,9 +135,12 @@ module.exports = {
   getAllProductPagination: async (req, res) => {
     try {
       const perPage = 10;
-      const { page } = req.query;
-
+      const { page=1 , name } = req.query;
+      const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
       const products = await Product.findAndCountAll({
+        where:
+          condition,
+        
         limit: perPage,
         offset: perPage * (page - 1),
         include: [
