@@ -133,7 +133,8 @@ module.exports = {
               },
             ],
           },
-        ], attributes: {exclude :['updatedAt', 'createdAt']}
+        ], order: [["name", "ASC"]],
+        attributes: {exclude : ['createdAt', 'updatedAt']},
       });
 
       const result = {
