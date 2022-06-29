@@ -14,11 +14,11 @@ module.exports = {
             }
 
             const decoded = jwt.verify(token, JWT_SECRET_KEY);
-            const {id_user, id_product} = req.body;
+            const {id_product} = req.body;
 
             const isUserExist = await User.findOne({
                 where: {
-                    id: id_user
+                    id: decoded.id
                 }
             })
 
@@ -36,8 +36,8 @@ module.exports = {
                 return res.notFound();
             }
 
-            if(!id_product || !id_user) {
-                return res.badRequest('id_user and id_product is required!')
+            if(!id_product) {
+                return res.badRequest('id_product is required!')
             }
 
             let new_wishlist = await Wishlist.create({
