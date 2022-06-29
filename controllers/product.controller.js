@@ -165,19 +165,15 @@ module.exports = {
         nextPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${req.path}?page=${parseInt(page, 10) + 1}`,
       };
 
-      if(!products.rows.length) {
+      if (result.totalPages < page) {
         return res.notFound("Product not found");
       }
 
-      if(result.totalPages < page) {
-        return res.notFound("Product not found");
-      }
-
-      if(result.totalPages === result.currentPage) {
+      if (result.totalPages === result.currentPage) {
         result.nextPage = null;
       }
 
-      if(result.currentPage === 1) {
+      if (result.currentPage === 1) {
         result.previosusPage = null;
       }
 
