@@ -14,6 +14,13 @@ router.post(
   productController.createProduct
 );
 
-router.get("/:id", productController.getProduct);
+router.get("/", productController.getAllProductPagination);
+router.get("/:productId", productController.getProductById);
+
+router.delete(
+  "/:productId",
+  [passport.authenticate("jwt", { session: false })],
+  productController.deleteProductById
+);
 
 module.exports = router;
