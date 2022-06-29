@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const swaggerUi = require("swagger-ui-express");
 
 const indexRouter = require("./routes/index");
 
@@ -16,6 +17,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/image", express.static("public/uploads"));
 app.use(responseHelper);
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(require("./swagger-nawar-app.json"))
+);
 
 app.use("/api/v1", indexRouter);
 

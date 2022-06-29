@@ -45,7 +45,7 @@ module.exports = {
         password: encryptedPassword,
       });
 
-      return res.success("User created", newUser);
+      return res.created("User created", newUser);
     } catch (err) {
       return res.serverError();
     }

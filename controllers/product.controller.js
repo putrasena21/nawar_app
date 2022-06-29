@@ -1,9 +1,15 @@
 const jwt = require("jsonwebtoken");
 
 const { JWT_SECRET_KEY } = process.env;
-const { Product, ProductImage, ProductCategory, Category } = require("../models");
-const Op = require("sequelize").Op;
+const { Op } = require("sequelize");
+const {
+  Product,
+  ProductImage,
+  ProductCategory,
+  Category,
+} = require("../models");
 const { imagekit } = require("../lib/imagekit");
+
 const validator = require("../validator/products");
 const pagination = require("../helpers/pagination.helper");
 
@@ -40,11 +46,11 @@ module.exports = {
             categoryId: element,
           });
         });
-      } else{
+      } else {
         await ProductCategory.create({
           productId: newProduct.id,
           categoryId: category,
-        })
+        });
       }
 
       req.files.map(async (file) => {
@@ -74,7 +80,20 @@ module.exports = {
       const { id } = req.params;
       const product = await Product.findOne({
         where: { id },
-        include: ["categories", "productImages"],
+        include: [
+          {
+            model: ProductCategory,
+            as: "productCategories",
+            attributes: ["categoryId"],
+            include: [
+              {
+                model: Category,
+                as: "category",
+                attributes: ["name"],
+              },
+            ],
+          },
+        ],
       });
 
       if (!product) {
@@ -111,7 +130,11 @@ module.exports = {
         limit,
         offset,
       });
-      const { totalPage } = pagination.getPaginationData(page, size, products.count);
+      const { totalPage } = pagination.getPaginationData(
+        page,
+        size,
+        products.count
+      );
       return res.success("Success get data product!", {
         products: products.rows,
         pagination: {
@@ -142,5 +165,5 @@ module.exports = {
     } catch (err) {
       return res.serverError(err.message);
     }
-  }
+  },
 };
