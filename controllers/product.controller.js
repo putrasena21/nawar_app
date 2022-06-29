@@ -183,44 +183,25 @@ module.exports = {
     }
   },
 
-  getAllProductByName: async (req, res) => {
-    try {
-      const { page, size, name } = req.query;
-      const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
-      const { limit, offset } = pagination.getPagination(page, size);
-
-      const products = await Product.findAndCountAll({
-        where: condition,
-        include: ["categories", "productImages"],
-        limit,
-        offset,
-      });
-
-      const { totalPage } = pagination.getPaginationData(
-        page,
-        size,
-        products.count
-      );
-
-      return res.success("Success get data product!", {
-        products: products.rows,
-        pagination: {
-          page,
-          size,
-          totalPage,
-        },
-      });
-    } catch (err) {
-      return res.serverError(err.message);
-    }
-  },
-
-  deleteProduct: async (req, res) => {
+  deleteProductById: async (req, res) => {
     try {
       const { id } = req.params;
       const product = await Product.findOne({
         where: { id },
-        include: ["categories", "productImages"],
+        include: [
+          {
+            model: ProductCategory,
+            as: "productCategories",
+            attributes: ["categoryId"],
+            include: [
+              {
+                model: Category,
+                as: "category",
+                attributes: ["name"],
+              },
+            ],
+          },
+        ],
       });
 
       if (!product) {

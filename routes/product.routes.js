@@ -15,7 +15,8 @@ router.post(
 );
 
 router.get("/", productController.getAllProductPagination);
-router.get("/name", productController.getAllProductByName);
 router.get("/:id", productController.getProductById);
+
+router.delete("/:id", productController.deleteProductById);
 
 module.exports = router;
