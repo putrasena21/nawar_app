@@ -7,14 +7,16 @@
   },
   "servers": [
     {
-      "url": "https://nawar-api.herokuapp.com/api/v1",
+      "url": "http://localhost:3000/api/v1",
       "variables": {}
     }
   ],
   "paths": {
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Login",
         "operationId": "Login",
         "parameters": [],
@@ -26,7 +28,7 @@
                 "$ref": "#/components/schemas/LoginRequest"
               },
               "example": {
-                "email": "test@mail.com",
+                "email": "faisal@mail.com",
                 "password": "12345678"
               }
             }
@@ -273,7 +275,9 @@
     },
     "/users/profile": {
       "get": {
-        "tags": ["Profile"],
+        "tags": [
+          "Profile"
+        ],
         "summary": "Get User Profile",
         "operationId": "GetUserProfile",
         "parameters": [],
@@ -371,13 +375,15 @@
         ]
       },
       "put": {
-        "tags": ["Profile"],
+        "tags": [
+          "Profile"
+        ],
         "summary": "Update Profile",
         "operationId": "UpdateProfile",
         "parameters": [],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/x-www-form-urlencoded": {
               "encoding": {},
               "schema": {
                 "required": [
@@ -494,7 +500,9 @@
                 "example": {
                   "success": true,
                   "message": "User updated",
-                  "data": [1]
+                  "data": [
+                    1
+                  ]
                 }
               }
             }
@@ -510,7 +518,9 @@
     },
     "/users/provinces": {
       "get": {
-        "tags": ["Profile"],
+        "tags": [
+          "Profile"
+        ],
         "summary": "Get All Provinces",
         "operationId": "GetAllProvinces",
         "parameters": [],
@@ -733,12 +743,26 @@
         "deprecated": false
       }
     },
-    "/users/provinces/35": {
+    "/users/provinces/{provincesId}": {
       "get": {
-        "tags": ["Profile"],
+        "tags": [
+          "Profile"
+        ],
         "summary": "Get Cities",
         "operationId": "GetCities",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "provincesId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1014,7 +1038,9 @@
     },
     "/users/register": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Register",
         "operationId": "Register",
         "parameters": [],
@@ -1026,8 +1052,8 @@
                 "$ref": "#/components/schemas/RegisterRequest"
               },
               "example": {
-                "name": "test123",
-                "email": "test@mail.com",
+                "name": "faisal",
+                "email": "faisal@mail.com",
                 "password": "12345678"
               }
             }
@@ -1293,7 +1319,9 @@
     },
     "/products/create": {
       "post": {
-        "tags": ["Products"],
+        "tags": [
+          "Products"
+        ],
         "summary": "Add New Product",
         "operationId": "AddNewProduct",
         "parameters": [],
@@ -1316,7 +1344,7 @@
                   },
                   "name": {
                     "type": "string",
-                    "example": "Vans"
+                    "example": "Vans Old-school"
                   },
                   "price": {
                     "type": "integer",
@@ -1510,12 +1538,26 @@
         ]
       }
     },
-    "/products/2": {
+    "/products/{productId}": {
       "get": {
-        "tags": ["Products"],
+        "tags": [
+          "Products"
+        ],
         "summary": "Get Product Detail",
         "operationId": "GetProductDetail",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1695,11 +1737,489 @@
           }
         },
         "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Delete Product",
+        "operationId": "DeleteProduct",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "null"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "69"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"45-AXYAOhH+28yA0TbLzfB5Ohr8ab0\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 08:25:24 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200DeleteProduct"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success delete data product!",
+                  "data": null
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "87"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"57-Ofv+JCGQwiA8eutOVbl8e79dDyw\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 08:26:15 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/401DeleteProduct1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "You are not authorized to delete this product",
+                  "data": null
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get All Products",
+        "operationId": "GetAllProducts",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "2631"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"a47-U1nxuy77ZDNafuL8sruDa7Mpn0Q\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 08:09:38 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200GetAllProductswithpagination"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get data product!",
+                  "data": {
+                    "totalItem": 25,
+                    "data": [
+                      {
+                        "id": 1,
+                        "userId": 1,
+                        "name": "Vans",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:34:33.823Z",
+                        "updatedAt": "2022-06-29T07:34:33.823Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          },
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 2,
+                        "userId": 1,
+                        "name": "Vans Retro",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:34:43.871Z",
+                        "updatedAt": "2022-06-29T07:34:43.871Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          },
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 3,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:34:57.791Z",
+                        "updatedAt": "2022-06-29T07:34:57.791Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 4,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:00.640Z",
+                        "updatedAt": "2022-06-29T07:35:00.640Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 5,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:02.074Z",
+                        "updatedAt": "2022-06-29T07:35:02.074Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 6,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:03.232Z",
+                        "updatedAt": "2022-06-29T07:35:03.232Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 7,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:04.687Z",
+                        "updatedAt": "2022-06-29T07:35:04.687Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 8,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:05.967Z",
+                        "updatedAt": "2022-06-29T07:35:05.967Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 9,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:07.346Z",
+                        "updatedAt": "2022-06-29T07:35:07.346Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 10,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "createdAt": "2022-06-29T07:35:08.740Z",
+                        "updatedAt": "2022-06-29T07:35:08.740Z",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "totalPages": 3,
+                    "previosusPage": null,
+                    "currentPage": 1,
+                    "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
       }
     },
     "/categories": {
       "get": {
-        "tags": ["Categories"],
+        "tags": [
+          "Categories"
+        ],
         "summary": "Get All Categories",
         "operationId": "GetAllCategories",
         "parameters": [],
@@ -1853,7 +2373,10 @@
     "schemas": {
       "LoginRequest": {
         "title": "LoginRequest",
-        "required": ["email", "password"],
+        "required": [
+          "email",
+          "password"
+        ],
         "type": "object",
         "properties": {
           "email": {
@@ -1864,13 +2387,17 @@
           }
         },
         "example": {
-          "email": "test@mail.com",
+          "email": "faisal@mail.com",
           "password": "12345678"
         }
       },
       "200LoginSuccess": {
         "title": "200LoginSuccess",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -1893,7 +2420,9 @@
       },
       "Data": {
         "title": "Data",
-        "required": ["token"],
+        "required": [
+          "token"
+        ],
         "type": "object",
         "properties": {
           "token": {
@@ -1906,7 +2435,11 @@
       },
       "404Usernotexist1": {
         "title": "404Usernotexist1",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -1928,7 +2461,11 @@
       },
       "400WrongPassword1": {
         "title": "400WrongPassword1",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -1950,7 +2487,11 @@
       },
       "200Successgetuserprofile": {
         "title": "200Successgetuserprofile",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -1978,7 +2519,14 @@
       },
       "Data1": {
         "title": "Data1",
-        "required": ["id", "name", "city", "address", "phone", "avatar"],
+        "required": [
+          "id",
+          "name",
+          "city",
+          "address",
+          "phone",
+          "avatar"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2016,7 +2564,11 @@
       },
       "200ProfileUpdated": {
         "title": "200ProfileUpdated",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2037,12 +2589,18 @@
         "example": {
           "success": true,
           "message": "User updated",
-          "data": [1]
+          "data": [
+            1
+          ]
         }
       },
       "200SuccessGetAllProvinces": {
         "title": "200SuccessGetAllProvinces",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2204,7 +2762,10 @@
       },
       "Data2": {
         "title": "Data2",
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2221,7 +2782,11 @@
       },
       "200SuccessGetCities": {
         "title": "200SuccessGetCities",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2437,7 +3002,11 @@
       },
       "Data3": {
         "title": "Data3",
-        "required": ["id", "province_id", "name"],
+        "required": [
+          "id",
+          "province_id",
+          "name"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -2458,7 +3027,11 @@
       },
       "RegisterRequest": {
         "title": "RegisterRequest",
-        "required": ["name", "email", "password"],
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -2472,14 +3045,20 @@
           }
         },
         "example": {
-          "name": "test123",
-          "email": "test@mail.com",
+          "name": "faisal",
+          "email": "faisal@mail.com",
           "password": "12345678"
         }
       },
       "Data4": {
         "title": "Data4",
-        "required": ["type", "message", "field", "expected", "actual"],
+        "required": [
+          "type",
+          "message",
+          "field",
+          "expected",
+          "actual"
+        ],
         "type": "object",
         "properties": {
           "type": {
@@ -2510,7 +3089,11 @@
       },
       "400Passwordmin8char1": {
         "title": "400Passwordmin8char1",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2543,7 +3126,11 @@
       },
       "201UserCreated": {
         "title": "201UserCreated",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2653,7 +3240,11 @@
       },
       "409UserAlreadyExist1": {
         "title": "409UserAlreadyExist1",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2675,7 +3266,11 @@
       },
       "401Profilenotcompleted1": {
         "title": "401Profilenotcompleted1",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2697,7 +3292,11 @@
       },
       "AddNewProduct": {
         "title": "AddNewProduct",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2774,7 +3373,11 @@
       },
       "404ProductNotFound1": {
         "title": "404ProductNotFound1",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2796,7 +3399,11 @@
       },
       "200SuccessGetProductDetail": {
         "title": "200SuccessGetProductDetail",
-        "required": ["success", "message", "data"],
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -2909,7 +3516,10 @@
       },
       "ProductCategory": {
         "title": "ProductCategory",
-        "required": ["categoryId", "category"],
+        "required": [
+          "categoryId",
+          "category"
+        ],
         "type": "object",
         "properties": {
           "categoryId": {
@@ -2929,7 +3539,9 @@
       },
       "Category": {
         "title": "Category",
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -2940,9 +3552,512 @@
           "name": "Sneaker"
         }
       },
+      "200GetAllProductswithpagination": {
+        "title": "200GetAllProductswithpagination",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data9"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get data product!",
+          "data": {
+            "totalItem": 25,
+            "data": [
+              {
+                "id": 1,
+                "userId": 1,
+                "name": "Vans",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:34:33.823Z",
+                "updatedAt": "2022-06-29T07:34:33.823Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  },
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "userId": 1,
+                "name": "Vans Retro",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:34:43.871Z",
+                "updatedAt": "2022-06-29T07:34:43.871Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  },
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:34:57.791Z",
+                "updatedAt": "2022-06-29T07:34:57.791Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:00.640Z",
+                "updatedAt": "2022-06-29T07:35:00.640Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 5,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:02.074Z",
+                "updatedAt": "2022-06-29T07:35:02.074Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 6,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:03.232Z",
+                "updatedAt": "2022-06-29T07:35:03.232Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 7,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:04.687Z",
+                "updatedAt": "2022-06-29T07:35:04.687Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 8,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:05.967Z",
+                "updatedAt": "2022-06-29T07:35:05.967Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 9,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:07.346Z",
+                "updatedAt": "2022-06-29T07:35:07.346Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 10,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "createdAt": "2022-06-29T07:35:08.740Z",
+                "updatedAt": "2022-06-29T07:35:08.740Z",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              }
+            ],
+            "totalPages": 3,
+            "previosusPage": null,
+            "currentPage": 1,
+            "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+          }
+        }
+      },
+      "Data9": {
+        "title": "Data9",
+        "required": [
+          "totalItem",
+          "data",
+          "totalPages",
+          "previosusPage",
+          "currentPage",
+          "nextPage"
+        ],
+        "type": "object",
+        "properties": {
+          "totalItem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data8"
+            },
+            "description": ""
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "previosusPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nextPage": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "totalItem": 25,
+          "data": [
+            {
+              "id": 1,
+              "userId": 1,
+              "name": "Vans",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:34:33.823Z",
+              "updatedAt": "2022-06-29T07:34:33.823Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                },
+                {
+                  "categoryId": 2,
+                  "category": {
+                    "name": "Boots"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "userId": 1,
+              "name": "Vans Retro",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:34:43.871Z",
+              "updatedAt": "2022-06-29T07:34:43.871Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                },
+                {
+                  "categoryId": 2,
+                  "category": {
+                    "name": "Boots"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:34:57.791Z",
+              "updatedAt": "2022-06-29T07:34:57.791Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:00.640Z",
+              "updatedAt": "2022-06-29T07:35:00.640Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:02.074Z",
+              "updatedAt": "2022-06-29T07:35:02.074Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:03.232Z",
+              "updatedAt": "2022-06-29T07:35:03.232Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:04.687Z",
+              "updatedAt": "2022-06-29T07:35:04.687Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 8,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:05.967Z",
+              "updatedAt": "2022-06-29T07:35:05.967Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 9,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:07.346Z",
+              "updatedAt": "2022-06-29T07:35:07.346Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 10,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "createdAt": "2022-06-29T07:35:08.740Z",
+              "updatedAt": "2022-06-29T07:35:08.740Z",
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            }
+          ],
+          "totalPages": 3,
+          "previosusPage": null,
+          "currentPage": 1,
+          "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+        }
+      },
+      "200DeleteProduct": {
+        "title": "200DeleteProduct",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success delete data product!",
+          "data": null
+        }
+      },
+      "401DeleteProduct1": {
+        "title": "401DeleteProduct1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "You are not authorized to delete this product",
+          "data": null
+        }
+      },
       "200OK": {
         "title": "200OK",
-        "required": ["id", "name", "createdAt", "updatedAt"],
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ],
         "type": "object",
         "properties": {
           "id": {
