@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const Sequelize = require("sequelize");
 
 const { JWT_SECRET_KEY } = process.env;
-const { Op } = Sequelize;
+const Op = Sequelize.Op;
 const {
   Product,
   ProductImage,
@@ -206,7 +206,7 @@ module.exports = {
       const decoded = jwt.verify(token, JWT_SECRET_KEY);
 
       const perPage = 10;
-      const { page=1 } = req.query;
+      const { page = 1 } = req.query;
 
       const products = await Product.findAndCountAll({
         where: {
@@ -273,8 +273,9 @@ module.exports = {
       const perPage = 10;
       const { page = 1, name } = req.query;
       const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+
       const products = await Product.findAndCountAll({
-        where: condition,
+        where: { published: true, ...condition },
         distinct: true,
         limit: perPage,
         offset: perPage * (page - 1),
@@ -338,8 +339,9 @@ module.exports = {
       const perPage = 10;
       const { page = 1, name } = req.query;
       const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+
       const products = await Product.findAndCountAll({
-        where: { condition, published: true },
+        where: { published: true, ...condition },
         distinct: true,
         limit: perPage,
         offset: perPage * (page - 1),
