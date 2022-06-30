@@ -19,6 +19,10 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
+      published: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
