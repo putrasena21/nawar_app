@@ -28,7 +28,7 @@
                 "$ref": "#/components/schemas/LoginRequest"
               },
               "example": {
-                "email": "faisal@mail.com",
+                "email": "test@mail.com",
                 "password": "12345678"
               }
             }
@@ -1052,8 +1052,8 @@
                 "$ref": "#/components/schemas/RegisterRequest"
               },
               "example": {
-                "name": "faisal",
-                "email": "faisal@mail.com",
+                "name": "test",
+                "email": "test@mail.com",
                 "password": "12345678"
               }
             }
@@ -1322,8 +1322,8 @@
         "tags": [
           "Products"
         ],
-        "summary": "Add New Product",
-        "operationId": "AddNewProduct",
+        "summary": "Add New Product Published",
+        "operationId": "AddNewProductPublished",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -1386,7 +1386,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "217"
+                    "example": "245"
                   }
                 }
               },
@@ -1396,7 +1396,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "W/\"d9-wn7CsTQCDJU9thwQuni0I03Kyxw\""
+                    "example": "W/\"f5-JBIXY+TT6T8iKLI8louy5YoG1RE\""
                   }
                 }
               },
@@ -1406,7 +1406,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "Tue, 28 Jun 2022 11:44:53 GMT"
+                    "example": "Thu, 30 Jun 2022 08:53:51 GMT"
                   }
                 }
               },
@@ -1434,19 +1434,20 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddNewProduct"
+                  "$ref": "#/components/schemas/201AddNewProductPublished"
                 },
                 "example": {
                   "success": true,
                   "message": "Success add data product!",
                   "data": {
                     "id": 1,
-                    "name": "Vans",
+                    "name": "Vans Old-school",
                     "price": 1000000,
                     "description": "Lorem ipsum",
                     "userId": 1,
-                    "updatedAt": "2022-06-28T11:44:53.107Z",
-                    "createdAt": "2022-06-28T11:44:53.107Z"
+                    "published": true,
+                    "updatedAt": "2022-06-30T08:53:51.966Z",
+                    "createdAt": "2022-06-30T08:53:51.966Z"
                   }
                 }
               }
@@ -1491,7 +1492,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "Tue, 28 Jun 2022 11:34:05 GMT"
+                    "example": "Wed, 29 Jun 2022 11:50:25 GMT"
                   }
                 }
               },
@@ -1519,12 +1520,666 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/401Profilenotcompleted1"
+                  "$ref": "#/components/schemas/401FailedCreateProductButProfileNotCompleted1"
                 },
                 "example": {
                   "success": false,
                   "message": "Please complete your profile first",
                   "data": null
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/products/draft": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Add New Product Draft",
+        "operationId": "AddNewProductDraft",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "images",
+                  "name",
+                  "price",
+                  "description",
+                  "category"
+                ],
+                "type": "object",
+                "properties": {
+                  "images": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Converse"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1000000
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Lorem ipsum"
+                  },
+                  "category": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "239"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"ef-0rbi/2fodjfOfKasJm3gZQdhmrU\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Thu, 30 Jun 2022 08:54:07 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/201AddNewProductDraft"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success add data product!",
+                  "data": {
+                    "id": 2,
+                    "name": "Converse",
+                    "price": 1000000,
+                    "description": "Lorem ipsum",
+                    "userId": 1,
+                    "published": false,
+                    "updatedAt": "2022-06-30T08:54:07.944Z",
+                    "createdAt": "2022-06-30T08:54:07.944Z"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "76"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"4c-LSnw31uRAkMWiUEb0/IVHxwQZFk\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 11:51:03 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/401FailedCreateProductButProfileNotCompleted1"
+                },
+                "example": {
+                  "success": false,
+                  "message": "Please complete your profile first",
+                  "data": null
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/products/user": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get All Product by User",
+        "operationId": "GetAllProductbyUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "2137"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"859-mNxrkSKYQ7BmR1g3qg+9ciyVAkQ\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Thu, 30 Jun 2022 08:56:07 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200GetAllProductbyUser"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get data product!",
+                  "data": {
+                    "totalItem": 5,
+                    "data": [
+                      {
+                        "id": 1,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": true,
+                        "productImages": [
+                          {
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                          },
+                          {
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 2,
+                        "userId": 1,
+                        "name": "Converse",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": false,
+                        "productImages": [
+                          {
+                            "productId": 2,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                          },
+                          {
+                            "productId": 2,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          },
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 3,
+                        "userId": 1,
+                        "name": "Vans 1",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": true,
+                        "productImages": [
+                          {
+                            "productId": 3,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                          },
+                          {
+                            "productId": 3,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          },
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 4,
+                        "userId": 1,
+                        "name": "Converse 2",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": false,
+                        "productImages": [
+                          {
+                            "productId": 4,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579336231-converse_ZHOPaRfiFH.jpg"
+                          },
+                          {
+                            "productId": 4,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579336229-converse_1_wxHBRfAWN.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 5,
+                        "userId": 1,
+                        "name": "Converse 3",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": false,
+                        "productImages": [
+                          {
+                            "productId": 5,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579341204-converse_s4AaxQvGb.jpg"
+                          },
+                          {
+                            "productId": 5,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579341203-converse_1_Z3gWHU5oV.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "totalPages": 1,
+                    "previosusPage": null,
+                    "currentPage": 1,
+                    "nextPage": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/products/user/draft": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get All Product Draft by User",
+        "operationId": "GetAllProductDraftbyUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1343"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"53f-ZrBY9r1QGO8KWOBGJNKmnx0XDqM\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Thu, 30 Jun 2022 08:56:52 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200GetAllProductDraftbyUser"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get data product!",
+                  "data": {
+                    "totalItem": 3,
+                    "data": [
+                      {
+                        "id": 2,
+                        "userId": 1,
+                        "name": "Converse",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": false,
+                        "productImages": [
+                          {
+                            "productId": 2,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                          },
+                          {
+                            "productId": 2,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          },
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 4,
+                        "userId": 1,
+                        "name": "Converse 2",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": false,
+                        "productImages": [
+                          {
+                            "productId": 4,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579336231-converse_ZHOPaRfiFH.jpg"
+                          },
+                          {
+                            "productId": 4,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579336229-converse_1_wxHBRfAWN.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 5,
+                        "userId": 1,
+                        "name": "Converse 3",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": false,
+                        "productImages": [
+                          {
+                            "productId": 5,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579341204-converse_s4AaxQvGb.jpg"
+                          },
+                          {
+                            "productId": 5,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579341203-converse_1_Z3gWHU5oV.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 2,
+                            "category": {
+                              "name": "Boots"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "totalPages": 1,
+                    "previosusPage": null,
+                    "currentPage": 1,
+                    "nextPage": null
+                  }
                 }
               }
             }
@@ -1553,8 +2208,9 @@
             "required": true,
             "style": "simple",
             "schema": {
-              "type": "string",
-              "example": "null"
+              "type": "integer",
+              "format": "int32",
+              "example": 1
             }
           }
         ],
@@ -1578,7 +2234,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "331"
+                    "example": "533"
                   }
                 }
               },
@@ -1588,7 +2244,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "W/\"14b-Tzo9egjsrYAY239oO2m3kLU81yc\""
+                    "example": "W/\"215-3eqctl+7alE5qvJcxQiCLfRIPYg\""
                   }
                 }
               },
@@ -1598,7 +2254,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "Tue, 28 Jun 2022 11:57:57 GMT"
+                    "example": "Thu, 30 Jun 2022 08:57:20 GMT"
                   }
                 }
               },
@@ -1626,33 +2282,45 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/200SuccessGetProductDetail"
+                  "$ref": "#/components/schemas/200GetProductDetail"
                 },
                 "example": {
                   "success": true,
                   "message": "Success get data product!",
                   "data": {
-                    "id": 2,
-                    "userId": 1,
-                    "name": "Vans",
-                    "price": 1000000,
-                    "description": "Lorem ipsum",
-                    "createdAt": "2022-06-28T11:46:31.157Z",
-                    "updatedAt": "2022-06-28T11:46:31.157Z",
-                    "productCategories": [
+                    "totalItem": 1,
+                    "data": [
                       {
-                        "categoryId": 1,
-                        "category": {
-                          "name": "Sneaker"
-                        }
-                      },
-                      {
-                        "categoryId": 2,
-                        "category": {
-                          "name": "Boots"
-                        }
+                        "id": 1,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": true,
+                        "productImages": [
+                          {
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                          },
+                          {
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
                       }
-                    ]
+                    ],
+                    "totalPages": 1,
+                    "previosusPage": null,
+                    "currentPage": 1,
+                    "nextPage": null
                   }
                 }
               }
@@ -1738,6 +2406,134 @@
         },
         "deprecated": false
       },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Edit Product by productId",
+        "operationId": "EditProductbyproductId",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditProductbyproductIdRequest"
+              },
+              "example": {
+                "name": "Vans School",
+                "price": 150000,
+                "description": "Lorem ipsum",
+                "category": [
+                  1,
+                  2
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "63"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"3f-SHRMFoOiXYGLMAs7SuaOU0NBXm4\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 15:48:13 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200SuccessUpdateProduct"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success update product!",
+                  "data": [
+                    1
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
       "delete": {
         "tags": [
           "Products"
@@ -1752,8 +2548,9 @@
             "required": true,
             "style": "simple",
             "schema": {
-              "type": "string",
-              "example": "null"
+              "type": "integer",
+              "format": "int32",
+              "example": 3
             }
           }
         ],
@@ -1926,23 +2723,9 @@
         "tags": [
           "Products"
         ],
-        "summary": "Get All Products",
-        "operationId": "GetAllProducts",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "",
-            "required": true,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1
-            }
-          }
-        ],
+        "summary": "Get All Products Published",
+        "operationId": "GetAllProductsPublished",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK",
@@ -1963,7 +2746,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "2631"
+                    "example": "948"
                   }
                 }
               },
@@ -1973,7 +2756,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "W/\"a47-U1nxuy77ZDNafuL8sruDa7Mpn0Q\""
+                    "example": "W/\"3b4-378eEV1JW6kikotR6Uup2npM+dE\""
                   }
                 }
               },
@@ -1983,7 +2766,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "Wed, 29 Jun 2022 08:09:38 GMT"
+                    "example": "Thu, 30 Jun 2022 09:15:11 GMT"
                   }
                 }
               },
@@ -2011,187 +2794,63 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "$ref": "#/components/schemas/200GetAllProductswithpagination"
+                  "$ref": "#/components/schemas/200GetAllProductsPublished"
                 },
                 "example": {
                   "success": true,
                   "message": "Success get data product!",
                   "data": {
-                    "totalItem": 25,
+                    "totalItem": 2,
                     "data": [
-                      {
-                        "id": 1,
-                        "userId": 1,
-                        "name": "Vans",
-                        "price": 1000000,
-                        "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:34:33.823Z",
-                        "updatedAt": "2022-06-29T07:34:33.823Z",
-                        "productCategories": [
-                          {
-                            "categoryId": 1,
-                            "category": {
-                              "name": "Sneaker"
-                            }
-                          },
-                          {
-                            "categoryId": 2,
-                            "category": {
-                              "name": "Boots"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "id": 2,
-                        "userId": 1,
-                        "name": "Vans Retro",
-                        "price": 1000000,
-                        "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:34:43.871Z",
-                        "updatedAt": "2022-06-29T07:34:43.871Z",
-                        "productCategories": [
-                          {
-                            "categoryId": 1,
-                            "category": {
-                              "name": "Sneaker"
-                            }
-                          },
-                          {
-                            "categoryId": 2,
-                            "category": {
-                              "name": "Boots"
-                            }
-                          }
-                        ]
-                      },
                       {
                         "id": 3,
                         "userId": 1,
-                        "name": "Vans Old-school",
+                        "name": "Vans 1",
                         "price": 1000000,
                         "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:34:57.791Z",
-                        "updatedAt": "2022-06-29T07:34:57.791Z",
+                        "published": true,
+                        "productImages": [
+                          {
+                            "productId": 3,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                          },
+                          {
+                            "productId": 3,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                          }
+                        ],
                         "productCategories": [
                           {
                             "categoryId": 1,
                             "category": {
                               "name": "Sneaker"
                             }
-                          }
-                        ]
-                      },
-                      {
-                        "id": 4,
-                        "userId": 1,
-                        "name": "Vans Old-school",
-                        "price": 1000000,
-                        "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:35:00.640Z",
-                        "updatedAt": "2022-06-29T07:35:00.640Z",
-                        "productCategories": [
+                          },
                           {
-                            "categoryId": 1,
+                            "categoryId": 2,
                             "category": {
-                              "name": "Sneaker"
+                              "name": "Boots"
                             }
                           }
                         ]
                       },
                       {
-                        "id": 5,
+                        "id": 1,
                         "userId": 1,
                         "name": "Vans Old-school",
                         "price": 1000000,
                         "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:35:02.074Z",
-                        "updatedAt": "2022-06-29T07:35:02.074Z",
-                        "productCategories": [
+                        "published": true,
+                        "productImages": [
                           {
-                            "categoryId": 1,
-                            "category": {
-                              "name": "Sneaker"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "id": 6,
-                        "userId": 1,
-                        "name": "Vans Old-school",
-                        "price": 1000000,
-                        "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:35:03.232Z",
-                        "updatedAt": "2022-06-29T07:35:03.232Z",
-                        "productCategories": [
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                          },
                           {
-                            "categoryId": 1,
-                            "category": {
-                              "name": "Sneaker"
-                            }
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
                           }
-                        ]
-                      },
-                      {
-                        "id": 7,
-                        "userId": 1,
-                        "name": "Vans Old-school",
-                        "price": 1000000,
-                        "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:35:04.687Z",
-                        "updatedAt": "2022-06-29T07:35:04.687Z",
-                        "productCategories": [
-                          {
-                            "categoryId": 1,
-                            "category": {
-                              "name": "Sneaker"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "id": 8,
-                        "userId": 1,
-                        "name": "Vans Old-school",
-                        "price": 1000000,
-                        "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:35:05.967Z",
-                        "updatedAt": "2022-06-29T07:35:05.967Z",
-                        "productCategories": [
-                          {
-                            "categoryId": 1,
-                            "category": {
-                              "name": "Sneaker"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "id": 9,
-                        "userId": 1,
-                        "name": "Vans Old-school",
-                        "price": 1000000,
-                        "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:35:07.346Z",
-                        "updatedAt": "2022-06-29T07:35:07.346Z",
-                        "productCategories": [
-                          {
-                            "categoryId": 1,
-                            "category": {
-                              "name": "Sneaker"
-                            }
-                          }
-                        ]
-                      },
-                      {
-                        "id": 10,
-                        "userId": 1,
-                        "name": "Vans Old-school",
-                        "price": 1000000,
-                        "description": "Lorem ipsum",
-                        "createdAt": "2022-06-29T07:35:08.740Z",
-                        "updatedAt": "2022-06-29T07:35:08.740Z",
+                        ],
                         "productCategories": [
                           {
                             "categoryId": 1,
@@ -2202,10 +2861,10 @@
                         ]
                       }
                     ],
-                    "totalPages": 3,
+                    "totalPages": 1,
                     "previosusPage": null,
                     "currentPage": 1,
-                    "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+                    "nextPage": null
                   }
                 }
               }
@@ -2213,6 +2872,335 @@
           }
         },
         "deprecated": false
+      }
+    },
+    "/products/filter/{categoryId}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get All Products Filter By Category",
+        "operationId": "GetAllProductsFilterByCategory",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1100"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"44c-UlbkZxV5KHKK3xjngQrUVLOQQEA\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Thu, 30 Jun 2022 08:58:04 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200GetAllProductsFilterByCategory"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get data product!",
+                  "data": {
+                    "totalItem": 1,
+                    "data": [
+                      {
+                        "id": 1,
+                        "name": "Sneaker",
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "product": {
+                              "name": "Vans Old-school",
+                              "price": 1000000,
+                              "description": "Lorem ipsum",
+                              "productImages": [
+                                {
+                                  "productId": 1,
+                                  "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                                },
+                                {
+                                  "productId": 1,
+                                  "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "categoryId": 1,
+                            "product": {
+                              "name": "Converse",
+                              "price": 1000000,
+                              "description": "Lorem ipsum",
+                              "productImages": [
+                                {
+                                  "productId": 2,
+                                  "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                                },
+                                {
+                                  "productId": 2,
+                                  "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "categoryId": 1,
+                            "product": {
+                              "name": "Vans 1",
+                              "price": 1000000,
+                              "description": "Lorem ipsum",
+                              "productImages": [
+                                {
+                                  "productId": 3,
+                                  "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                                },
+                                {
+                                  "productId": 3,
+                                  "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "totalPages": 1,
+                    "previosusPage": null,
+                    "currentPage": 1,
+                    "nextPage": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products/publish/{productId}": {
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Change Draft product to published",
+        "operationId": "ChangeDraftproducttopublished",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 2
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "images",
+                  "name",
+                  "price",
+                  "description",
+                  "category"
+                ],
+                "type": "object",
+                "properties": {
+                  "images": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Vans Old-school"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1000000
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Lorem ipsum"
+                  },
+                  "category": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "244"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"f4-NBX6RbT1ctHOBDMedRXG4wJ9KVU\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 29 Jun 2022 11:54:55 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200Successchangepublishedproduct"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success publish product!",
+                  "data": {
+                    "id": 2,
+                    "userId": 1,
+                    "name": "Vans Old-school",
+                    "price": 1000000,
+                    "description": "Lorem ipsum",
+                    "published": true,
+                    "createdAt": "2022-06-29T11:46:50.765Z",
+                    "updatedAt": "2022-06-29T11:54:55.633Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/categories": {
@@ -2387,7 +3375,7 @@
           }
         },
         "example": {
-          "email": "faisal@mail.com",
+          "email": "test@mail.com",
           "password": "12345678"
         }
       },
@@ -3045,8 +4033,8 @@
           }
         },
         "example": {
-          "name": "faisal",
-          "email": "faisal@mail.com",
+          "name": "test",
+          "email": "test@mail.com",
           "password": "12345678"
         }
       },
@@ -3264,8 +4252,8 @@
           "data": null
         }
       },
-      "401Profilenotcompleted1": {
-        "title": "401Profilenotcompleted1",
+      "401FailedCreateProductButProfileNotCompleted1": {
+        "title": "401FailedCreateProductButProfileNotCompleted1",
         "required": [
           "success",
           "message",
@@ -3290,8 +4278,8 @@
           "data": null
         }
       },
-      "AddNewProduct": {
-        "title": "AddNewProduct",
+      "201AddNewProductPublished": {
+        "title": "201AddNewProductPublished",
         "required": [
           "success",
           "message",
@@ -3314,12 +4302,13 @@
           "message": "Success add data product!",
           "data": {
             "id": 1,
-            "name": "Vans",
+            "name": "Vans Old-school",
             "price": 1000000,
             "description": "Lorem ipsum",
             "userId": 1,
-            "updatedAt": "2022-06-28T11:44:53.107Z",
-            "createdAt": "2022-06-28T11:44:53.107Z"
+            "published": true,
+            "updatedAt": "2022-06-30T08:53:51.966Z",
+            "createdAt": "2022-06-30T08:53:51.966Z"
           }
         }
       },
@@ -3331,6 +4320,7 @@
           "price",
           "description",
           "userId",
+          "published",
           "updatedAt",
           "createdAt"
         ],
@@ -3354,6 +4344,9 @@
             "type": "integer",
             "format": "int32"
           },
+          "published": {
+            "type": "boolean"
+          },
           "updatedAt": {
             "type": "string"
           },
@@ -3363,16 +4356,17 @@
         },
         "example": {
           "id": 1,
-          "name": "Vans",
+          "name": "Vans Old-school",
           "price": 1000000,
           "description": "Lorem ipsum",
           "userId": 1,
-          "updatedAt": "2022-06-28T11:44:53.107Z",
-          "createdAt": "2022-06-28T11:44:53.107Z"
+          "published": true,
+          "updatedAt": "2022-06-30T08:53:51.966Z",
+          "createdAt": "2022-06-30T08:53:51.966Z"
         }
       },
-      "404ProductNotFound1": {
-        "title": "404ProductNotFound1",
+      "201AddNewProductDraft": {
+        "title": "201AddNewProductDraft",
         "required": [
           "success",
           "message",
@@ -3387,18 +4381,26 @@
             "type": "string"
           },
           "data": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/Data7"
           }
         },
         "example": {
-          "success": false,
-          "message": "Product not found",
-          "data": null
+          "success": true,
+          "message": "Success add data product!",
+          "data": {
+            "id": 2,
+            "name": "Converse",
+            "price": 1000000,
+            "description": "Lorem ipsum",
+            "userId": 1,
+            "published": false,
+            "updatedAt": "2022-06-30T08:54:07.944Z",
+            "createdAt": "2022-06-30T08:54:07.944Z"
+          }
         }
       },
-      "200SuccessGetProductDetail": {
-        "title": "200SuccessGetProductDetail",
+      "200GetAllProductbyUser": {
+        "title": "200GetAllProductbyUser",
         "required": [
           "success",
           "message",
@@ -3413,47 +4415,367 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/Data8"
+            "$ref": "#/components/schemas/Data9"
           }
         },
         "example": {
           "success": true,
           "message": "Success get data product!",
           "data": {
-            "id": 2,
-            "userId": 1,
-            "name": "Vans",
-            "price": 1000000,
-            "description": "Lorem ipsum",
-            "createdAt": "2022-06-28T11:46:31.157Z",
-            "updatedAt": "2022-06-28T11:46:31.157Z",
-            "productCategories": [
+            "totalItem": 5,
+            "data": [
               {
-                "categoryId": 1,
-                "category": {
-                  "name": "Sneaker"
-                }
+                "id": 1,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": true,
+                "productImages": [
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                  },
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
               },
               {
-                "categoryId": 2,
-                "category": {
-                  "name": "Boots"
-                }
+                "id": 2,
+                "userId": 1,
+                "name": "Converse",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": false,
+                "productImages": [
+                  {
+                    "productId": 2,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                  },
+                  {
+                    "productId": 2,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  },
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "userId": 1,
+                "name": "Vans 1",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": true,
+                "productImages": [
+                  {
+                    "productId": 3,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                  },
+                  {
+                    "productId": 3,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  },
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "userId": 1,
+                "name": "Converse 2",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": false,
+                "productImages": [
+                  {
+                    "productId": 4,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579336231-converse_ZHOPaRfiFH.jpg"
+                  },
+                  {
+                    "productId": 4,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579336229-converse_1_wxHBRfAWN.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 5,
+                "userId": 1,
+                "name": "Converse 3",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": false,
+                "productImages": [
+                  {
+                    "productId": 5,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579341204-converse_s4AaxQvGb.jpg"
+                  },
+                  {
+                    "productId": 5,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579341203-converse_1_Z3gWHU5oV.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
               }
-            ]
+            ],
+            "totalPages": 1,
+            "previosusPage": null,
+            "currentPage": 1,
+            "nextPage": null
           }
         }
       },
-      "Data8": {
-        "title": "Data8",
+      "Data9": {
+        "title": "Data9",
+        "required": [
+          "totalItem",
+          "data",
+          "totalPages",
+          "previosusPage",
+          "currentPage",
+          "nextPage"
+        ],
+        "type": "object",
+        "properties": {
+          "totalItem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data10"
+            },
+            "description": ""
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "previosusPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "totalItem": 5,
+          "data": [
+            {
+              "id": 1,
+              "userId": 1,
+              "name": "Vans Old-school",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "published": true,
+              "productImages": [
+                {
+                  "productId": 1,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                },
+                {
+                  "productId": 1,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "userId": 1,
+              "name": "Converse",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "published": false,
+              "productImages": [
+                {
+                  "productId": 2,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                },
+                {
+                  "productId": 2,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                },
+                {
+                  "categoryId": 2,
+                  "category": {
+                    "name": "Boots"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "userId": 1,
+              "name": "Vans 1",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "published": true,
+              "productImages": [
+                {
+                  "productId": 3,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                },
+                {
+                  "productId": 3,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                },
+                {
+                  "categoryId": 2,
+                  "category": {
+                    "name": "Boots"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "userId": 1,
+              "name": "Converse 2",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "published": false,
+              "productImages": [
+                {
+                  "productId": 4,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579336231-converse_ZHOPaRfiFH.jpg"
+                },
+                {
+                  "productId": 4,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579336229-converse_1_wxHBRfAWN.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 2,
+                  "category": {
+                    "name": "Boots"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 5,
+              "userId": 1,
+              "name": "Converse 3",
+              "price": 1000000,
+              "description": "Lorem ipsum",
+              "published": false,
+              "productImages": [
+                {
+                  "productId": 5,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579341204-converse_s4AaxQvGb.jpg"
+                },
+                {
+                  "productId": 5,
+                  "url": "https://ik.imagekit.io/putrasena21/1656579341203-converse_1_Z3gWHU5oV.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 2,
+                  "category": {
+                    "name": "Boots"
+                  }
+                }
+              ]
+            }
+          ],
+          "totalPages": 1,
+          "previosusPage": null,
+          "currentPage": 1,
+          "nextPage": null
+        }
+      },
+      "Data10": {
+        "title": "Data10",
         "required": [
           "id",
           "userId",
           "name",
           "price",
           "description",
-          "createdAt",
-          "updatedAt",
+          "published",
+          "productImages",
           "productCategories"
         ],
         "type": "object",
@@ -3476,11 +4798,15 @@
           "description": {
             "type": "string"
           },
-          "createdAt": {
-            "type": "string"
+          "published": {
+            "type": "boolean"
           },
-          "updatedAt": {
-            "type": "string"
+          "productImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductImage"
+            },
+            "description": ""
           },
           "productCategories": {
             "type": "array",
@@ -3491,27 +4817,51 @@
           }
         },
         "example": {
-          "id": 2,
+          "id": 1,
           "userId": 1,
-          "name": "Vans",
+          "name": "Vans Old-school",
           "price": 1000000,
           "description": "Lorem ipsum",
-          "createdAt": "2022-06-28T11:46:31.157Z",
-          "updatedAt": "2022-06-28T11:46:31.157Z",
+          "published": true,
+          "productImages": [
+            {
+              "productId": 1,
+              "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+            },
+            {
+              "productId": 1,
+              "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+            }
+          ],
           "productCategories": [
             {
               "categoryId": 1,
               "category": {
                 "name": "Sneaker"
               }
-            },
-            {
-              "categoryId": 2,
-              "category": {
-                "name": "Boots"
-              }
             }
           ]
+        }
+      },
+      "ProductImage": {
+        "title": "ProductImage",
+        "required": [
+          "productId",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "productId": 1,
+          "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
         }
       },
       "ProductCategory": {
@@ -3552,8 +4902,8 @@
           "name": "Sneaker"
         }
       },
-      "200GetAllProductswithpagination": {
-        "title": "200GetAllProductswithpagination",
+      "200GetAllProductDraftbyUser": {
+        "title": "200GetAllProductDraftbyUser",
         "required": [
           "success",
           "message",
@@ -3575,39 +4925,25 @@
           "success": true,
           "message": "Success get data product!",
           "data": {
-            "totalItem": 25,
+            "totalItem": 3,
             "data": [
-              {
-                "id": 1,
-                "userId": 1,
-                "name": "Vans",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:34:33.823Z",
-                "updatedAt": "2022-06-29T07:34:33.823Z",
-                "productCategories": [
-                  {
-                    "categoryId": 1,
-                    "category": {
-                      "name": "Sneaker"
-                    }
-                  },
-                  {
-                    "categoryId": 2,
-                    "category": {
-                      "name": "Boots"
-                    }
-                  }
-                ]
-              },
               {
                 "id": 2,
                 "userId": 1,
-                "name": "Vans Retro",
+                "name": "Converse",
                 "price": 1000000,
                 "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:34:43.871Z",
-                "updatedAt": "2022-06-29T07:34:43.871Z",
+                "published": false,
+                "productImages": [
+                  {
+                    "productId": 2,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                  },
+                  {
+                    "productId": 2,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                  }
+                ],
                 "productCategories": [
                   {
                     "categoryId": 1,
@@ -3619,23 +4955,6 @@
                     "categoryId": 2,
                     "category": {
                       "name": "Boots"
-                    }
-                  }
-                ]
-              },
-              {
-                "id": 3,
-                "userId": 1,
-                "name": "Vans Old-school",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:34:57.791Z",
-                "updatedAt": "2022-06-29T07:34:57.791Z",
-                "productCategories": [
-                  {
-                    "categoryId": 1,
-                    "category": {
-                      "name": "Sneaker"
                     }
                   }
                 ]
@@ -3643,16 +4962,25 @@
               {
                 "id": 4,
                 "userId": 1,
-                "name": "Vans Old-school",
+                "name": "Converse 2",
                 "price": 1000000,
                 "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:35:00.640Z",
-                "updatedAt": "2022-06-29T07:35:00.640Z",
+                "published": false,
+                "productImages": [
+                  {
+                    "productId": 4,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579336231-converse_ZHOPaRfiFH.jpg"
+                  },
+                  {
+                    "productId": 4,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579336229-converse_1_wxHBRfAWN.jpg"
+                  }
+                ],
                 "productCategories": [
                   {
-                    "categoryId": 1,
+                    "categoryId": 2,
                     "category": {
-                      "name": "Sneaker"
+                      "name": "Boots"
                     }
                   }
                 ]
@@ -3660,96 +4988,105 @@
               {
                 "id": 5,
                 "userId": 1,
-                "name": "Vans Old-school",
+                "name": "Converse 3",
                 "price": 1000000,
                 "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:35:02.074Z",
-                "updatedAt": "2022-06-29T07:35:02.074Z",
+                "published": false,
+                "productImages": [
+                  {
+                    "productId": 5,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579341204-converse_s4AaxQvGb.jpg"
+                  },
+                  {
+                    "productId": 5,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579341203-converse_1_Z3gWHU5oV.jpg"
+                  }
+                ],
                 "productCategories": [
                   {
-                    "categoryId": 1,
+                    "categoryId": 2,
                     "category": {
-                      "name": "Sneaker"
+                      "name": "Boots"
                     }
                   }
                 ]
-              },
+              }
+            ],
+            "totalPages": 1,
+            "previosusPage": null,
+            "currentPage": 1,
+            "nextPage": null
+          }
+        }
+      },
+      "404ProductNotFound1": {
+        "title": "404ProductNotFound1",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "success": false,
+          "message": "Product not found",
+          "data": null
+        }
+      },
+      "200GetProductDetail": {
+        "title": "200GetProductDetail",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data9"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get data product!",
+          "data": {
+            "totalItem": 1,
+            "data": [
               {
-                "id": 6,
+                "id": 1,
                 "userId": 1,
                 "name": "Vans Old-school",
                 "price": 1000000,
                 "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:35:03.232Z",
-                "updatedAt": "2022-06-29T07:35:03.232Z",
-                "productCategories": [
+                "published": true,
+                "productImages": [
                   {
-                    "categoryId": 1,
-                    "category": {
-                      "name": "Sneaker"
-                    }
-                  }
-                ]
-              },
-              {
-                "id": 7,
-                "userId": 1,
-                "name": "Vans Old-school",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:35:04.687Z",
-                "updatedAt": "2022-06-29T07:35:04.687Z",
-                "productCategories": [
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                  },
                   {
-                    "categoryId": 1,
-                    "category": {
-                      "name": "Sneaker"
-                    }
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
                   }
-                ]
-              },
-              {
-                "id": 8,
-                "userId": 1,
-                "name": "Vans Old-school",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:35:05.967Z",
-                "updatedAt": "2022-06-29T07:35:05.967Z",
-                "productCategories": [
-                  {
-                    "categoryId": 1,
-                    "category": {
-                      "name": "Sneaker"
-                    }
-                  }
-                ]
-              },
-              {
-                "id": 9,
-                "userId": 1,
-                "name": "Vans Old-school",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:35:07.346Z",
-                "updatedAt": "2022-06-29T07:35:07.346Z",
-                "productCategories": [
-                  {
-                    "categoryId": 1,
-                    "category": {
-                      "name": "Sneaker"
-                    }
-                  }
-                ]
-              },
-              {
-                "id": 10,
-                "userId": 1,
-                "name": "Vans Old-school",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "createdAt": "2022-06-29T07:35:08.740Z",
-                "updatedAt": "2022-06-29T07:35:08.740Z",
+                ],
                 "productCategories": [
                   {
                     "categoryId": 1,
@@ -3760,15 +5097,199 @@
                 ]
               }
             ],
-            "totalPages": 3,
+            "totalPages": 1,
             "previosusPage": null,
             "currentPage": 1,
-            "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+            "nextPage": null
           }
         }
       },
-      "Data9": {
-        "title": "Data9",
+      "200GetAllProductsPublished": {
+        "title": "200GetAllProductsPublished",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data9"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get data product!",
+          "data": {
+            "totalItem": 2,
+            "data": [
+              {
+                "id": 3,
+                "userId": 1,
+                "name": "Vans 1",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": true,
+                "productImages": [
+                  {
+                    "productId": 3,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                  },
+                  {
+                    "productId": 3,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  },
+                  {
+                    "categoryId": 2,
+                    "category": {
+                      "name": "Boots"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 1,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": true,
+                "productImages": [
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                  },
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              }
+            ],
+            "totalPages": 1,
+            "previosusPage": null,
+            "currentPage": 1,
+            "nextPage": null
+          }
+        }
+      },
+      "200GetAllProductsFilterByCategory": {
+        "title": "200GetAllProductsFilterByCategory",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data17"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get data product!",
+          "data": {
+            "totalItem": 1,
+            "data": [
+              {
+                "id": 1,
+                "name": "Sneaker",
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "product": {
+                      "name": "Vans Old-school",
+                      "price": 1000000,
+                      "description": "Lorem ipsum",
+                      "productImages": [
+                        {
+                          "productId": 1,
+                          "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                        },
+                        {
+                          "productId": 1,
+                          "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "categoryId": 1,
+                    "product": {
+                      "name": "Converse",
+                      "price": 1000000,
+                      "description": "Lorem ipsum",
+                      "productImages": [
+                        {
+                          "productId": 2,
+                          "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                        },
+                        {
+                          "productId": 2,
+                          "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "categoryId": 1,
+                    "product": {
+                      "name": "Vans 1",
+                      "price": 1000000,
+                      "description": "Lorem ipsum",
+                      "productImages": [
+                        {
+                          "productId": 3,
+                          "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                        },
+                        {
+                          "productId": 3,
+                          "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ],
+            "totalPages": 1,
+            "previosusPage": null,
+            "currentPage": 1,
+            "nextPage": null
+          }
+        }
+      },
+      "Data17": {
+        "title": "Data17",
         "required": [
           "totalItem",
           "data",
@@ -3786,7 +5307,7 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Data8"
+              "$ref": "#/components/schemas/Data18"
             },
             "description": ""
           },
@@ -3803,199 +5324,347 @@
             "format": "int32"
           },
           "nextPage": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "example": {
-          "totalItem": 25,
+          "totalItem": 1,
           "data": [
             {
               "id": 1,
-              "userId": 1,
-              "name": "Vans",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:34:33.823Z",
-              "updatedAt": "2022-06-29T07:34:33.823Z",
+              "name": "Sneaker",
               "productCategories": [
                 {
                   "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
+                  "product": {
+                    "name": "Vans Old-school",
+                    "price": 1000000,
+                    "description": "Lorem ipsum",
+                    "productImages": [
+                      {
+                        "productId": 1,
+                        "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                      },
+                      {
+                        "productId": 1,
+                        "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                      }
+                    ]
                   }
                 },
                 {
-                  "categoryId": 2,
-                  "category": {
-                    "name": "Boots"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 2,
-              "userId": 1,
-              "name": "Vans Retro",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:34:43.871Z",
-              "updatedAt": "2022-06-29T07:34:43.871Z",
-              "productCategories": [
-                {
                   "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
+                  "product": {
+                    "name": "Converse",
+                    "price": 1000000,
+                    "description": "Lorem ipsum",
+                    "productImages": [
+                      {
+                        "productId": 2,
+                        "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                      },
+                      {
+                        "productId": 2,
+                        "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                      }
+                    ]
                   }
                 },
                 {
-                  "categoryId": 2,
-                  "category": {
-                    "name": "Boots"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 3,
-              "userId": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:34:57.791Z",
-              "updatedAt": "2022-06-29T07:34:57.791Z",
-              "productCategories": [
-                {
                   "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 4,
-              "userId": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:35:00.640Z",
-              "updatedAt": "2022-06-29T07:35:00.640Z",
-              "productCategories": [
-                {
-                  "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 5,
-              "userId": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:35:02.074Z",
-              "updatedAt": "2022-06-29T07:35:02.074Z",
-              "productCategories": [
-                {
-                  "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 6,
-              "userId": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:35:03.232Z",
-              "updatedAt": "2022-06-29T07:35:03.232Z",
-              "productCategories": [
-                {
-                  "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 7,
-              "userId": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:35:04.687Z",
-              "updatedAt": "2022-06-29T07:35:04.687Z",
-              "productCategories": [
-                {
-                  "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 8,
-              "userId": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:35:05.967Z",
-              "updatedAt": "2022-06-29T07:35:05.967Z",
-              "productCategories": [
-                {
-                  "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 9,
-              "userId": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:35:07.346Z",
-              "updatedAt": "2022-06-29T07:35:07.346Z",
-              "productCategories": [
-                {
-                  "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
-                  }
-                }
-              ]
-            },
-            {
-              "id": 10,
-              "userId": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "description": "Lorem ipsum",
-              "createdAt": "2022-06-29T07:35:08.740Z",
-              "updatedAt": "2022-06-29T07:35:08.740Z",
-              "productCategories": [
-                {
-                  "categoryId": 1,
-                  "category": {
-                    "name": "Sneaker"
+                  "product": {
+                    "name": "Vans 1",
+                    "price": 1000000,
+                    "description": "Lorem ipsum",
+                    "productImages": [
+                      {
+                        "productId": 3,
+                        "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                      },
+                      {
+                        "productId": 3,
+                        "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                      }
+                    ]
                   }
                 }
               ]
             }
           ],
-          "totalPages": 3,
+          "totalPages": 1,
           "previosusPage": null,
           "currentPage": 1,
-          "nextPage": "http:localhost:3000/api/v1/products/?page=2"
+          "nextPage": null
+        }
+      },
+      "Data18": {
+        "title": "Data18",
+        "required": [
+          "id",
+          "name",
+          "productCategories"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "productCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCategory4"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "Sneaker",
+          "productCategories": [
+            {
+              "categoryId": 1,
+              "product": {
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "productImages": [
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+                  },
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+                  }
+                ]
+              }
+            },
+            {
+              "categoryId": 1,
+              "product": {
+                "name": "Converse",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "productImages": [
+                  {
+                    "productId": 2,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
+                  },
+                  {
+                    "productId": 2,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
+                  }
+                ]
+              }
+            },
+            {
+              "categoryId": 1,
+              "product": {
+                "name": "Vans 1",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "productImages": [
+                  {
+                    "productId": 3,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
+                  },
+                  {
+                    "productId": 3,
+                    "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "ProductCategory4": {
+        "title": "ProductCategory4",
+        "required": [
+          "categoryId",
+          "product"
+        ],
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          }
+        },
+        "example": {
+          "categoryId": 1,
+          "product": {
+            "name": "Vans Old-school",
+            "price": 1000000,
+            "description": "Lorem ipsum",
+            "productImages": [
+              {
+                "productId": 1,
+                "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+              },
+              {
+                "productId": 1,
+                "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+              }
+            ]
+          }
+        }
+      },
+      "Product": {
+        "title": "Product",
+        "required": [
+          "name",
+          "price",
+          "description",
+          "productImages"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "productImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductImage"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "name": "Vans Old-school",
+          "price": 1000000,
+          "description": "Lorem ipsum",
+          "productImages": [
+            {
+              "productId": 1,
+              "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
+            },
+            {
+              "productId": 1,
+              "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+            }
+          ]
+        }
+      },
+      "EditProductbyproductIdRequest": {
+        "title": "EditProductbyproductIdRequest",
+        "required": [
+          "name",
+          "price",
+          "description",
+          "category"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "name": "Vans School",
+          "price": 150000,
+          "description": "Lorem ipsum",
+          "category": [
+            1,
+            2
+          ]
+        }
+      },
+      "200SuccessUpdateProduct": {
+        "title": "200SuccessUpdateProduct",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success update product!",
+          "data": [
+            1
+          ]
+        }
+      },
+      "200Successchangepublishedproduct": {
+        "title": "200Successchangepublishedproduct",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data7"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success publish product!",
+          "data": {
+            "id": 2,
+            "userId": 1,
+            "name": "Vans Old-school",
+            "price": 1000000,
+            "description": "Lorem ipsum",
+            "published": true,
+            "createdAt": "2022-06-29T11:46:50.765Z",
+            "updatedAt": "2022-06-29T11:54:55.633Z"
+          }
         }
       },
       "200DeleteProduct": {

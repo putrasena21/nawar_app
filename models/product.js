@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       Product.hasMany(models.Wishlist, {
-        foreignKey: 'id_product',
-        as: 'produk'
+        foreignKey: "productId",
+        as: "produk",
       });
     }
   }
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       price: DataTypes.INTEGER,
       description: DataTypes.TEXT,
-      publish: DataTypes.BOOLEAN
+      published: DataTypes.BOOLEAN,
     },
     {
       sequelize,

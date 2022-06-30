@@ -1,15 +1,18 @@
-const { application } = require("express");
 const express = require("express");
+
 const router = express.Router();
 
-const wishlistController = require('../controllers/wishlist.controller');
+const passport = require("../lib/passport");
+const wishlistController = require("../controllers/wishlist.controller");
 
-router.post('/add-wishlist', wishlistController.addWishlist);
-router.get('/get-wishlist', wishlistController.getWishlist);
-router.get('/detail-wishlist/:id', wishlistController.getDetail);
-router.put('/update-wishlist/:id', wishlistController.updateWishlist);
-router.delete('/delete-wishlist/:id', wishlistController.deleteWishlist);
-
-
+router.post("/add", wishlistController.addWishlist);
+router.get("/detail/:wishlistId", wishlistController.getDetail);
+router.get(
+  "/",
+  [passport.authenticate("jwt", { session: false })],
+  wishlistController.getWishlist
+);
+router.put("/update/:id", wishlistController.updateWishlist);
+router.delete("/delete/:wishlistId", wishlistController.deleteWishlist);
 
 module.exports = router;
