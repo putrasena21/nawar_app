@@ -35,6 +35,11 @@ router.put(
   [passport.authenticate("jwt", { session: false })],
   productController.publishProduct
 );
+router.put(
+  "/:productId",
+  [passport.authenticate("jwt", { session: false })],
+  productController.updateProduct
+);
 
 router.delete(
   "/:productId",
