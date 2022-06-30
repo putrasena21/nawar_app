@@ -26,9 +26,14 @@ router.get(
   [passport.authenticate("jwt", { session: false })],
   productController.getAllProductByUser
 );
+router.get(
+  "/user/draft",
+  [passport.authenticate("jwt", { session: false })],
+  productController.getAllProductUnpublished
+);
 router.get("/filter/:categoryId", productController.getAllProductByCategory);
 router.get("/:productId", productController.getProductById);
-router.get("/", productController.getAllProductPagination);
+router.get("/", productController.getAllProductPublished);
 
 router.put(
   "/publish/:productId",
