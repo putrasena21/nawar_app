@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const Sequelize = require("sequelize");
 
 const { JWT_SECRET_KEY } = process.env;
-const Op = Sequelize.Op;
+const { Op } = Sequelize;
 const {
   Product,
   ProductImage,
