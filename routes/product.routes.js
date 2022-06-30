@@ -24,12 +24,11 @@ router.post(
 router.get(
   "/user",
   [passport.authenticate("jwt", { session: false })],
-  productController.getAllproductByUser
+  productController.getAllProductByUser
 );
-
-router.get("/", productController.getAllProductPagination);
 router.get("/filter/:categoryId", productController.getAllProductByCategory);
 router.get("/:productId", productController.getProductById);
+router.get("/", productController.getAllProductPagination);
 
 router.put(
   "/publish/:productId",
