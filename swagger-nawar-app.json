@@ -2,6 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Nawar_app",
+    "description": "Documentation for Nawar_app API",
     "contact": {},
     "version": "1.0"
   },
@@ -3355,473 +3356,148 @@
         },
         "deprecated": false
       }
-    },
-    "/wishlist/add": {
-      "post": {
-        "tags": [
-          "Wishlist"
-        ],
-        "summary": "Add wishlist",
-        "operationId": "Addwishlist",
-        "parameters": [],
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddwishlistRequest"
-              },
-              "example": {
-                "productId": 3
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "headers": {
-              "X-Powered-By": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Express"
-                  }
-                }
-              },
-              "Content-Length": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "183"
-                  }
-                }
-              },
-              "ETag": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "W/\"b7-aBUI2va4E6J42KQiVBcT5/y2lpg\""
-                  }
-                }
-              },
-              "Date": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Thu, 30 Jun 2022 10:38:06 GMT"
-                  }
-                }
-              },
-              "Connection": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "keep-alive"
-                  }
-                }
-              },
-              "Keep-Alive": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "timeout=5"
-                  }
-                }
-              }
-            },
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/201SuccessAddwishlist"
-                },
-                "example": {
-                  "success": true,
-                  "message": "Success add product to wishlist",
-                  "data": {
-                    "id": 3,
-                    "userId": "2",
-                    "productId": "3",
-                    "updatedAt": "2022-06-30T10:38:06.259Z",
-                    "createdAt": "2022-06-30T10:38:06.259Z"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/wishlist/detail/{wishlistId}": {
-      "get": {
-        "tags": [
-          "Wishlist"
-        ],
-        "summary": "Get Detail WIshlist",
-        "operationId": "GetDetailWIshlist",
-        "parameters": [
-          {
-            "name": "wishlistId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Powered-By": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Express"
-                  }
-                }
-              },
-              "Content-Length": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "528"
-                  }
-                }
-              },
-              "ETag": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "W/\"210-tTPce7DWapESJtVClmu+y7lR/h8\""
-                  }
-                }
-              },
-              "Date": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Thu, 30 Jun 2022 10:30:48 GMT"
-                  }
-                }
-              },
-              "Connection": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "keep-alive"
-                  }
-                }
-              },
-              "Keep-Alive": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "timeout=5"
-                  }
-                }
-              }
-            },
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/200SuccessGetDetailWIshlist"
-                },
-                "example": {
-                  "success": true,
-                  "message": "success get detail wishlist",
-                  "data": {
-                    "id": 1,
-                    "userId": "2",
-                    "productId": "1",
-                    "createdAt": "2022-06-30T10:24:45.158Z",
-                    "updatedAt": "2022-06-30T10:24:45.158Z",
-                    "product": {
-                      "id": 1,
-                      "name": "Vans Old-school",
-                      "price": 1000000,
-                      "productImages": [
-                        {
-                          "url": "https://ik.imagekit.io/putrasena21/1656584361379-vans_wxs2tYwXq.jpg"
-                        },
-                        {
-                          "url": "https://ik.imagekit.io/putrasena21/1656584361380-vans_1_NG3ncBpbI.png"
-                        }
-                      ]
-                    },
-                    "user": {
-                      "id": 2,
-                      "name": "Saya Pembeli",
-                      "email": "test1@mail.com",
-                      "phone": "082141089098",
-                      "address": "Surabaya barat"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false
-      }
-    },
-    "/wishlist": {
-      "get": {
-        "tags": [
-          "Wishlist"
-        ],
-        "summary": "Get All Wishlist By User",
-        "operationId": "GetAllWishlistByUser",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Powered-By": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Express"
-                  }
-                }
-              },
-              "Content-Length": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "414"
-                  }
-                }
-              },
-              "ETag": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "W/\"19e-qTUkk67hVs2pxR16skEkrK/E+fw\""
-                  }
-                }
-              },
-              "Date": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Thu, 30 Jun 2022 10:37:35 GMT"
-                  }
-                }
-              },
-              "Connection": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "keep-alive"
-                  }
-                }
-              },
-              "Keep-Alive": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "timeout=5"
-                  }
-                }
-              }
-            },
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/200GetAllWishlistByUser"
-                },
-                "example": {
-                  "success": true,
-                  "message": "success get all wishlist",
-                  "data": [
-                    {
-                      "id": 2,
-                      "userId": "2",
-                      "productId": "2",
-                      "createdAt": "2022-06-30T10:33:29.589Z",
-                      "updatedAt": "2022-06-30T10:33:29.589Z",
-                      "product": {
-                        "id": 2,
-                        "name": "Vans Old-school",
-                        "price": 1000000,
-                        "productImages": [
-                          {
-                            "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
-                          },
-                          {
-                            "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/wishlist/delete/{wishlistId}": {
-      "delete": {
-        "tags": [
-          "Wishlist"
-        ],
-        "summary": "Delete Wishlist",
-        "operationId": "DeleteWishlist",
-        "parameters": [
-          {
-            "name": "wishlistId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "example": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Powered-By": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Express"
-                  }
-                }
-              },
-              "Content-Length": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "61"
-                  }
-                }
-              },
-              "ETag": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "W/\"3d-LrnsKO80MEESql446bpzBRFgW3k\""
-                  }
-                }
-              },
-              "Date": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Thu, 30 Jun 2022 10:37:30 GMT"
-                  }
-                }
-              },
-              "Connection": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "keep-alive"
-                  }
-                }
-              },
-              "Keep-Alive": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "timeout=5"
-                  }
-                }
-              }
-            },
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/200DeleteWishlist"
-                },
-                "example": {
-                  "success": true,
-                  "message": "success delete wishlist",
-                  "data": 1
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false
-      }
     }
   },
   "components": {
     "schemas": {
+      "Model.User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "email": {
+            "type": "string",
+            "example": "nawarapp@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "nawarapp123"
+          },
+          "name": {
+            "type": "string",
+            "example": "nawarapp"
+          },
+          "province": {
+            "type": "string",
+            "example": "jawa barat"
+          },
+          "city": {
+            "type": "string",
+            "example": "jakarta"
+          },
+          "address": {
+            "type": "string",
+            "example": "Melawai, Kebayoran Baru, South Jakarta City"
+          },
+          "phone": {
+            "type": "string",
+            "example": "danang123"
+          },
+          "avatar": {
+            "type": "string",
+            "example": "danang123"
+          },
+          "completed": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "Model.Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "sneakers"
+          }
+        }
+      },
+      "Model.Product": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "win"
+          },
+          "price": {
+            "type": "integer",
+            "example": 200000
+          },
+          "description": {
+            "type": "string",
+            "example": "canvas navy low"
+          },
+          "published": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "Model.ProductImage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "productId": {
+            "type": "integer",
+            "example": 1
+          },
+          "url": {
+            "type": "string",
+            "example": "https://ik.imagekit.io/dws/avatar_-_avatar_395svVyzY.jpg"
+          }
+        }
+      },
+      "Model.ProductCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "categoryId": {
+            "type": "integer",
+            "example": 1
+          },
+          "productId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "Model.Wishlist": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "productId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
       "LoginRequest": {
         "title": "LoginRequest",
         "required": [
@@ -6212,427 +5888,6 @@
           "createdAt": "2022-06-28T08:02:17.476Z",
           "updatedAt": "2022-06-28T08:02:17.476Z"
         }
-      },
-      "AddwishlistRequest": {
-        "title": "AddwishlistRequest",
-        "required": [
-          "productId"
-        ],
-        "type": "object",
-        "properties": {
-          "productId": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "example": {
-          "productId": 3
-        }
-      },
-      "201SuccessAddwishlist": {
-        "title": "201SuccessAddwishlist",
-        "required": [
-          "success",
-          "message",
-          "data"
-        ],
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/Data20"
-          }
-        },
-        "example": {
-          "success": true,
-          "message": "Success add product to wishlist",
-          "data": {
-            "id": 3,
-            "userId": "2",
-            "productId": "3",
-            "updatedAt": "2022-06-30T10:38:06.259Z",
-            "createdAt": "2022-06-30T10:38:06.259Z"
-          }
-        }
-      },
-      "Data20": {
-        "title": "Data20",
-        "required": [
-          "id",
-          "userId",
-          "productId",
-          "updatedAt",
-          "createdAt"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "productId": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "id": 3,
-          "userId": "2",
-          "productId": "3",
-          "updatedAt": "2022-06-30T10:38:06.259Z",
-          "createdAt": "2022-06-30T10:38:06.259Z"
-        }
-      },
-      "200SuccessGetDetailWIshlist": {
-        "title": "200SuccessGetDetailWIshlist",
-        "required": [
-          "success",
-          "message",
-          "data"
-        ],
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "$ref": "#/components/schemas/Data21"
-          }
-        },
-        "example": {
-          "success": true,
-          "message": "success get detail wishlist",
-          "data": {
-            "id": 1,
-            "userId": "2",
-            "productId": "1",
-            "createdAt": "2022-06-30T10:24:45.158Z",
-            "updatedAt": "2022-06-30T10:24:45.158Z",
-            "product": {
-              "id": 1,
-              "name": "Vans Old-school",
-              "price": 1000000,
-              "productImages": [
-                {
-                  "url": "https://ik.imagekit.io/putrasena21/1656584361379-vans_wxs2tYwXq.jpg"
-                },
-                {
-                  "url": "https://ik.imagekit.io/putrasena21/1656584361380-vans_1_NG3ncBpbI.png"
-                }
-              ]
-            },
-            "user": {
-              "id": 2,
-              "name": "Saya Pembeli",
-              "email": "test1@mail.com",
-              "phone": "082141089098",
-              "address": "Surabaya barat"
-            }
-          }
-        }
-      },
-      "Data21": {
-        "title": "Data21",
-        "required": [
-          "id",
-          "userId",
-          "productId",
-          "createdAt",
-          "updatedAt",
-          "product",
-          "user"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "productId": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product1"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "example": {
-          "id": 1,
-          "userId": "2",
-          "productId": "1",
-          "createdAt": "2022-06-30T10:24:45.158Z",
-          "updatedAt": "2022-06-30T10:24:45.158Z",
-          "product": {
-            "id": 1,
-            "name": "Vans Old-school",
-            "price": 1000000,
-            "productImages": [
-              {
-                "url": "https://ik.imagekit.io/putrasena21/1656584361379-vans_wxs2tYwXq.jpg"
-              },
-              {
-                "url": "https://ik.imagekit.io/putrasena21/1656584361380-vans_1_NG3ncBpbI.png"
-              }
-            ]
-          },
-          "user": {
-            "id": 2,
-            "name": "Saya Pembeli",
-            "email": "test1@mail.com",
-            "phone": "082141089098",
-            "address": "Surabaya barat"
-          }
-        }
-      },
-      "Product1": {
-        "title": "Product1",
-        "required": [
-          "id",
-          "name",
-          "price",
-          "productImages"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
-          },
-          "price": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "productImages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductImage5"
-            },
-            "description": ""
-          }
-        },
-        "example": {
-          "id": 1,
-          "name": "Vans Old-school",
-          "price": 1000000,
-          "productImages": [
-            {
-              "url": "https://ik.imagekit.io/putrasena21/1656584361379-vans_wxs2tYwXq.jpg"
-            },
-            {
-              "url": "https://ik.imagekit.io/putrasena21/1656584361380-vans_1_NG3ncBpbI.png"
-            }
-          ]
-        }
-      },
-      "ProductImage5": {
-        "title": "ProductImage5",
-        "required": [
-          "url"
-        ],
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "url": "https://ik.imagekit.io/putrasena21/1656584361379-vans_wxs2tYwXq.jpg"
-        }
-      },
-      "User": {
-        "title": "User",
-        "required": [
-          "id",
-          "name",
-          "email",
-          "phone",
-          "address"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "id": 2,
-          "name": "Saya Pembeli",
-          "email": "test1@mail.com",
-          "phone": "082141089098",
-          "address": "Surabaya barat"
-        }
-      },
-      "200GetAllWishlistByUser": {
-        "title": "200GetAllWishlistByUser",
-        "required": [
-          "success",
-          "message",
-          "data"
-        ],
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Data22"
-            },
-            "description": ""
-          }
-        },
-        "example": {
-          "success": true,
-          "message": "success get all wishlist",
-          "data": [
-            {
-              "id": 2,
-              "userId": "2",
-              "productId": "2",
-              "createdAt": "2022-06-30T10:33:29.589Z",
-              "updatedAt": "2022-06-30T10:33:29.589Z",
-              "product": {
-                "id": 2,
-                "name": "Vans Old-school",
-                "price": 1000000,
-                "productImages": [
-                  {
-                    "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
-                  },
-                  {
-                    "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "Data22": {
-        "title": "Data22",
-        "required": [
-          "id",
-          "userId",
-          "productId",
-          "createdAt",
-          "updatedAt",
-          "product"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "productId": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product1"
-          }
-        },
-        "example": {
-          "id": 2,
-          "userId": "2",
-          "productId": "2",
-          "createdAt": "2022-06-30T10:33:29.589Z",
-          "updatedAt": "2022-06-30T10:33:29.589Z",
-          "product": {
-            "id": 2,
-            "name": "Vans Old-school",
-            "price": 1000000,
-            "productImages": [
-              {
-                "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
-              },
-              {
-                "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
-              }
-            ]
-          }
-        }
-      },
-      "200DeleteWishlist": {
-        "title": "200DeleteWishlist",
-        "required": [
-          "success",
-          "message",
-          "data"
-        ],
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "example": {
-          "success": true,
-          "message": "success delete wishlist",
-          "data": 1
-        }
       }
     },
     "securitySchemes": {
@@ -6658,9 +5913,6 @@
     },
     {
       "name": "Categories"
-    },
-    {
-      "name": "Wishlist"
     }
   ]
 }
