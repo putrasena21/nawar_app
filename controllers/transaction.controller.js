@@ -25,15 +25,15 @@ module.exports = {
                 return res.notFound();
             }
 
-            // const isProductExist = await Product.findOne({
-            //     where: {
-            //         id: id_product
-            //     }
-            // })
+            const isProductExist = await Product.findOne({
+                where: {
+                    id: id_product
+                }
+            })
 
-            // if(!isProductExist) {
-            //     return res.notFound();
-            // }
+            if(!isProductExist) {
+                return res.notFound();
+            }
 
             if(!id_product || !price) {
                 return res.badRequest('id_product and price is required')
@@ -72,22 +72,54 @@ module.exports = {
 
             const decoded =jwt.verify(token, JWT_SECRET_KEY);
 
+            const id_transaction = req.params.id;
+
             const data = await Transaction.findOne({
                 where: {
-                    id: decoded.id
+                    id: id_transaction
                 },
-                include: 'buyer'    
+                include: ['product', 'buyer']
             })
+
+            if(!data){
+                return res.notFound('transaction doesnt exist');
+            }
 
             const detailTransaction = {
                 id_user: decoded.id,
                 id_product: data.id_product,
                 price: data.price,
                 approved: data.approved,
+                product: data.product,
                 buyer: data.buyer
             }
 
             return res.success("success get detail transaction", detailTransaction)
+
+        }catch(err){
+            return res.serverError();
+        }
+    },
+
+    history: async (req,res) => {
+        try{
+            const token = req.headers.authorization.split(" ")[1];
+
+            if(!token) {
+                return res.unauthorized("Token is required!")
+            }
+
+            const decoded =jwt.verify(token, JWT_SECRET_KEY);
+
+            const data = await Transaction.findAll({
+                where: {
+                    id_user: decoded.id
+                },
+                include: ['product']
+            })
+
+            return res.success("succes get your transaction history!", data);
+
 
         }catch(err){
             return res.serverError();

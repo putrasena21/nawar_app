@@ -8,9 +8,15 @@ router.post('/create', transactionController.createTransaction);
 router.get('/get', transactionController.getAllTransaction);
 
 router.get(
-    '/get-detail', 
+    '/get-detail/:id', 
     [passport.authenticate('jwt', {session: false})],
     transactionController.getDetailTransaction
-    )
+)
+
+router.get(
+    '/history',
+    [passport.authenticate('jwt', {session: false})],
+    transactionController.history
+)
 
 module.exports = router;

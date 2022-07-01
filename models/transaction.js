@@ -14,7 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       Transaction.belongsTo(models.User, {
         foreignKey: 'id_user',
         as:'buyer'
-      })
+      });
+
+      Transaction.belongsTo(models.Product, {
+        foreignKey: 'id_product',
+        as: 'product'
+      });
     }
   }
   Transaction.init({
