@@ -272,7 +272,7 @@ module.exports = {
     try {
       const perPage = 10;
       const { page = 1, name } = req.query;
-      const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+      const condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
 
       const products = await Product.findAndCountAll({
         where: { published: true, ...condition },
@@ -338,7 +338,7 @@ module.exports = {
     try {
       const perPage = 10;
       const { page = 1, name } = req.query;
-      const condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+      const condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
 
       const products = await Product.findAndCountAll({
         where: { published: true, ...condition },
