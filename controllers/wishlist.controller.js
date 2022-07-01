@@ -1,143 +1,177 @@
-const {User, Wishlist, Product} = require('../models');
 const jwt = require("jsonwebtoken");
+const { User, Wishlist, Product, ProductImage } = require("../models");
 
 const { JWT_SECRET_KEY } = process.env;
 
-
 module.exports = {
-    addWishlist : async (req,res) => {
-        try {
-            const token = req.headers.authorization.split(" ")[1];
+  addWishlist: async (req, res) => {
+    try {
+      const token = req.headers.authorization.split(" ")[1];
 
-            if (!token) {
-                return res.unauthorized("Token is required");
-            }
+      if (!token) {
+        return res.unauthorized("Token is required");
+      }
 
-            const decoded = jwt.verify(token, JWT_SECRET_KEY);
-            const {id_product} = req.body;
+      const decoded = jwt.verify(token, JWT_SECRET_KEY);
+      const { productId } = req.body;
 
-            const isUserExist = await User.findOne({
-                where: {
-                    id: decoded.id
-                }
-            })
+      const isProductExist = await Product.findOne({
+        where: {
+          id: productId,
+        },
+      });
 
-            if(!isUserExist){
-                return res.notFound();
-            }
+      if (!isProductExist) {
+        return res.notFound("Product not found");
+      }
 
-            const isProductExist = await Product.findOne({
-                where: {
-                    id: id_product
-                }
-            })
+      if (!productId) {
+        return res.badRequest("ProductId is required!");
+      }
 
-            if(!isProductExist) {
-                return res.notFound();
-            }
+      const addWishlist = await Wishlist.create({
+        userId: decoded.id,
+        productId,
+      });
 
-            if(!id_product) {
-                return res.badRequest('id_product is required!')
-            }
-
-            let new_wishlist = await Wishlist.create({
-                id_user: decoded.id,
-                id_product
-            })
-
-            return res.success("Success add product to wishlist", new_wishlist);
-        }catch(err) {
-            return res.serverError();
-        }
-    },
-
-    getWishlist : async (req,res) => {
-        try{
-            let all = await Wishlist.findAll();
-
-            return res.success('success get all wishlist', all);
-        }catch(err){
-            return res.serverError();
-        }
-    },
-
-    getDetail : async (req,res) => {
-        try{
-            const id_wishlist = req.params.id;
-
-            let detail = await Wishlist.findOne({
-                where: {
-                    id: id_wishlist
-                },
-                include: ['user', 'product']
-            });
-
-            if (!detail) {
-                return res.notFound();
-            }
-
-            return res.success('success get detail wishlist', detail);
-        }catch(err) {
-            return res.serverError();
-        }
-    },
-
-    updateWishlist : async (req,res) => {
-        try{
-            const id_wishlist = req.params.id;
-            const {id_user, id_product} = req.body;
-
-            const isUserExist = await User.findOne({
-                where: {
-                    id: id_user
-                }
-            })
-
-            if(!isUserExist){
-                return res.notFound();
-            }
-
-            let query = {
-                where: {
-                    id: id_wishlist
-                }
-            }
-
-            let updated = await Wishlist.update({
-                id_user,
-                id_product
-            }, query);
-
-            return res.success('success change wishlist', updated)
-
-        }catch(err){
-            return res.serverError();
-        }
-    },
-
-    deleteWishlist: async (req,res) => {
-        try{
-            const id_wishlist = req.params.id;
-
-            const isWishlistExist = await Wishlist.findOne({
-                where: {
-                    id: id_wishlist
-                }
-            })
-
-            if(!isWishlistExist){
-                return res.notFound();
-            } 
-
-            let deleted = await Wishlist.destroy({
-                where: {
-                    id: id_wishlist
-                }
-            });
-
-            return res.success('success delete wishlist', deleted)
-        }catch(err){
-            return res.serverError();
-        }
+      return res.created("Success add product to wishlist", addWishlist);
+    } catch (err) {
+      return res.serverError(err);
     }
-}
+  },
+
+  getWishlist: async (req, res) => {
+    try {
+      const token = req.headers.authorization.split(" ")[1];
+      if (!token) {
+        return res.unauthorized("Token is required");
+      }
+
+      const decoded = jwt.verify(token, JWT_SECRET_KEY);
+
+      const all = await Wishlist.findAll({
+        where: {
+          userId: decoded.id,
+        },
+        include: [
+          {
+            model: Product,
+            as: "product",
+            attributes: ["id", "name", "price"],
+            include: [
+              {
+                model: ProductImage,
+                as: "productImages",
+                attributes: ["url"],
+              },
+            ],
+          },
+        ],
+      });
+
+      return res.success("success get all wishlist", all);
+    } catch (err) {
+      return res.serverError();
+    }
+  },
+
+  getDetail: async (req, res) => {
+    try {
+      const { wishlistId } = req.params;
+
+      const detail = await Wishlist.findOne({
+        where: {
+          id: wishlistId,
+        },
+        include: [
+          {
+            model: Product,
+            as: "product",
+            attributes: ["id", "name", "price"],
+            include: [
+              {
+                model: ProductImage,
+                as: "productImages",
+                attributes: ["url"],
+              },
+            ],
+          },
+          {
+            model: User,
+            as: "user",
+            attributes: ["id", "name", "email", "phone", "address"],
+          },
+        ],
+      });
+
+      if (!detail) {
+        return res.notFound();
+      }
+
+      return res.success("success get detail wishlist", detail);
+    } catch (err) {
+      return res.serverError(err.message);
+    }
+  },
+
+  updateWishlist: async (req, res) => {
+    try {
+      const wishlistId = req.params.id;
+      const { userId, productId } = req.body;
+
+      const isUserExist = await User.findOne({
+        where: {
+          id: userId,
+        },
+      });
+
+      if (!isUserExist) {
+        return res.notFound();
+      }
+
+      const query = {
+        where: {
+          id: wishlistId,
+        },
+      };
+
+      const updated = await Wishlist.update(
+        {
+          userId,
+          productId,
+        },
+        query
+      );
+
+      return res.success("success change wishlist", updated);
+    } catch (err) {
+      return res.serverError();
+    }
+  },
+
+  deleteWishlist: async (req, res) => {
+    try {
+      const { wishlistId } = req.params;
+
+      const isWishlistExist = await Wishlist.findOne({
+        where: {
+          id: wishlistId,
+        },
+      });
+
+      if (!isWishlistExist) {
+        return res.notFound();
+      }
+
+      const deleted = await Wishlist.destroy({
+        where: {
+          id: wishlistId,
+        },
+      });
+
+      return res.success("success delete wishlist", deleted);
+    } catch (err) {
+      return res.serverError(err.message);
+    }
+  },
+};

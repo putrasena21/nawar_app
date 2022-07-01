@@ -1,5 +1,4 @@
 const { Model } = require("sequelize");
-const products = require("../validator/products");
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
@@ -20,15 +19,14 @@ module.exports = (sequelize, DataTypes) => {
         as: "productImages",
       });
 
-      Product.belongsToMany(models.Category, {
-        through: "ProductCategory",
+      Product.hasMany(models.ProductCategory, {
         foreignKey: "productId",
-        as: "categories",
+        as: "productCategories",
       });
 
       Product.hasMany(models.Wishlist, {
-        foreignKey: 'id_product',
-        as: 'produk'
+        foreignKey: "productId",
+        as: "produk",
       });
 
       Product.hasMany(models.Transaction, {
@@ -44,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       price: DataTypes.INTEGER,
       description: DataTypes.TEXT,
-      publish: DataTypes.BOOLEAN
+      published: DataTypes.BOOLEAN,
     },
     {
       sequelize,

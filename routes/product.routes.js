@@ -13,7 +13,43 @@ router.post(
   upload.array("images", 4),
   productController.createProduct
 );
+router.post(
+  "/draft",
+  [passport.authenticate("jwt", { session: false })],
+  userMiddleware.checkProfileCompleted,
+  upload.array("images", 4),
+  productController.createProductNoPublish
+);
 
-router.get("/:id", productController.getProduct);
+router.get(
+  "/user",
+  [passport.authenticate("jwt", { session: false })],
+  productController.getAllProductByUser
+);
+router.get(
+  "/user/draft",
+  [passport.authenticate("jwt", { session: false })],
+  productController.getAllProductUnpublished
+);
+router.get("/filter/:categoryId", productController.getAllProductByCategory);
+router.get("/:productId", productController.getProductById);
+router.get("/", productController.getAllProductPublished);
+
+router.put(
+  "/publish/:productId",
+  [passport.authenticate("jwt", { session: false })],
+  productController.publishProduct
+);
+router.put(
+  "/:productId",
+  [passport.authenticate("jwt", { session: false })],
+  productController.updateProduct
+);
+
+router.delete(
+  "/:productId",
+  [passport.authenticate("jwt", { session: false })],
+  productController.deleteProductById
+);
 
 module.exports = router;

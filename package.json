@@ -27,7 +27,8 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "pg": "^8.7.3",
-    "sequelize": "^6.20.1"
+    "sequelize": "^6.20.1",
+    "swagger-ui-express": "^4.4.0"
   },
   "devDependencies": {
     "eslint": "^8.17.0",
