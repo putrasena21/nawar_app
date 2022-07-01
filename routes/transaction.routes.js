@@ -1,22 +1,30 @@
 const express = require("express");
+
 const router = express.Router();
 const passport = require("../lib/passport");
 
-const transactionController = require('../controllers/transaction.controller');
+const transactionController = require("../controllers/transaction.controller");
 
-router.post('/create', transactionController.createTransaction);
-router.get('/get', transactionController.getAllTransaction);
-
-router.get(
-    '/get-detail/:id', 
-    [passport.authenticate('jwt', {session: false})],
-    transactionController.getDetailTransaction
-)
+router.post(
+  "/create",
+  [passport.authenticate("jwt", { session: false })],
+  transactionController.createTransaction
+);
 
 router.get(
-    '/history',
-    [passport.authenticate('jwt', {session: false})],
-    transactionController.history
-)
+  "/get",
+  [passport.authenticate("jwt", { session: false })],
+  transactionController.getAllTransaction
+);
+router.get(
+  "/detail/:transactionId",
+  [passport.authenticate("jwt", { session: false })],
+  transactionController.getDetailTransaction
+);
+router.get(
+  "/history",
+  [passport.authenticate("jwt", { session: false })],
+  transactionController.history
+);
 
 module.exports = router;
