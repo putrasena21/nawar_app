@@ -30,10 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       Product.hasMany(models.Transaction, {
-        foreignKey: 'productId',
-        as: 'product'
+        foreignKey: "productId",
+        as: "product",
       });
-
     }
   }
   Product.init(
@@ -43,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.INTEGER,
       description: DataTypes.TEXT,
       published: DataTypes.BOOLEAN,
+      sold: DataTypes.BOOLEAN,
     },
     {
       sequelize,
