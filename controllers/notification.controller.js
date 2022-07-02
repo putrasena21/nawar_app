@@ -101,6 +101,11 @@ module.exports = {
             as: "buyer",
             attributes: ["id", "name", "email", "phone"],
           },
+          {
+            model: Product,
+            as: "productTransactions",
+            attributes: ["id", "name", "price", "sold", "soldAt"],
+          },
         ],
       });
 

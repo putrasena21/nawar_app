@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Product.hasMany(models.Transaction, {
         foreignKey: "productId",
-        as: "transaction",
+        as: "productTransactions",
       });
 
       Product.hasOne(models.Notification, {

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Transaction.belongsTo(models.Product, {
         foreignKey: "productId",
-        as: "transaction",
+        as: "productTransactions",
       });
 
       Transaction.hasOne(models.Notification, {
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
       buyerId: DataTypes.INTEGER,
       productId: DataTypes.INTEGER,
       bidPrice: DataTypes.INTEGER,
-      status: DataTypes.INTEGER,
+      status: DataTypes.STRING,
     },
     {
       sequelize,

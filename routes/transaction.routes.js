@@ -11,4 +11,19 @@ router.post(
   transactionController.createTransaction
 );
 
+router.put(
+  "/reject/:transactionId",
+  [passport.authenticate("jwt", { session: false })],
+  transactionController.rejectTransaction
+);
+router.put("/accept/:transactionId", [
+  passport.authenticate("jwt", { session: false }),
+  transactionController.acceptTransaction,
+]);
+router.put(
+  "/complete/:transactionId",
+  passport.authenticate("jwt", { session: false }),
+  transactionController.completeTransaction
+);
+
 module.exports = router;
