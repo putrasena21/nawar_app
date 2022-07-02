@@ -54,57 +54,12 @@ module.exports = {
       await Notification.create({
         providerId: newTransaction.id,
         read: false,
-        status: "bidder",
+        status: "Bid",
       });
 
       return res.success("Success create transaction", newTransaction);
     } catch (err) {
       return res.serverError();
-    }
-  },
-
-  getDetailHistorySeller: async (req, res) => {
-    try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("Token is required!");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
-      const { transactionId } = req.params;
-      const data = await Transaction.findOne({
-        where: {
-          id: transactionId,
-        },
-        include: [
-          {
-            model: Product,
-            as: "transaction",
-            attributes: ["name", "price"],
-            include: [
-              {
-                model: User,
-                as: "seller",
-                attributes: ["id", "name", "email"],
-              },
-            ],
-          },
-          {
-            model: User,
-            as: "buyer",
-            attributes: ["id", "name", "email"],
-          },
-        ],
-      });
-
-      if (!data) {
-        return res.notFound("transaction doesnt exist");
-      }
-
-      return res.success("Success get detail transaction", data);
-    } catch (err) {
-      return res.serverError(err.message);
     }
   },
 };

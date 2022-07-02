@@ -7,10 +7,10 @@ const authRoutes = require("./auth.routes");
 const productRoutes = require("./product.routes");
 const categoryRoutes = require("./category.routes");
 
-const wishlistRoutes = require('./wishlist.routes');
-const transactionRoutes = require('./transaction.routes');
+const wishlistRoutes = require("./wishlist.routes");
+const transactionRoutes = require("./transaction.routes");
 
-
+const notificationRoutes = require("./notification.routes");
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
@@ -26,7 +26,9 @@ router.use("/auth", authRoutes);
 router.use("/products", productRoutes);
 router.use("/categories", categoryRoutes);
 
-router.use('/wishlist', wishlistRoutes);
-router.use('/transactions', transactionRoutes);
+router.use("/wishlist", wishlistRoutes);
+router.use("/transactions", transactionRoutes);
+
+router.use("/notifications", notificationRoutes);
 
 module.exports = router;

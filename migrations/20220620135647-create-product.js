@@ -29,7 +29,7 @@ module.exports = {
       },
       sold: {
         type: Sequelize.BOOLEAN,
-        defaultValue: null,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

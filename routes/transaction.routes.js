@@ -11,10 +11,4 @@ router.post(
   transactionController.createTransaction
 );
 
-router.get(
-  "/seller/history/detail/:transactionId",
-  [passport.authenticate("jwt", { session: false })],
-  transactionController.getDetailHistorySeller
-);
-
 module.exports = router;
