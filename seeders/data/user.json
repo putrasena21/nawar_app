@@ -1,7 +1,7 @@
 [
   {
     "email": "user1@mail.com",
-    "password": "$2y$10$LMXNDTsYr9Evf94AHYz0BenebFyvU5h41OI3QqG7oI91.lBe5Sgye",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
     "name": "user1",
     "province": "35",
     "city": "3578",
@@ -12,7 +12,7 @@
   },
   {
     "email": "user2@mail.com",
-    "password": "$2y$10$LMXNDTsYr9Evf94AHYz0BenebFyvU5h41OI3QqG7oI91.lBe5Sgye",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
     "name": "user2",
     "province": "35",
     "city": "3578",
@@ -23,7 +23,7 @@
   },
   {
     "email": "user3@mail.com",
-    "password": "$2y$10$LMXNDTsYr9Evf94AHYz0BenebFyvU5h41OI3QqG7oI91.lBe5Sgye",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
     "name": "user3",
     "province": "35",
     "city": "3578",
@@ -34,7 +34,7 @@
   },
   {
     "email": "user4@mail.com",
-    "password": "$2y$10$LMXNDTsYr9Evf94AHYz0BenebFyvU5h41OI3QqG7oI91.lBe5Sgye",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
     "name": "user4",
     "province": "35",
     "city": "3578",
@@ -45,7 +45,7 @@
   },
   {
     "email": "user5@mail.com",
-    "password": "$2y$10$LMXNDTsYr9Evf94AHYz0BenebFyvU5h41OI3QqG7oI91.lBe5Sgye",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
     "name": "user5",
     "province": "35",
     "city": "3578",
@@ -56,7 +56,7 @@
   },
   {
     "email": "user6@mail.com",
-    "password": "$2y$10$LMXNDTsYr9Evf94AHYz0BenebFyvU5h41OI3QqG7oI91.lBe5Sgye",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
     "name": "user6",
     "province": null,
     "city": null,

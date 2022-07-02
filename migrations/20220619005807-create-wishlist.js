@@ -8,10 +8,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userId: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
       },
       productId: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

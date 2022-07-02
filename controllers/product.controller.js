@@ -8,6 +8,7 @@ const {
   ProductImage,
   ProductCategory,
   Category,
+  Notification,
 } = require("../models");
 const { imagekit } = require("../lib/imagekit");
 
@@ -78,6 +79,12 @@ module.exports = {
           url: uploadImage.url,
         });
         return image;
+      });
+
+      await Notification.create({
+        providerId: newProduct.id,
+        read: false,
+        status: "Published",
       });
 
       return res.created("Success add data product!", newProduct);
@@ -186,6 +193,12 @@ module.exports = {
 
       const updated = await product.update({
         published: true,
+      });
+
+      await Notification.create({
+        providerId: product.id,
+        read: false,
+        status: "Published",
       });
 
       return res.success("Success publish product!", updated);

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const { JWT_SECRET_KEY } = process.env;
-const { Transaction, User, Product } = require("../models");
+const { Transaction, User, Product, Notification } = require("../models");
 
 module.exports = {
   createTransaction: async (req, res) => {
@@ -13,7 +13,9 @@ module.exports = {
 
       const decoded = jwt.verify(token, JWT_SECRET_KEY);
 
-      const { productId, price, approved } = req.body;
+      const { productId } = req.body;
+
+      const price = Number(req.body.price);
 
       const user = await User.findOne({
         where: {
@@ -44,10 +46,15 @@ module.exports = {
       }
 
       const newTransaction = await Transaction.create({
-        userId: decoded.id,
+        buyerId: decoded.id,
         productId,
-        price,
-        approved: null,
+        bidPrice: price,
+      });
+
+      await Notification.create({
+        providerId: newTransaction.id,
+        read: false,
+        status: "bidder",
       });
 
       return res.success("Success create transaction", newTransaction);
@@ -56,27 +63,7 @@ module.exports = {
     }
   },
 
-  getAllTransaction: async (req, res) => {
-    try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("Token is required!");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-      const all = await Transaction.findAll({
-        where: {
-          userId: decoded.id,
-        },
-      });
-
-      return res.success("Success retreived all transactions", all);
-    } catch (err) {
-      return res.serverError();
-    }
-  },
-
-  getDetailTransaction: async (req, res) => {
+  getDetailHistorySeller: async (req, res) => {
     try {
       const token = req.headers.authorization.split(" ")[1];
       if (!token) {
@@ -90,46 +77,34 @@ module.exports = {
         where: {
           id: transactionId,
         },
-        include: ["product", "buyer"],
+        include: [
+          {
+            model: Product,
+            as: "transaction",
+            attributes: ["name", "price"],
+            include: [
+              {
+                model: User,
+                as: "seller",
+                attributes: ["id", "name", "email"],
+              },
+            ],
+          },
+          {
+            model: User,
+            as: "buyer",
+            attributes: ["id", "name", "email"],
+          },
+        ],
       });
 
       if (!data) {
         return res.notFound("transaction doesnt exist");
       }
 
-      const detailTransaction = {
-        userId: decoded.id,
-        productId: data.productId,
-        price: data.price,
-        approved: data.approved,
-        product: data.product,
-        buyer: data.buyer,
-      };
-
-      return res.success("Success get detail transaction", detailTransaction);
+      return res.success("Success get detail transaction", data);
     } catch (err) {
-      return res.serverError();
-    }
-  },
-
-  history: async (req, res) => {
-    try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("Token is required!");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-      const data = await Transaction.findAll({
-        where: {
-          userId: decoded.id,
-        },
-        include: ["product"],
-      });
-
-      return res.success("Succes get your transaction history!", data);
-    } catch (err) {
-      return res.serverError();
+      return res.serverError(err.message);
     }
   },
 };

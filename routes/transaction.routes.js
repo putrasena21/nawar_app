@@ -12,19 +12,9 @@ router.post(
 );
 
 router.get(
-  "/get",
+  "/seller/history/detail/:transactionId",
   [passport.authenticate("jwt", { session: false })],
-  transactionController.getAllTransaction
-);
-router.get(
-  "/detail/:transactionId",
-  [passport.authenticate("jwt", { session: false })],
-  transactionController.getDetailTransaction
-);
-router.get(
-  "/history",
-  [passport.authenticate("jwt", { session: false })],
-  transactionController.history
+  transactionController.getDetailHistorySeller
 );
 
 module.exports = router;

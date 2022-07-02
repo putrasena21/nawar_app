@@ -7,18 +7,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      buyerId: {
         type: Sequelize.INTEGER,
       },
       productId: {
         type: Sequelize.INTEGER,
       },
-      price: {
-        type: Sequelize.BIGINT,
+      bidPrice: {
+        type: Sequelize.INTEGER,
       },
-      approved: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: null,
+      status: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
       },
       createdAt: {
         allowNull: false,
