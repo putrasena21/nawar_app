@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Product.belongsTo(models.User, {
         foreignKey: "userId",
-        as: "user",
+        as: "seller",
       });
 
       Product.hasMany(models.ProductImage, {
@@ -28,6 +28,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "productId",
         as: "produk",
       });
+
+      Product.hasMany(models.Transaction, {
+        foreignKey: "productId",
+        as: "productTransactions",
+      });
+
+      Product.hasOne(models.Notification, {
+        foreignKey: "providerId",
+        as: "notification",
+      });
     }
   }
   Product.init(
@@ -37,6 +47,8 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.INTEGER,
       description: DataTypes.TEXT,
       published: DataTypes.BOOLEAN,
+      soldAt: DataTypes.INTEGER,
+      sold: DataTypes.BOOLEAN,
     },
     {
       sequelize,

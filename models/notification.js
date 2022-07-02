@@ -1,7 +1,7 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class Wishlist extends Model {
+  class Notification extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,26 +9,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Wishlist.belongsTo(models.User, {
-        foreignKey: "userId",
-        as: "user",
+      Notification.belongsTo(models.Transaction, {
+        foreignKey: "providerId",
+        as: "transactions",
       });
 
-      Wishlist.belongsTo(models.Product, {
-        foreignKey: "productId",
+      Notification.belongsTo(models.Product, {
+        foreignKey: "providerId",
         as: "product",
       });
     }
   }
-  Wishlist.init(
+  Notification.init(
     {
-      userId: DataTypes.INTEGER,
-      productId: DataTypes.INTEGER,
+      providerId: DataTypes.INTEGER,
+      read: DataTypes.BOOLEAN,
+      status: DataTypes.STRING,
+      notifDate: DataTypes.DATE,
     },
     {
       sequelize,
-      modelName: "Wishlist",
+      modelName: "Notification",
     }
   );
-  return Wishlist;
+  return Notification;
 };

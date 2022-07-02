@@ -28,7 +28,7 @@
                 "$ref": "#/components/schemas/LoginRequest"
               },
               "example": {
-                "email": "test@mail.com",
+                "email": "user1@mail.com",
                 "password": "12345678"
               }
             }
@@ -3045,6 +3045,166 @@
         "deprecated": false
       }
     },
+    "/": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get All Product Sold For Seller",
+        "operationId": "GetAllProductSoldForSeller",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "926"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"39e-Suh2bG4xyqv/GCI5wujeySmPHnY\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 02 Jul 2022 18:54:39 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllProductSoldForSeller"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get data product!",
+                  "data": {
+                    "totalItem": 2,
+                    "data": [
+                      {
+                        "id": 2,
+                        "userId": 1,
+                        "name": "Converse",
+                        "price": 100000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": 50000,
+                        "sold": true,
+                        "productImages": [
+                          {
+                            "productId": 2,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/converse_1_QRLbGbCmPf.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 1,
+                        "userId": 1,
+                        "name": "Vans",
+                        "price": 100000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": 50000,
+                        "sold": true,
+                        "productImages": [
+                          {
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/vans_1_2HIuN6rplF.png"
+                          },
+                          {
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/vans_JiX2OhQW8.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "totalPages": 1,
+                    "previosusPage": null,
+                    "currentPage": 1,
+                    "nextPage": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/products/publish/{productId}": {
       "put": {
         "tags": [
@@ -3471,6 +3631,122 @@
         ]
       }
     },
+    "/wishlist": {
+      "get": {
+        "tags": [
+          "Wishlist"
+        ],
+        "summary": "Get All Wishlist By User",
+        "operationId": "GetAllWishlistByUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "414"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"19e-qTUkk67hVs2pxR16skEkrK/E+fw\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Thu, 30 Jun 2022 10:37:35 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200GetAllWishlistByUser"
+                },
+                "example": {
+                  "success": true,
+                  "message": "success get all wishlist",
+                  "data": [
+                    {
+                      "id": 2,
+                      "userId": "2",
+                      "productId": "2",
+                      "createdAt": "2022-06-30T10:33:29.589Z",
+                      "updatedAt": "2022-06-30T10:33:29.589Z",
+                      "product": {
+                        "id": 2,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "productImages": [
+                          {
+                            "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
+                          },
+                          {
+                            "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/wishlist/detail/{wishlistId}": {
       "get": {
         "tags": [
@@ -3600,122 +3876,6 @@
         "deprecated": false
       }
     },
-    "/wishlist": {
-      "get": {
-        "tags": [
-          "Wishlist"
-        ],
-        "summary": "Get All Wishlist By User",
-        "operationId": "GetAllWishlistByUser",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "X-Powered-By": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Express"
-                  }
-                }
-              },
-              "Content-Length": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "414"
-                  }
-                }
-              },
-              "ETag": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "W/\"19e-qTUkk67hVs2pxR16skEkrK/E+fw\""
-                  }
-                }
-              },
-              "Date": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "Thu, 30 Jun 2022 10:37:35 GMT"
-                  }
-                }
-              },
-              "Connection": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "keep-alive"
-                  }
-                }
-              },
-              "Keep-Alive": {
-                "content": {
-                  "text/plain": {
-                    "schema": {
-                      "type": "string"
-                    },
-                    "example": "timeout=5"
-                  }
-                }
-              }
-            },
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "$ref": "#/components/schemas/200GetAllWishlistByUser"
-                },
-                "example": {
-                  "success": true,
-                  "message": "success get all wishlist",
-                  "data": [
-                    {
-                      "id": 2,
-                      "userId": "2",
-                      "productId": "2",
-                      "createdAt": "2022-06-30T10:33:29.589Z",
-                      "updatedAt": "2022-06-30T10:33:29.589Z",
-                      "product": {
-                        "id": 2,
-                        "name": "Vans Old-school",
-                        "price": 1000000,
-                        "productImages": [
-                          {
-                            "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
-                          },
-                          {
-                            "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
     "/wishlist/delete/{wishlistId}": {
       "delete": {
         "tags": [
@@ -3818,6 +3978,978 @@
         },
         "deprecated": false
       }
+    },
+    "/transactions/create": {
+      "post": {
+        "tags": [
+          "Buyer"
+        ],
+        "summary": "Create Offer",
+        "operationId": "CreateOffer",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOfferRequest"
+              },
+              "example": {
+                "productId": 1,
+                "price": 50000
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "211"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"d3-7J13B1sVB2IHpJvbjo5Ryc2SF7c\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 02 Jul 2022 19:17:35 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/201CreateOffer"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success create transaction",
+                  "data": {
+                    "id": 1,
+                    "buyerId": 5,
+                    "productId": 1,
+                    "bidPrice": 50000,
+                    "updatedAt": "2022-07-02T19:17:35.959Z",
+                    "createdAt": "2022-07-02T19:17:35.959Z",
+                    "status": "Pending"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/transactions/reject/{transactionId}": {
+      "put": {
+        "tags": [
+          "Seller"
+        ],
+        "summary": "Reject Transaction",
+        "operationId": "RejectTransaction",
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "379"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"17b-iWDxqLzXGnzpL6C5njreDhXmnX0\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 02 Jul 2022 18:19:39 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200RejectOffer"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success reject transaction",
+                  "data": {
+                    "id": 1,
+                    "buyerId": 5,
+                    "productId": 1,
+                    "bidPrice": 50000,
+                    "status": "Rejected",
+                    "createdAt": "2022-07-02T18:19:18.546Z",
+                    "updatedAt": "2022-07-02T18:19:39.096Z",
+                    "buyer": {
+                      "id": 5,
+                      "name": "user5",
+                      "email": "user5@mail.com"
+                    },
+                    "transaction": {
+                      "id": 1,
+                      "name": "Vans",
+                      "price": 100000,
+                      "seller": {
+                        "id": 1,
+                        "name": "user1",
+                        "email": "user1@mail.com"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/transactions/accept/{transactionId}": {
+      "put": {
+        "tags": [
+          "Seller"
+        ],
+        "summary": "Accept Transaction",
+        "operationId": "AcceptTransaction",
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "418"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"1a2-6Q0ZAKc5hv6VYAa82rPsjh2+yns\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 02 Jul 2022 18:45:34 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200AcceptOffer"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success accept transaction",
+                  "data": {
+                    "id": 2,
+                    "buyerId": 5,
+                    "productId": 2,
+                    "bidPrice": 50000,
+                    "status": "Accepted",
+                    "createdAt": "2022-07-02T18:45:28.135Z",
+                    "updatedAt": "2022-07-02T18:45:34.818Z",
+                    "buyer": {
+                      "id": 5,
+                      "name": "user5",
+                      "email": "user5@mail.com"
+                    },
+                    "productTransactions": {
+                      "id": 2,
+                      "name": "Converse",
+                      "price": 100000,
+                      "sold": false,
+                      "soldAt": null,
+                      "seller": {
+                        "id": 1,
+                        "name": "user1",
+                        "email": "user1@mail.com"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/transactions/complete/{transactionId}": {
+      "put": {
+        "tags": [
+          "Seller"
+        ],
+        "summary": "Complete Transaction",
+        "operationId": "CompleteTransaction",
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "421"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"1a5-8frJKoCQrHtit3RJlwFwvkR+SGc\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 02 Jul 2022 18:45:42 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200CompleteTransaction"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success complete transaction",
+                  "data": {
+                    "id": 2,
+                    "buyerId": 5,
+                    "productId": 2,
+                    "bidPrice": 50000,
+                    "status": "Completed",
+                    "createdAt": "2022-07-02T18:45:28.135Z",
+                    "updatedAt": "2022-07-02T18:45:42.772Z",
+                    "buyer": {
+                      "id": 5,
+                      "name": "user5",
+                      "email": "user5@mail.com"
+                    },
+                    "productTransactions": {
+                      "id": 2,
+                      "name": "Converse",
+                      "price": 100000,
+                      "sold": true,
+                      "soldAt": 50000,
+                      "seller": {
+                        "id": 1,
+                        "name": "user1",
+                        "email": "user1@mail.com"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/notifications/buyer": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Get All Notification by Buyer",
+        "operationId": "GetAllNotificationbyBuyer",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "473"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"1d9-RvdzaPRTWvkrSzxB7jSebNwkOUo\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 02 Jul 2022 20:13:08 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllNotificationbyBuyer"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get notification",
+                  "data": [
+                    {
+                      "id": 2,
+                      "providerId": 1,
+                      "read": true,
+                      "status": "Buyer",
+                      "notifDate": "2022-07-02T20:08:13.959Z",
+                      "createdAt": "2022-07-02T20:08:13.958Z",
+                      "updatedAt": "2022-07-02T20:10:46.297Z",
+                      "transaction": {
+                        "id": 1,
+                        "buyerId": 5,
+                        "productId": 1,
+                        "bidPrice": 50000,
+                        "status": "Rejected",
+                        "createdAt": "2022-07-02T20:07:43.664Z",
+                        "updatedAt": "2022-07-02T20:08:13.951Z",
+                        "buyer": {
+                          "id": 5,
+                          "name": "user5",
+                          "email": "user5@mail.com",
+                          "phone": "123456789"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/notifications/seller": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Get All Notification by Seller",
+        "operationId": "GetAllNotificationbySeller",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1287"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"507-/Haph1Qy2+NKcRZFpMlr5wZPUYg\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 02 Jul 2022 09:40:31 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200GetAllNotification"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get notification",
+                  "data": [
+                    {
+                      "id": 1,
+                      "providerId": 12,
+                      "read": false,
+                      "status": "Published",
+                      "createdAt": "2022-07-02T09:04:38.484Z",
+                      "updatedAt": "2022-07-02T09:04:38.484Z",
+                      "product": {
+                        "id": 12,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "createdAt": "2022-07-02T09:04:38.478Z",
+                        "updatedAt": "2022-07-02T09:04:38.478Z",
+                        "seller": {
+                          "name": "user1",
+                          "email": "user1@mail.com",
+                          "phone": "123456789"
+                        }
+                      }
+                    },
+                    {
+                      "id": 2,
+                      "providerId": 13,
+                      "read": false,
+                      "status": "Published",
+                      "createdAt": "2022-07-02T09:05:06.534Z",
+                      "updatedAt": "2022-07-02T09:05:06.534Z",
+                      "product": {
+                        "id": 13,
+                        "userId": 1,
+                        "name": "Vans Old-school",
+                        "price": 1000000,
+                        "description": "Lorem ipsum",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "createdAt": "2022-07-02T09:05:06.529Z",
+                        "updatedAt": "2022-07-02T09:05:06.529Z",
+                        "seller": {
+                          "name": "user1",
+                          "email": "user1@mail.com",
+                          "phone": "123456789"
+                        }
+                      }
+                    },
+                    {
+                      "id": 3,
+                      "providerId": 1,
+                      "read": false,
+                      "status": "bidder",
+                      "createdAt": "2022-07-02T09:22:03.114Z",
+                      "updatedAt": "2022-07-02T09:22:03.114Z",
+                      "transaction": {
+                        "id": 1,
+                        "buyerId": 5,
+                        "productId": 1,
+                        "bidPrice": 50000,
+                        "status": 0,
+                        "createdAt": "2022-07-02T09:22:03.086Z",
+                        "updatedAt": "2022-07-02T09:22:03.086Z",
+                        "buyer": {
+                          "id": 5,
+                          "name": "user5",
+                          "email": "user5@mail.com",
+                          "phone": "123456789"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/notifications/detail/{notificationId}": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Get Notification Detail",
+        "operationId": "GetNotificationDetail",
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 2
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "174"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"ae-C3ljKLsVReEOb07pgcjO1yuuPvA\""
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 02 Jul 2022 09:54:05 GMT"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Keep-Alive": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "timeout=5"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200GetNotificationTransaction"
+                },
+                "example": {
+                  "success": true,
+                  "message": "Success get notification",
+                  "data": {
+                    "id": 1,
+                    "bidPrice": 50000,
+                    "status": 0,
+                    "buyer": {
+                      "id": 5,
+                      "name": "user5",
+                      "email": "user5@mail.com",
+                      "phone": "123456789"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -3838,7 +4970,7 @@
           }
         },
         "example": {
-          "email": "test@mail.com",
+          "email": "user1@mail.com",
           "password": "12345678"
         }
       },
@@ -6025,6 +7157,277 @@
           ]
         }
       },
+      "GetAllProductSoldForSeller": {
+        "title": "GetAllProductSoldForSeller",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data19"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get data product!",
+          "data": {
+            "totalItem": 2,
+            "data": [
+              {
+                "id": 2,
+                "userId": 1,
+                "name": "Converse",
+                "price": 100000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": 50000,
+                "sold": true,
+                "productImages": [
+                  {
+                    "productId": 2,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/converse_1_QRLbGbCmPf.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 1,
+                "userId": 1,
+                "name": "Vans",
+                "price": 100000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": 50000,
+                "sold": true,
+                "productImages": [
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/vans_1_2HIuN6rplF.png"
+                  },
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/vans_JiX2OhQW8.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              }
+            ],
+            "totalPages": 1,
+            "previosusPage": null,
+            "currentPage": 1,
+            "nextPage": null
+          }
+        }
+      },
+      "Data19": {
+        "title": "Data19",
+        "required": [
+          "totalItem",
+          "data",
+          "totalPages",
+          "previosusPage",
+          "currentPage",
+          "nextPage"
+        ],
+        "type": "object",
+        "properties": {
+          "totalItem": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data20"
+            },
+            "description": ""
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "previosusPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "example": {
+          "totalItem": 2,
+          "data": [
+            {
+              "id": 2,
+              "userId": 1,
+              "name": "Converse",
+              "price": 100000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": 50000,
+              "sold": true,
+              "productImages": [
+                {
+                  "productId": 2,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/converse_1_QRLbGbCmPf.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 1,
+              "userId": 1,
+              "name": "Vans",
+              "price": 100000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": 50000,
+              "sold": true,
+              "productImages": [
+                {
+                  "productId": 1,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/vans_1_2HIuN6rplF.png"
+                },
+                {
+                  "productId": 1,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/vans_JiX2OhQW8.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            }
+          ],
+          "totalPages": 1,
+          "previosusPage": null,
+          "currentPage": 1,
+          "nextPage": null
+        }
+      },
+      "Data20": {
+        "title": "Data20",
+        "required": [
+          "id",
+          "userId",
+          "name",
+          "price",
+          "description",
+          "published",
+          "soldAt",
+          "sold",
+          "productImages",
+          "productCategories"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "soldAt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sold": {
+            "type": "boolean"
+          },
+          "productImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductImage"
+            },
+            "description": ""
+          },
+          "productCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCategory"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "id": 2,
+          "userId": 1,
+          "name": "Converse",
+          "price": 100000,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "published": true,
+          "soldAt": 50000,
+          "sold": true,
+          "productImages": [
+            {
+              "productId": 2,
+              "url": "https://ik.imagekit.io/putrasena21/dummy/converse_1_QRLbGbCmPf.jpg"
+            }
+          ],
+          "productCategories": [
+            {
+              "categoryId": 1,
+              "category": {
+                "name": "Sneaker"
+              }
+            }
+          ]
+        }
+      },
       "EditProductbyproductIdRequest": {
         "title": "EditProductbyproductIdRequest",
         "required": [
@@ -6245,7 +7648,7 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/Data20"
+            "$ref": "#/components/schemas/Data22"
           }
         },
         "example": {
@@ -6260,8 +7663,8 @@
           }
         }
       },
-      "Data20": {
-        "title": "Data20",
+      "Data22": {
+        "title": "Data22",
         "required": [
           "id",
           "userId",
@@ -6296,6 +7699,167 @@
           "createdAt": "2022-06-30T10:38:06.259Z"
         }
       },
+      "200GetAllWishlistByUser": {
+        "title": "200GetAllWishlistByUser",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data23"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "success get all wishlist",
+          "data": [
+            {
+              "id": 2,
+              "userId": "2",
+              "productId": "2",
+              "createdAt": "2022-06-30T10:33:29.589Z",
+              "updatedAt": "2022-06-30T10:33:29.589Z",
+              "product": {
+                "id": 2,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "productImages": [
+                  {
+                    "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
+                  },
+                  {
+                    "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "Data23": {
+        "title": "Data23",
+        "required": [
+          "id",
+          "userId",
+          "productId",
+          "createdAt",
+          "updatedAt",
+          "product"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product1"
+          }
+        },
+        "example": {
+          "id": 2,
+          "userId": "2",
+          "productId": "2",
+          "createdAt": "2022-06-30T10:33:29.589Z",
+          "updatedAt": "2022-06-30T10:33:29.589Z",
+          "product": {
+            "id": 2,
+            "name": "Vans Old-school",
+            "price": 1000000,
+            "productImages": [
+              {
+                "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
+              },
+              {
+                "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
+              }
+            ]
+          }
+        }
+      },
+      "Product1": {
+        "title": "Product1",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "productImages"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productImages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductImage6"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "id": 2,
+          "name": "Vans Old-school",
+          "price": 1000000,
+          "productImages": [
+            {
+              "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
+            },
+            {
+              "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
+            }
+          ]
+        }
+      },
+      "ProductImage6": {
+        "title": "ProductImage6",
+        "required": [
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
+        }
+      },
       "200SuccessGetDetailWIshlist": {
         "title": "200SuccessGetDetailWIshlist",
         "required": [
@@ -6312,7 +7876,7 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/Data21"
+            "$ref": "#/components/schemas/Data24"
           }
         },
         "example": {
@@ -6347,8 +7911,8 @@
           }
         }
       },
-      "Data21": {
-        "title": "Data21",
+      "Data24": {
+        "title": "Data24",
         "required": [
           "id",
           "userId",
@@ -6411,64 +7975,6 @@
           }
         }
       },
-      "Product1": {
-        "title": "Product1",
-        "required": [
-          "id",
-          "name",
-          "price",
-          "productImages"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
-          },
-          "price": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "productImages": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductImage5"
-            },
-            "description": ""
-          }
-        },
-        "example": {
-          "id": 1,
-          "name": "Vans Old-school",
-          "price": 1000000,
-          "productImages": [
-            {
-              "url": "https://ik.imagekit.io/putrasena21/1656584361379-vans_wxs2tYwXq.jpg"
-            },
-            {
-              "url": "https://ik.imagekit.io/putrasena21/1656584361380-vans_1_NG3ncBpbI.png"
-            }
-          ]
-        }
-      },
-      "ProductImage5": {
-        "title": "ProductImage5",
-        "required": [
-          "url"
-        ],
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "url": "https://ik.imagekit.io/putrasena21/1656584361379-vans_wxs2tYwXq.jpg"
-        }
-      },
       "User": {
         "title": "User",
         "required": [
@@ -6505,109 +8011,6 @@
           "address": "Surabaya barat"
         }
       },
-      "200GetAllWishlistByUser": {
-        "title": "200GetAllWishlistByUser",
-        "required": [
-          "success",
-          "message",
-          "data"
-        ],
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Data22"
-            },
-            "description": ""
-          }
-        },
-        "example": {
-          "success": true,
-          "message": "success get all wishlist",
-          "data": [
-            {
-              "id": 2,
-              "userId": "2",
-              "productId": "2",
-              "createdAt": "2022-06-30T10:33:29.589Z",
-              "updatedAt": "2022-06-30T10:33:29.589Z",
-              "product": {
-                "id": 2,
-                "name": "Vans Old-school",
-                "price": 1000000,
-                "productImages": [
-                  {
-                    "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
-                  },
-                  {
-                    "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "Data22": {
-        "title": "Data22",
-        "required": [
-          "id",
-          "userId",
-          "productId",
-          "createdAt",
-          "updatedAt",
-          "product"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "productId": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
-          "product": {
-            "$ref": "#/components/schemas/Product1"
-          }
-        },
-        "example": {
-          "id": 2,
-          "userId": "2",
-          "productId": "2",
-          "createdAt": "2022-06-30T10:33:29.589Z",
-          "updatedAt": "2022-06-30T10:33:29.589Z",
-          "product": {
-            "id": 2,
-            "name": "Vans Old-school",
-            "price": 1000000,
-            "productImages": [
-              {
-                "url": "https://ik.imagekit.io/putrasena21/1656584362461-vans_tY8ID5DZ9.jpg"
-              },
-              {
-                "url": "https://ik.imagekit.io/putrasena21/1656584362462-vans_1_s_ix58ZJd.png"
-              }
-            ]
-          }
-        }
-      },
       "200DeleteWishlist": {
         "title": "200DeleteWishlist",
         "required": [
@@ -6632,6 +8035,1377 @@
           "success": true,
           "message": "success delete wishlist",
           "data": 1
+        }
+      },
+      "CreateOfferRequest": {
+        "title": "CreateOfferRequest",
+        "required": [
+          "productId",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "productId": 1,
+          "price": 50000
+        }
+      },
+      "201CreateOffer": {
+        "title": "201CreateOffer",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data25"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success create transaction",
+          "data": {
+            "id": 1,
+            "buyerId": 5,
+            "productId": 1,
+            "bidPrice": 50000,
+            "updatedAt": "2022-07-02T19:17:35.959Z",
+            "createdAt": "2022-07-02T19:17:35.959Z",
+            "status": "Pending"
+          }
+        }
+      },
+      "Data25": {
+        "title": "Data25",
+        "required": [
+          "id",
+          "buyerId",
+          "productId",
+          "bidPrice",
+          "updatedAt",
+          "createdAt",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "buyerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bidPrice": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 1,
+          "buyerId": 5,
+          "productId": 1,
+          "bidPrice": 50000,
+          "updatedAt": "2022-07-02T19:17:35.959Z",
+          "createdAt": "2022-07-02T19:17:35.959Z",
+          "status": "Pending"
+        }
+      },
+      "200RejectOffer": {
+        "title": "200RejectOffer",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data26"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success reject transaction",
+          "data": {
+            "id": 1,
+            "buyerId": 5,
+            "productId": 1,
+            "bidPrice": 50000,
+            "status": "Rejected",
+            "createdAt": "2022-07-02T18:19:18.546Z",
+            "updatedAt": "2022-07-02T18:19:39.096Z",
+            "buyer": {
+              "id": 5,
+              "name": "user5",
+              "email": "user5@mail.com"
+            },
+            "transaction": {
+              "id": 1,
+              "name": "Vans",
+              "price": 100000,
+              "seller": {
+                "id": 1,
+                "name": "user1",
+                "email": "user1@mail.com"
+              }
+            }
+          }
+        }
+      },
+      "Data26": {
+        "title": "Data26",
+        "required": [
+          "id",
+          "buyerId",
+          "productId",
+          "bidPrice",
+          "status",
+          "createdAt",
+          "updatedAt",
+          "buyer",
+          "transaction"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "buyerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bidPrice": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/Buyer"
+          },
+          "transaction": {
+            "$ref": "#/components/schemas/Transaction"
+          }
+        },
+        "example": {
+          "id": 1,
+          "buyerId": 5,
+          "productId": 1,
+          "bidPrice": 50000,
+          "status": "Rejected",
+          "createdAt": "2022-07-02T18:19:18.546Z",
+          "updatedAt": "2022-07-02T18:19:39.096Z",
+          "buyer": {
+            "id": 5,
+            "name": "user5",
+            "email": "user5@mail.com"
+          },
+          "transaction": {
+            "id": 1,
+            "name": "Vans",
+            "price": 100000,
+            "seller": {
+              "id": 1,
+              "name": "user1",
+              "email": "user1@mail.com"
+            }
+          }
+        }
+      },
+      "Buyer": {
+        "title": "Buyer",
+        "required": [
+          "id",
+          "name",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 5,
+          "name": "user5",
+          "email": "user5@mail.com"
+        }
+      },
+      "Transaction": {
+        "title": "Transaction",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "seller"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/Seller"
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "Vans",
+          "price": 100000,
+          "seller": {
+            "id": 1,
+            "name": "user1",
+            "email": "user1@mail.com"
+          }
+        }
+      },
+      "Seller": {
+        "title": "Seller",
+        "required": [
+          "id",
+          "name",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 1,
+          "name": "user1",
+          "email": "user1@mail.com"
+        }
+      },
+      "200AcceptOffer": {
+        "title": "200AcceptOffer",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data27"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success accept transaction",
+          "data": {
+            "id": 2,
+            "buyerId": 5,
+            "productId": 2,
+            "bidPrice": 50000,
+            "status": "Accepted",
+            "createdAt": "2022-07-02T18:45:28.135Z",
+            "updatedAt": "2022-07-02T18:45:34.818Z",
+            "buyer": {
+              "id": 5,
+              "name": "user5",
+              "email": "user5@mail.com"
+            },
+            "productTransactions": {
+              "id": 2,
+              "name": "Converse",
+              "price": 100000,
+              "sold": false,
+              "soldAt": null,
+              "seller": {
+                "id": 1,
+                "name": "user1",
+                "email": "user1@mail.com"
+              }
+            }
+          }
+        }
+      },
+      "Data27": {
+        "title": "Data27",
+        "required": [
+          "id",
+          "buyerId",
+          "productId",
+          "bidPrice",
+          "status",
+          "createdAt",
+          "updatedAt",
+          "buyer",
+          "productTransactions"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "buyerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bidPrice": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/Buyer"
+          },
+          "productTransactions": {
+            "$ref": "#/components/schemas/ProductTransactions"
+          }
+        },
+        "example": {
+          "id": 2,
+          "buyerId": 5,
+          "productId": 2,
+          "bidPrice": 50000,
+          "status": "Accepted",
+          "createdAt": "2022-07-02T18:45:28.135Z",
+          "updatedAt": "2022-07-02T18:45:34.818Z",
+          "buyer": {
+            "id": 5,
+            "name": "user5",
+            "email": "user5@mail.com"
+          },
+          "productTransactions": {
+            "id": 2,
+            "name": "Converse",
+            "price": 100000,
+            "sold": false,
+            "soldAt": null,
+            "seller": {
+              "id": 1,
+              "name": "user1",
+              "email": "user1@mail.com"
+            }
+          }
+        }
+      },
+      "ProductTransactions": {
+        "title": "ProductTransactions",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "sold",
+          "soldAt",
+          "seller"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sold": {
+            "type": "boolean"
+          },
+          "soldAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "seller": {
+            "$ref": "#/components/schemas/Seller"
+          }
+        },
+        "example": {
+          "id": 2,
+          "name": "Converse",
+          "price": 100000,
+          "sold": false,
+          "soldAt": null,
+          "seller": {
+            "id": 1,
+            "name": "user1",
+            "email": "user1@mail.com"
+          }
+        }
+      },
+      "200CompleteTransaction": {
+        "title": "200CompleteTransaction",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data28"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success complete transaction",
+          "data": {
+            "id": 2,
+            "buyerId": 5,
+            "productId": 2,
+            "bidPrice": 50000,
+            "status": "Completed",
+            "createdAt": "2022-07-02T18:45:28.135Z",
+            "updatedAt": "2022-07-02T18:45:42.772Z",
+            "buyer": {
+              "id": 5,
+              "name": "user5",
+              "email": "user5@mail.com"
+            },
+            "productTransactions": {
+              "id": 2,
+              "name": "Converse",
+              "price": 100000,
+              "sold": true,
+              "soldAt": 50000,
+              "seller": {
+                "id": 1,
+                "name": "user1",
+                "email": "user1@mail.com"
+              }
+            }
+          }
+        }
+      },
+      "Data28": {
+        "title": "Data28",
+        "required": [
+          "id",
+          "buyerId",
+          "productId",
+          "bidPrice",
+          "status",
+          "createdAt",
+          "updatedAt",
+          "buyer",
+          "productTransactions"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "buyerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bidPrice": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/Buyer"
+          },
+          "productTransactions": {
+            "$ref": "#/components/schemas/ProductTransactions1"
+          }
+        },
+        "example": {
+          "id": 2,
+          "buyerId": 5,
+          "productId": 2,
+          "bidPrice": 50000,
+          "status": "Completed",
+          "createdAt": "2022-07-02T18:45:28.135Z",
+          "updatedAt": "2022-07-02T18:45:42.772Z",
+          "buyer": {
+            "id": 5,
+            "name": "user5",
+            "email": "user5@mail.com"
+          },
+          "productTransactions": {
+            "id": 2,
+            "name": "Converse",
+            "price": 100000,
+            "sold": true,
+            "soldAt": 50000,
+            "seller": {
+              "id": 1,
+              "name": "user1",
+              "email": "user1@mail.com"
+            }
+          }
+        }
+      },
+      "ProductTransactions1": {
+        "title": "ProductTransactions1",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "sold",
+          "soldAt",
+          "seller"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sold": {
+            "type": "boolean"
+          },
+          "soldAt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/Seller"
+          }
+        },
+        "example": {
+          "id": 2,
+          "name": "Converse",
+          "price": 100000,
+          "sold": true,
+          "soldAt": 50000,
+          "seller": {
+            "id": 1,
+            "name": "user1",
+            "email": "user1@mail.com"
+          }
+        }
+      },
+      "GetAllNotificationbyBuyer": {
+        "title": "GetAllNotificationbyBuyer",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data29"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get notification",
+          "data": [
+            {
+              "id": 2,
+              "providerId": 1,
+              "read": true,
+              "status": "Buyer",
+              "notifDate": "2022-07-02T20:08:13.959Z",
+              "createdAt": "2022-07-02T20:08:13.958Z",
+              "updatedAt": "2022-07-02T20:10:46.297Z",
+              "transaction": {
+                "id": 1,
+                "buyerId": 5,
+                "productId": 1,
+                "bidPrice": 50000,
+                "status": "Rejected",
+                "createdAt": "2022-07-02T20:07:43.664Z",
+                "updatedAt": "2022-07-02T20:08:13.951Z",
+                "buyer": {
+                  "id": 5,
+                  "name": "user5",
+                  "email": "user5@mail.com",
+                  "phone": "123456789"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "Data29": {
+        "title": "Data29",
+        "required": [
+          "id",
+          "providerId",
+          "read",
+          "status",
+          "notifDate",
+          "createdAt",
+          "updatedAt",
+          "transaction"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "providerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "read": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "notifDate": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "transaction": {
+            "$ref": "#/components/schemas/Transaction1"
+          }
+        },
+        "example": {
+          "id": 2,
+          "providerId": 1,
+          "read": true,
+          "status": "Buyer",
+          "notifDate": "2022-07-02T20:08:13.959Z",
+          "createdAt": "2022-07-02T20:08:13.958Z",
+          "updatedAt": "2022-07-02T20:10:46.297Z",
+          "transaction": {
+            "id": 1,
+            "buyerId": 5,
+            "productId": 1,
+            "bidPrice": 50000,
+            "status": "Rejected",
+            "createdAt": "2022-07-02T20:07:43.664Z",
+            "updatedAt": "2022-07-02T20:08:13.951Z",
+            "buyer": {
+              "id": 5,
+              "name": "user5",
+              "email": "user5@mail.com",
+              "phone": "123456789"
+            }
+          }
+        }
+      },
+      "Transaction1": {
+        "title": "Transaction1",
+        "required": [
+          "id",
+          "buyerId",
+          "productId",
+          "bidPrice",
+          "status",
+          "createdAt",
+          "updatedAt",
+          "buyer"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "buyerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bidPrice": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/Buyer3"
+          }
+        },
+        "example": {
+          "id": 1,
+          "buyerId": 5,
+          "productId": 1,
+          "bidPrice": 50000,
+          "status": "Rejected",
+          "createdAt": "2022-07-02T20:07:43.664Z",
+          "updatedAt": "2022-07-02T20:08:13.951Z",
+          "buyer": {
+            "id": 5,
+            "name": "user5",
+            "email": "user5@mail.com",
+            "phone": "123456789"
+          }
+        }
+      },
+      "Buyer3": {
+        "title": "Buyer3",
+        "required": [
+          "id",
+          "name",
+          "email",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": 5,
+          "name": "user5",
+          "email": "user5@mail.com",
+          "phone": "123456789"
+        }
+      },
+      "200GetAllNotification": {
+        "title": "200GetAllNotification",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data30"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get notification",
+          "data": [
+            {
+              "id": 1,
+              "providerId": 12,
+              "read": false,
+              "status": "Published",
+              "createdAt": "2022-07-02T09:04:38.484Z",
+              "updatedAt": "2022-07-02T09:04:38.484Z",
+              "product": {
+                "id": 12,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "createdAt": "2022-07-02T09:04:38.478Z",
+                "updatedAt": "2022-07-02T09:04:38.478Z",
+                "seller": {
+                  "name": "user1",
+                  "email": "user1@mail.com",
+                  "phone": "123456789"
+                }
+              }
+            },
+            {
+              "id": 2,
+              "providerId": 13,
+              "read": false,
+              "status": "Published",
+              "createdAt": "2022-07-02T09:05:06.534Z",
+              "updatedAt": "2022-07-02T09:05:06.534Z",
+              "product": {
+                "id": 13,
+                "userId": 1,
+                "name": "Vans Old-school",
+                "price": 1000000,
+                "description": "Lorem ipsum",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "createdAt": "2022-07-02T09:05:06.529Z",
+                "updatedAt": "2022-07-02T09:05:06.529Z",
+                "seller": {
+                  "name": "user1",
+                  "email": "user1@mail.com",
+                  "phone": "123456789"
+                }
+              }
+            },
+            {
+              "id": 3,
+              "providerId": 1,
+              "read": false,
+              "status": "bidder",
+              "createdAt": "2022-07-02T09:22:03.114Z",
+              "updatedAt": "2022-07-02T09:22:03.114Z",
+              "transaction": {
+                "id": 1,
+                "buyerId": 5,
+                "productId": 1,
+                "bidPrice": 50000,
+                "status": 0,
+                "createdAt": "2022-07-02T09:22:03.086Z",
+                "updatedAt": "2022-07-02T09:22:03.086Z",
+                "buyer": {
+                  "id": 5,
+                  "name": "user5",
+                  "email": "user5@mail.com",
+                  "phone": "123456789"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "Data30": {
+        "title": "Data30",
+        "required": [
+          "id",
+          "providerId",
+          "read",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "providerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "read": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product3"
+          },
+          "transaction": {
+            "$ref": "#/components/schemas/Transaction2"
+          }
+        },
+        "example": {
+          "id": 1,
+          "providerId": 12,
+          "read": false,
+          "status": "Published",
+          "createdAt": "2022-07-02T09:04:38.484Z",
+          "updatedAt": "2022-07-02T09:04:38.484Z",
+          "product": {
+            "id": 12,
+            "userId": 1,
+            "name": "Vans Old-school",
+            "price": 1000000,
+            "description": "Lorem ipsum",
+            "published": true,
+            "soldAt": null,
+            "sold": false,
+            "createdAt": "2022-07-02T09:04:38.478Z",
+            "updatedAt": "2022-07-02T09:04:38.478Z",
+            "seller": {
+              "name": "user1",
+              "email": "user1@mail.com",
+              "phone": "123456789"
+            }
+          }
+        }
+      },
+      "Product3": {
+        "title": "Product3",
+        "required": [
+          "id",
+          "userId",
+          "name",
+          "price",
+          "description",
+          "published",
+          "soldAt",
+          "sold",
+          "createdAt",
+          "updatedAt",
+          "seller"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "soldAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "sold": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/Seller3"
+          }
+        },
+        "example": {
+          "id": 12,
+          "userId": 1,
+          "name": "Vans Old-school",
+          "price": 1000000,
+          "description": "Lorem ipsum",
+          "published": true,
+          "soldAt": null,
+          "sold": false,
+          "createdAt": "2022-07-02T09:04:38.478Z",
+          "updatedAt": "2022-07-02T09:04:38.478Z",
+          "seller": {
+            "name": "user1",
+            "email": "user1@mail.com",
+            "phone": "123456789"
+          }
+        }
+      },
+      "Seller3": {
+        "title": "Seller3",
+        "required": [
+          "name",
+          "email",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "user1",
+          "email": "user1@mail.com",
+          "phone": "123456789"
+        }
+      },
+      "Transaction2": {
+        "title": "Transaction2",
+        "required": [
+          "id",
+          "buyerId",
+          "productId",
+          "bidPrice",
+          "status",
+          "createdAt",
+          "updatedAt",
+          "buyer"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "buyerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bidPrice": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/Buyer3"
+          }
+        },
+        "example": {
+          "id": 1,
+          "buyerId": 5,
+          "productId": 1,
+          "bidPrice": 50000,
+          "status": 0,
+          "createdAt": "2022-07-02T09:22:03.086Z",
+          "updatedAt": "2022-07-02T09:22:03.086Z",
+          "buyer": {
+            "id": 5,
+            "name": "user5",
+            "email": "user5@mail.com",
+            "phone": "123456789"
+          }
+        }
+      },
+      "200GetNotificationTransaction": {
+        "title": "200GetNotificationTransaction",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data31"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get notification",
+          "data": {
+            "id": 1,
+            "bidPrice": 50000,
+            "status": 0,
+            "buyer": {
+              "id": 5,
+              "name": "user5",
+              "email": "user5@mail.com",
+              "phone": "123456789"
+            }
+          }
+        }
+      },
+      "Data31": {
+        "title": "Data31",
+        "required": [
+          "id",
+          "bidPrice",
+          "status",
+          "buyer"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bidPrice": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/Buyer3"
+          }
+        },
+        "example": {
+          "id": 1,
+          "bidPrice": 50000,
+          "status": 0,
+          "buyer": {
+            "id": 5,
+            "name": "user5",
+            "email": "user5@mail.com",
+            "phone": "123456789"
+          }
+        }
+      },
+      "200GetNotificationPublished": {
+        "title": "200GetNotificationPublished",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data32"
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get notification",
+          "data": {
+            "id": 12,
+            "name": "Vans Old-school",
+            "price": 1000000,
+            "description": "Lorem ipsum",
+            "seller": {
+              "name": "user1",
+              "email": "user1@mail.com",
+              "phone": "123456789"
+            }
+          }
+        }
+      },
+      "Data32": {
+        "title": "Data32",
+        "required": [
+          "id",
+          "name",
+          "price",
+          "description",
+          "seller"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string"
+          },
+          "seller": {
+            "$ref": "#/components/schemas/Seller3"
+          }
+        },
+        "example": {
+          "id": 12,
+          "name": "Vans Old-school",
+          "price": 1000000,
+          "description": "Lorem ipsum",
+          "seller": {
+            "name": "user1",
+            "email": "user1@mail.com",
+            "phone": "123456789"
+          }
+        }
+      },
+      "ReadNotification": {
+        "title": "ReadNotification",
+        "required": [
+          "success",
+          "message",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "success": true,
+          "message": "Success get notification",
+          "data": [
+            1
+          ]
         }
       }
     },
@@ -6661,6 +9435,15 @@
     },
     {
       "name": "Wishlist"
+    },
+    {
+      "name": "Buyer"
+    },
+    {
+      "name": "Seller"
+    },
+    {
+      "name": "Notifications"
     }
   ]
 }
