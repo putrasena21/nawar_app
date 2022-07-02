@@ -11,6 +11,11 @@ router.get(
   notificationController.getNotificationById
 );
 
+router.put(
+  "/read/:notificationId",
+  notificationController.updateReadNotification
+);
+
 router.get(
   "/",
   [passport.authenticate("jwt", { session: false })],

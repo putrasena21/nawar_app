@@ -76,6 +76,17 @@ module.exports = {
 
       const notification = await Notification.findByPk(notificationId);
 
+      await Notification.update(
+        {
+          read: true,
+        },
+        {
+          where: {
+            id: notificationId,
+          },
+        }
+      );
+
       if (notification.status === "Published") {
         const product = await Product.findByPk(notification.providerId, {
           attributes: ["id", "name", "price", "description"],
@@ -110,6 +121,27 @@ module.exports = {
       });
 
       return res.success("Success get notification", transaction);
+    } catch (err) {
+      return res.serverError(err.message);
+    }
+  },
+
+  updateReadNotification: async (req, res) => {
+    try {
+      const { notificationId } = req.params;
+
+      const readNotification = await Notification.update(
+        {
+          read: true,
+        },
+        {
+          where: {
+            id: notificationId,
+          },
+        }
+      );
+
+      return res.success("Success get notification", readNotification);
     } catch (err) {
       return res.serverError(err.message);
     }
