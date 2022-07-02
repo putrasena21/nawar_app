@@ -354,7 +354,7 @@ module.exports = {
       const condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
 
       const products = await Product.findAndCountAll({
-        where: { published: true, ...condition },
+        where: { published: true, sold: false, ...condition },
         distinct: true,
         limit: perPage,
         offset: perPage * (page - 1),
@@ -560,7 +560,7 @@ module.exports = {
       const { page = 1 } = req.query;
       const { categoryId } = req.params;
       const products = await Category.findAndCountAll({
-        where: { id: categoryId },
+        where: { id: categoryId, sold: false, published: true },
         distinct: true,
         limit: perPage,
         offset: perPage * (page - 1),
@@ -586,6 +586,74 @@ module.exports = {
           },
         ],
         attributes: { exclude: ["updatedAt", "createdAt"] },
+      });
+
+      const result = {
+        totalItem: products.count,
+        data: products.rows,
+        totalPages: Math.ceil(products.count / perPage),
+        previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
+          req.path
+        }?page=${parseInt(page, 10) - 1}`,
+        currentPage: parseInt(page, 10),
+        nextPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
+          req.path
+        }?page=${parseInt(page, 10) + 1}`,
+      };
+
+      if (result.totalPages < page) {
+        return res.notFound("Product not found");
+      }
+
+      if (result.totalPages === result.currentPage) {
+        result.nextPage = null;
+      }
+
+      if (result.currentPage === 1) {
+        result.previosusPage = null;
+      }
+
+      return res.success("Success get data product!", result);
+    } catch (err) {
+      return res.serverError(err.message);
+    }
+  },
+
+  getAllProductSoldByUser: async (req, res) => {
+    try {
+      const token = req.headers.authorization.split(" ")[1];
+
+      const decoded = jwt.verify(token, JWT_SECRET_KEY);
+
+      const perPage = 10;
+      const { page = 1 } = req.query;
+
+      const products = await Product.findAndCountAll({
+        where: { published: true, sold: true, userId: decoded.id },
+        distinct: true,
+        limit: perPage,
+        offset: perPage * (page - 1),
+        include: [
+          {
+            model: ProductImage,
+            as: "productImages",
+            attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+          },
+          {
+            model: ProductCategory,
+            as: "productCategories",
+            attributes: ["categoryId"],
+            include: [
+              {
+                model: Category,
+                as: "category",
+                attributes: ["name"],
+              },
+            ],
+          },
+        ],
+        order: [["name", "ASC"]],
+        attributes: { exclude: ["createdAt", "updatedAt"] },
       });
 
       const result = {
