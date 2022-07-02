@@ -58,7 +58,7 @@ module.exports = {
         status: "Bid",
       });
 
-      return res.success("Success create transaction", newTransaction);
+      return res.created("Success create transaction", newTransaction);
     } catch (err) {
       return res.serverError();
     }
@@ -114,7 +114,7 @@ module.exports = {
       await Notification.create({
         providerId: transaction.id,
         read: false,
-        status: "Bid",
+        status: "Buyer",
       });
 
       return res.success("Success reject transaction", transaction);
@@ -173,7 +173,7 @@ module.exports = {
       await Notification.create({
         providerId: transaction.id,
         read: false,
-        status: "Bid",
+        status: "Buyer",
       });
 
       return res.success("Success accept transaction", transaction);
@@ -244,7 +244,7 @@ module.exports = {
       await Notification.create({
         providerId: transaction.id,
         read: false,
-        status: "Bid",
+        status: "Buyer",
       });
 
       const payload = await Transaction.findByPk(transactionId, {

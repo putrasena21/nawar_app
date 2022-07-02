@@ -17,9 +17,15 @@ router.put(
 );
 
 router.get(
-  "/",
+  "/seller",
   [passport.authenticate("jwt", { session: false })],
-  notificationController.getAllNotification
+  notificationController.getAllNotificationSeller
+);
+
+router.get(
+  "/buyer",
+  [passport.authenticate("jwt", { session: false })],
+  notificationController.getAllNotificationBuyer
 );
 
 module.exports = router;

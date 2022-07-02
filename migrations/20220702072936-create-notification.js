@@ -17,6 +17,10 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
       },
+      notifDate: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("now"),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

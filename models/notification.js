@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       providerId: DataTypes.INTEGER,
       read: DataTypes.BOOLEAN,
       status: DataTypes.STRING,
+      notifDate: DataTypes.DATE,
     },
     {
       sequelize,
