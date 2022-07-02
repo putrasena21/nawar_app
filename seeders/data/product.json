@@ -1,0 +1,90 @@
+[
+  {
+    "userId": 1,
+    "name": "Vans",
+    "price": 100000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Converse",
+    "price": 100000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 2,
+    "name": "Ventela",
+    "price": 125000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 2,
+    "name": "Converse Old-school",
+    "price": 150000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 3,
+    "name": "Swallow",
+    "price": 122000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 3,
+    "name": "Stars",
+    "price": 160000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 4,
+    "name": "Eiger",
+    "price": 180000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 4,
+    "name": "Hush Puppies",
+    "price": 1200000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 5,
+    "name": "Carvil",
+    "price": 90000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 5,
+    "name": "Homyped",
+    "price": 100000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 5,
+    "name": "Compass",
+    "price": 155000,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  }
+]

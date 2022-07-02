@@ -1,0 +1,68 @@
+[
+  {
+    "email": "user1@mail.com",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
+    "name": "user1",
+    "province": "35",
+    "city": "3578",
+    "address": "Manukan",
+    "phone": "123456789",
+    "avatar": "https://ik.imagekit.io/putrasena21/dummy/ava_VVnE9FdmP.png",
+    "completed": true
+  },
+  {
+    "email": "user2@mail.com",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
+    "name": "user2",
+    "province": "35",
+    "city": "3578",
+    "address": "Manukan",
+    "phone": "123456789",
+    "avatar": "https://ik.imagekit.io/putrasena21/dummy/ava_VVnE9FdmP.png",
+    "completed": true
+  },
+  {
+    "email": "user3@mail.com",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
+    "name": "user3",
+    "province": "35",
+    "city": "3578",
+    "address": "Manukan",
+    "phone": "123456789",
+    "avatar": "https://ik.imagekit.io/putrasena21/dummy/ava_VVnE9FdmP.png",
+    "completed": true
+  },
+  {
+    "email": "user4@mail.com",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
+    "name": "user4",
+    "province": "35",
+    "city": "3578",
+    "address": "Manukan",
+    "phone": "123456789",
+    "avatar": "https://ik.imagekit.io/putrasena21/dummy/ava_VVnE9FdmP.png",
+    "completed": true
+  },
+  {
+    "email": "user5@mail.com",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
+    "name": "user5",
+    "province": "35",
+    "city": "3578",
+    "address": "Manukan",
+    "phone": "123456789",
+    "avatar": "https://ik.imagekit.io/putrasena21/dummy/ava_VVnE9FdmP.png",
+    "completed": true
+  },
+  {
+    "email": "user6@mail.com",
+    "password": "$2b$10$K57dZpp6CtUBJnZcaUDafOXpuXC2UmweLIL/TgNkEDiwvJCwA.cBi",
+    "name": "user6",
+    "province": null,
+    "city": null,
+    "address": null,
+    "phone": null,
+    "avatar": null,
+    "completed": false
+  }
+]

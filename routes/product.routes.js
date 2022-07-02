@@ -27,6 +27,11 @@ router.get(
   productController.getAllProductByUser
 );
 router.get(
+  "/user/sold",
+  [passport.authenticate("jwt", { session: false })],
+  productController.getAllProductSoldByUser
+);
+router.get(
   "/user/draft",
   [passport.authenticate("jwt", { session: false })],
   productController.getAllProductUnpublished

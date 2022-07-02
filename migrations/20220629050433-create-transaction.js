@@ -1,35 +1,24 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Products", {
+    await queryInterface.createTable("Transactions", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      buyerId: {
         type: Sequelize.INTEGER,
       },
-      name: {
+      productId: {
+        type: Sequelize.INTEGER,
+      },
+      bidPrice: {
+        type: Sequelize.INTEGER,
+      },
+      status: {
         type: Sequelize.STRING,
-      },
-      price: {
-        type: Sequelize.INTEGER,
-      },
-      description: {
-        type: Sequelize.TEXT,
-      },
-      published: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-      },
-      soldAt: {
-        type: Sequelize.INTEGER,
-        defaultValue: null,
-      },
-      sold: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+        defaultValue: "Pending",
       },
       createdAt: {
         allowNull: false,
@@ -42,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Products");
+    await queryInterface.dropTable("Transactions");
   },
 };
