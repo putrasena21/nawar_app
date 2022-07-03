@@ -559,33 +559,34 @@ module.exports = {
 
       const { page = 1 } = req.query;
       const { categoryId } = req.params;
-      const products = await Category.findAndCountAll({
-        where: { id: categoryId, sold: false, published: true },
+
+      const products = await Product.findAndCountAll({
+        where: { published: true, sold: false },
         distinct: true,
         limit: perPage,
         offset: perPage * (page - 1),
         include: [
+          {
+            model: ProductImage,
+            as: "productImages",
+            attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+          },
           {
             model: ProductCategory,
             as: "productCategories",
             attributes: ["categoryId"],
             include: [
               {
-                model: Product,
-                as: "product",
-                attributes: ["name", "price", "description"],
-                include: [
-                  {
-                    model: ProductImage,
-                    as: "productImages",
-                    attributes: { exclude: ["id", "createdAt", "updatedAt"] },
-                  },
-                ],
+                model: Category,
+                as: "category",
+                attributes: ["name"],
+                where: { id: categoryId },
               },
             ],
           },
         ],
-        attributes: { exclude: ["updatedAt", "createdAt"] },
+        order: [["name", "ASC"]],
+        attributes: { exclude: ["createdAt", "updatedAt"] },
       });
 
       const result = {
