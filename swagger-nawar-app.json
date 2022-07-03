@@ -2909,13 +2909,23 @@
                   }
                 }
               },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
               "Content-Length": {
                 "content": {
                   "text/plain": {
                     "schema": {
                       "type": "string"
                     },
-                    "example": "1100"
+                    "example": "2703"
                   }
                 }
               },
@@ -2925,7 +2935,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "W/\"44c-UlbkZxV5KHKK3xjngQrUVLOQQEA\""
+                    "example": "W/\"a8f-vzDXpTuxxQtKhixV95gynSpm4FE\""
                   }
                 }
               },
@@ -2935,7 +2945,7 @@
                     "schema": {
                       "type": "string"
                     },
-                    "example": "Thu, 30 Jun 2022 08:58:04 GMT"
+                    "example": "Sun, 03 Jul 2022 15:54:16 GMT"
                   }
                 }
               },
@@ -2969,73 +2979,185 @@
                   "success": true,
                   "message": "Success get data product!",
                   "data": {
-                    "totalItem": 1,
+                    "totalItem": 11,
                     "data": [
                       {
-                        "id": 1,
-                        "name": "Sneaker",
+                        "id": 11,
+                        "userId": 5,
+                        "name": "Compass",
+                        "price": 155000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "productImages": [
+                          {
+                            "productId": 11,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/compass_nqKN_Uc1Iw.jpg"
+                          }
+                        ],
                         "productCategories": [
                           {
                             "categoryId": 1,
-                            "product": {
-                              "name": "Vans Old-school",
-                              "price": 1000000,
-                              "description": "Lorem ipsum",
-                              "productImages": [
-                                {
-                                  "productId": 1,
-                                  "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
-                                },
-                                {
-                                  "productId": 1,
-                                  "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
-                                }
-                              ]
+                            "category": {
+                              "name": "Sneaker"
                             }
-                          },
+                          }
+                        ]
+                      },
+                      {
+                        "id": 2,
+                        "userId": 1,
+                        "name": "Converse",
+                        "price": 100000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "productImages": [
+                          {
+                            "productId": 2,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/converse_1_QRLbGbCmPf.jpg"
+                          }
+                        ],
+                        "productCategories": [
                           {
                             "categoryId": 1,
-                            "product": {
-                              "name": "Converse",
-                              "price": 1000000,
-                              "description": "Lorem ipsum",
-                              "productImages": [
-                                {
-                                  "productId": 2,
-                                  "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
-                                },
-                                {
-                                  "productId": 2,
-                                  "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
-                                }
-                              ]
+                            "category": {
+                              "name": "Sneaker"
                             }
-                          },
+                          }
+                        ]
+                      },
+                      {
+                        "id": 4,
+                        "userId": 2,
+                        "name": "Converse Old-school",
+                        "price": 150000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "productImages": [
+                          {
+                            "productId": 4,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/converse_a3oOXy_aSC.jpg"
+                          }
+                        ],
+                        "productCategories": [
                           {
                             "categoryId": 1,
-                            "product": {
-                              "name": "Vans 1",
-                              "price": 1000000,
-                              "description": "Lorem ipsum",
-                              "productImages": [
-                                {
-                                  "productId": 3,
-                                  "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
-                                },
-                                {
-                                  "productId": 3,
-                                  "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
-                                }
-                              ]
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 7,
+                        "userId": 4,
+                        "name": "Eiger",
+                        "price": 180000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "productImages": [
+                          {
+                            "productId": 7,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/eiger_MsJnbgaYhM.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 6,
+                        "userId": 3,
+                        "name": "Stars",
+                        "price": 160000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "productImages": [
+                          {
+                            "productId": 6,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/stars_BB9ZP797w3.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 1,
+                        "userId": 1,
+                        "name": "Vans",
+                        "price": 100000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "productImages": [
+                          {
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/vans_JiX2OhQW8.jpg"
+                          },
+                          {
+                            "productId": 1,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/vans_1_2HIuN6rplF.png"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "id": 3,
+                        "userId": 2,
+                        "name": "Ventela",
+                        "price": 125000,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "published": true,
+                        "soldAt": null,
+                        "sold": false,
+                        "productImages": [
+                          {
+                            "productId": 3,
+                            "url": "https://ik.imagekit.io/putrasena21/dummy/ventela_9qCOTrnoDu.jpg"
+                          }
+                        ],
+                        "productCategories": [
+                          {
+                            "categoryId": 1,
+                            "category": {
+                              "name": "Sneaker"
                             }
                           }
                         ]
                       }
                     ],
-                    "totalPages": 1,
+                    "totalPages": 2,
                     "previosusPage": null,
                     "currentPage": 1,
-                    "nextPage": null
+                    "nextPage": "http:localhost:3000/api/v1/products/filter/1?page=2"
                   }
                 }
               }
@@ -6813,73 +6935,185 @@
           "success": true,
           "message": "Success get data product!",
           "data": {
-            "totalItem": 1,
+            "totalItem": 11,
             "data": [
               {
-                "id": 1,
-                "name": "Sneaker",
+                "id": 11,
+                "userId": 5,
+                "name": "Compass",
+                "price": 155000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "productImages": [
+                  {
+                    "productId": 11,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/compass_nqKN_Uc1Iw.jpg"
+                  }
+                ],
                 "productCategories": [
                   {
                     "categoryId": 1,
-                    "product": {
-                      "name": "Vans Old-school",
-                      "price": 1000000,
-                      "description": "Lorem ipsum",
-                      "productImages": [
-                        {
-                          "productId": 1,
-                          "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
-                        },
-                        {
-                          "productId": 1,
-                          "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
-                        }
-                      ]
+                    "category": {
+                      "name": "Sneaker"
                     }
-                  },
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "userId": 1,
+                "name": "Converse",
+                "price": 100000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "productImages": [
+                  {
+                    "productId": 2,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/converse_1_QRLbGbCmPf.jpg"
+                  }
+                ],
+                "productCategories": [
                   {
                     "categoryId": 1,
-                    "product": {
-                      "name": "Converse",
-                      "price": 1000000,
-                      "description": "Lorem ipsum",
-                      "productImages": [
-                        {
-                          "productId": 2,
-                          "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
-                        },
-                        {
-                          "productId": 2,
-                          "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
-                        }
-                      ]
+                    "category": {
+                      "name": "Sneaker"
                     }
-                  },
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "userId": 2,
+                "name": "Converse Old-school",
+                "price": 150000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "productImages": [
+                  {
+                    "productId": 4,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/converse_a3oOXy_aSC.jpg"
+                  }
+                ],
+                "productCategories": [
                   {
                     "categoryId": 1,
-                    "product": {
-                      "name": "Vans 1",
-                      "price": 1000000,
-                      "description": "Lorem ipsum",
-                      "productImages": [
-                        {
-                          "productId": 3,
-                          "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
-                        },
-                        {
-                          "productId": 3,
-                          "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
-                        }
-                      ]
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 7,
+                "userId": 4,
+                "name": "Eiger",
+                "price": 180000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "productImages": [
+                  {
+                    "productId": 7,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/eiger_MsJnbgaYhM.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 6,
+                "userId": 3,
+                "name": "Stars",
+                "price": 160000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "productImages": [
+                  {
+                    "productId": 6,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/stars_BB9ZP797w3.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 1,
+                "userId": 1,
+                "name": "Vans",
+                "price": 100000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "productImages": [
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/vans_JiX2OhQW8.jpg"
+                  },
+                  {
+                    "productId": 1,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/vans_1_2HIuN6rplF.png"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "userId": 2,
+                "name": "Ventela",
+                "price": 125000,
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "published": true,
+                "soldAt": null,
+                "sold": false,
+                "productImages": [
+                  {
+                    "productId": 3,
+                    "url": "https://ik.imagekit.io/putrasena21/dummy/ventela_9qCOTrnoDu.jpg"
+                  }
+                ],
+                "productCategories": [
+                  {
+                    "categoryId": 1,
+                    "category": {
+                      "name": "Sneaker"
                     }
                   }
                 ]
               }
             ],
-            "totalPages": 1,
+            "totalPages": 2,
             "previosusPage": null,
             "currentPage": 1,
-            "nextPage": null
+            "nextPage": "http:localhost:3000/api/v1/products/filter/1?page=2"
           }
         }
       },
@@ -6919,85 +7153,203 @@
             "format": "int32"
           },
           "nextPage": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "example": {
-          "totalItem": 1,
+          "totalItem": 11,
           "data": [
             {
-              "id": 1,
-              "name": "Sneaker",
+              "id": 11,
+              "userId": 5,
+              "name": "Compass",
+              "price": 155000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": null,
+              "sold": false,
+              "productImages": [
+                {
+                  "productId": 11,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/compass_nqKN_Uc1Iw.jpg"
+                }
+              ],
               "productCategories": [
                 {
                   "categoryId": 1,
-                  "product": {
-                    "name": "Vans Old-school",
-                    "price": 1000000,
-                    "description": "Lorem ipsum",
-                    "productImages": [
-                      {
-                        "productId": 1,
-                        "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
-                      },
-                      {
-                        "productId": 1,
-                        "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
-                      }
-                    ]
+                  "category": {
+                    "name": "Sneaker"
                   }
-                },
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "userId": 1,
+              "name": "Converse",
+              "price": 100000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": null,
+              "sold": false,
+              "productImages": [
+                {
+                  "productId": 2,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/converse_1_QRLbGbCmPf.jpg"
+                }
+              ],
+              "productCategories": [
                 {
                   "categoryId": 1,
-                  "product": {
-                    "name": "Converse",
-                    "price": 1000000,
-                    "description": "Lorem ipsum",
-                    "productImages": [
-                      {
-                        "productId": 2,
-                        "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
-                      },
-                      {
-                        "productId": 2,
-                        "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
-                      }
-                    ]
+                  "category": {
+                    "name": "Sneaker"
                   }
-                },
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "userId": 2,
+              "name": "Converse Old-school",
+              "price": 150000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": null,
+              "sold": false,
+              "productImages": [
+                {
+                  "productId": 4,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/converse_a3oOXy_aSC.jpg"
+                }
+              ],
+              "productCategories": [
                 {
                   "categoryId": 1,
-                  "product": {
-                    "name": "Vans 1",
-                    "price": 1000000,
-                    "description": "Lorem ipsum",
-                    "productImages": [
-                      {
-                        "productId": 3,
-                        "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
-                      },
-                      {
-                        "productId": 3,
-                        "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
-                      }
-                    ]
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 7,
+              "userId": 4,
+              "name": "Eiger",
+              "price": 180000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": null,
+              "sold": false,
+              "productImages": [
+                {
+                  "productId": 7,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/eiger_MsJnbgaYhM.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "userId": 3,
+              "name": "Stars",
+              "price": 160000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": null,
+              "sold": false,
+              "productImages": [
+                {
+                  "productId": 6,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/stars_BB9ZP797w3.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 1,
+              "userId": 1,
+              "name": "Vans",
+              "price": 100000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": null,
+              "sold": false,
+              "productImages": [
+                {
+                  "productId": 1,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/vans_JiX2OhQW8.jpg"
+                },
+                {
+                  "productId": 1,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/vans_1_2HIuN6rplF.png"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "userId": 2,
+              "name": "Ventela",
+              "price": 125000,
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "published": true,
+              "soldAt": null,
+              "sold": false,
+              "productImages": [
+                {
+                  "productId": 3,
+                  "url": "https://ik.imagekit.io/putrasena21/dummy/ventela_9qCOTrnoDu.jpg"
+                }
+              ],
+              "productCategories": [
+                {
+                  "categoryId": 1,
+                  "category": {
+                    "name": "Sneaker"
                   }
                 }
               ]
             }
           ],
-          "totalPages": 1,
+          "totalPages": 2,
           "previosusPage": null,
           "currentPage": 1,
-          "nextPage": null
+          "nextPage": "http:localhost:3000/api/v1/products/filter/1?page=2"
         }
       },
       "Data18": {
         "title": "Data18",
         "required": [
           "id",
+          "userId",
           "name",
+          "price",
+          "description",
+          "published",
+          "soldAt",
+          "sold",
+          "productImages",
           "productCategories"
         ],
         "type": "object",
@@ -7006,123 +7358,10 @@
             "type": "integer",
             "format": "int32"
           },
-          "name": {
-            "type": "string"
-          },
-          "productCategories": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductCategory4"
-            },
-            "description": ""
-          }
-        },
-        "example": {
-          "id": 1,
-          "name": "Sneaker",
-          "productCategories": [
-            {
-              "categoryId": 1,
-              "product": {
-                "name": "Vans Old-school",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "productImages": [
-                  {
-                    "productId": 1,
-                    "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
-                  },
-                  {
-                    "productId": 1,
-                    "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
-                  }
-                ]
-              }
-            },
-            {
-              "categoryId": 1,
-              "product": {
-                "name": "Converse",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "productImages": [
-                  {
-                    "productId": 2,
-                    "url": "https://ik.imagekit.io/putrasena21/1656579247951-converse_1_J4iCeaiOy.jpg"
-                  },
-                  {
-                    "productId": 2,
-                    "url": "https://ik.imagekit.io/putrasena21/1656579247952-converse_xVx0xFlVJ.jpg"
-                  }
-                ]
-              }
-            },
-            {
-              "categoryId": 1,
-              "product": {
-                "name": "Vans 1",
-                "price": 1000000,
-                "description": "Lorem ipsum",
-                "productImages": [
-                  {
-                    "productId": 3,
-                    "url": "https://ik.imagekit.io/putrasena21/1656579325966-vans_9-BAaU4g2.jpg"
-                  },
-                  {
-                    "productId": 3,
-                    "url": "https://ik.imagekit.io/putrasena21/1656579325967-vans_1_8nh2O8Iy0.png"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "ProductCategory4": {
-        "title": "ProductCategory4",
-        "required": [
-          "categoryId",
-          "product"
-        ],
-        "type": "object",
-        "properties": {
-          "categoryId": {
+          "userId": {
             "type": "integer",
             "format": "int32"
           },
-          "product": {
-            "$ref": "#/components/schemas/Product"
-          }
-        },
-        "example": {
-          "categoryId": 1,
-          "product": {
-            "name": "Vans Old-school",
-            "price": 1000000,
-            "description": "Lorem ipsum",
-            "productImages": [
-              {
-                "productId": 1,
-                "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
-              },
-              {
-                "productId": 1,
-                "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
-              }
-            ]
-          }
-        }
-      },
-      "Product": {
-        "title": "Product",
-        "required": [
-          "name",
-          "price",
-          "description",
-          "productImages"
-        ],
-        "type": "object",
-        "properties": {
           "name": {
             "type": "string"
           },
@@ -7133,26 +7372,52 @@
           "description": {
             "type": "string"
           },
+          "published": {
+            "type": "boolean"
+          },
+          "soldAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "sold": {
+            "type": "boolean"
+          },
           "productImages": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProductImage"
             },
             "description": ""
+          },
+          "productCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductCategory"
+            },
+            "description": ""
           }
         },
         "example": {
-          "name": "Vans Old-school",
-          "price": 1000000,
-          "description": "Lorem ipsum",
+          "id": 11,
+          "userId": 5,
+          "name": "Compass",
+          "price": 155000,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "published": true,
+          "soldAt": null,
+          "sold": false,
           "productImages": [
             {
-              "productId": 1,
-              "url": "https://ik.imagekit.io/putrasena21/1656579231977-vans_tjiX0s2rv.jpg"
-            },
+              "productId": 11,
+              "url": "https://ik.imagekit.io/putrasena21/dummy/compass_nqKN_Uc1Iw.jpg"
+            }
+          ],
+          "productCategories": [
             {
-              "productId": 1,
-              "url": "https://ik.imagekit.io/putrasena21/1656579231978-vans_1_L5UCQ7H7-.png"
+              "categoryId": 1,
+              "category": {
+                "name": "Sneaker"
+              }
             }
           ]
         }
@@ -7778,7 +8043,7 @@
             "type": "string"
           },
           "product": {
-            "$ref": "#/components/schemas/Product1"
+            "$ref": "#/components/schemas/Product"
           }
         },
         "example": {
@@ -7802,8 +8067,8 @@
           }
         }
       },
-      "Product1": {
-        "title": "Product1",
+      "Product": {
+        "title": "Product",
         "required": [
           "id",
           "name",
@@ -7941,7 +8206,7 @@
             "type": "string"
           },
           "product": {
-            "$ref": "#/components/schemas/Product1"
+            "$ref": "#/components/schemas/Product"
           },
           "user": {
             "$ref": "#/components/schemas/User"
@@ -9037,7 +9302,7 @@
             "type": "string"
           },
           "product": {
-            "$ref": "#/components/schemas/Product3"
+            "$ref": "#/components/schemas/Product2"
           },
           "transaction": {
             "$ref": "#/components/schemas/Transaction2"
@@ -9069,8 +9334,8 @@
           }
         }
       },
-      "Product3": {
-        "title": "Product3",
+      "Product2": {
+        "title": "Product2",
         "required": [
           "id",
           "userId",
