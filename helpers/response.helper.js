@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     // eslint-disable-next-line no-param-reassign
     if (statusCode >= 400) status = false;
 
-    res.status(statusCode).json({
+    res.json({
       success: status,
       message,
       data,
