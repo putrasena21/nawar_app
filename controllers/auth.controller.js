@@ -8,44 +8,6 @@ const validator = require("../validator/authentication");
 const regisValidator = require("../validator/regis.auth");
 
 module.exports = {
-  register: async (req, res) => {
-    try {
-      const { name, email, password } = req.body;
-
-      const isExist = await User.findOne({
-        where: {
-          email,
-        },
-      });
-
-      if (isExist) {
-        return res.conflict();
-      }
-
-      const check = regisValidator.validateRegis(req.body);
-
-      if (check.length) {
-        return res.badRequest("Invalid input");
-      }
-
-      if (!name || !email || !password) {
-        return res.badRequest("name, email, and password is required!");
-      }
-
-      const encryptedPassword = await bcryptHelper.hashPassword(password);
-
-      const newUser = await User.create({
-        name,
-        email,
-        password: encryptedPassword,
-      });
-
-      return res.success("success create user", newUser);
-    } catch (err) {
-      return res.serverError();
-    }
-  },
-
   login: async (req, res) => {
     try {
       const { email, password } = req.body;

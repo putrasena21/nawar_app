@@ -1,6 +1,3 @@
-const jwt = require("jsonwebtoken");
-
-const { JWT_SECRET_KEY } = process.env;
 const { User } = require("../models");
 const { imagekit } = require("../helpers/imagekit.helper");
 
@@ -27,10 +24,6 @@ module.exports = {
 
       if (check.length) {
         return res.badRequest("Invalid input", check);
-      }
-
-      if (!name || !email || !password) {
-        return res.badRequest("Name, email, and password is required!");
       }
 
       const encryptedPassword = await bcryptHelper.hashPassword(password);
