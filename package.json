@@ -11,6 +11,7 @@
     "db:undo": "sequelize db:migrate:undo:all",
     "db:seed": "sequelize db:seed:all",
     "db:seed:undo": "sequelize db:seed:undo:all",
+    "db:rollback": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed --seed 20220621174117-dummy-category.js",
     "db:fresh": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all"
   },
   "dependencies": {
