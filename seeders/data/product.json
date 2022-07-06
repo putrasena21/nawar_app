@@ -12,7 +12,7 @@
     "name": "Converse",
     "price": 100000,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "published": true,
+    "published": false,
     "sold": false
   },
   {
@@ -28,7 +28,7 @@
     "name": "Converse Old-school",
     "price": 150000,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "published": true,
+    "published": false,
     "sold": false
   },
   {
@@ -68,7 +68,7 @@
     "name": "Carvil",
     "price": 90000,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "published": true,
+    "published": false,
     "sold": false
   },
   {
