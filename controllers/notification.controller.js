@@ -162,25 +162,4 @@ module.exports = {
       return res.serverError(err.message);
     }
   },
-
-  updateReadNotification: async (req, res) => {
-    try {
-      const { notificationId } = req.params;
-
-      const readNotification = await Notification.update(
-        {
-          read: true,
-        },
-        {
-          where: {
-            id: notificationId,
-          },
-        }
-      );
-
-      return res.success("Success get notification", readNotification);
-    } catch (err) {
-      return res.serverError(err.message);
-    }
-  },
 };
