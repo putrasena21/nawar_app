@@ -28,13 +28,18 @@ module.exports = {
 
       const encryptedPassword = await bcryptHelper.hashPassword(password);
 
-      const newUser = await User.create({
+      await User.create({
         name,
         email,
         password: encryptedPassword,
       });
 
-      return res.created("User created", newUser);
+      const payload = {
+        name,
+        email,
+      };
+
+      return res.created("User created", payload);
     } catch (err) {
       return res.serverError();
     }
@@ -81,7 +86,7 @@ module.exports = {
         fileName,
       });
 
-      const updateProfile = await User.update(
+      await User.update(
         {
           name,
           province: parseInt(province, 10),
@@ -94,7 +99,16 @@ module.exports = {
         { where: { id: req.user.id } }
       );
 
-      return res.success("User updated", updateProfile);
+      const payload = {
+        name,
+        province: parseInt(province, 10),
+        city: parseInt(city, 10),
+        address,
+        phone,
+        avatar: uploadAvatar.url,
+      };
+
+      return res.success("User updated", payload);
     } catch (err) {
       return res.serverError(err.message);
     }
