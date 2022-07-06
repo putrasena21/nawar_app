@@ -1,30 +1,25 @@
 const express = require("express");
 
 const router = express.Router();
-const passport = require("../lib/passport");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 const notificationController = require("../controllers/notification.controller");
 
 router.get(
-  "/detail/:notificationId",
-  [passport.authenticate("jwt", { session: false })],
-  notificationController.getNotificationById
-);
-
-router.put(
   "/read/:notificationId",
-  notificationController.updateReadNotification
+  authMiddleware.userAuth,
+  notificationController.getNotificationById
 );
 
 router.get(
   "/seller",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   notificationController.getAllNotificationSeller
 );
 
 router.get(
   "/buyer",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   notificationController.getAllNotificationBuyer
 );
 
