@@ -1,59 +1,38 @@
-const jwt = require("jsonwebtoken");
-
-const { JWT_SECRET_KEY } = process.env;
 const { Transaction, User, Product, Notification } = require("../models");
 
 module.exports = {
   // buyer
   createTransaction: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("Token is required!");
-      }
+      const { productId, bidPrice } = req.body;
 
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
-      const { productId } = req.body;
-
-      const price = Number(req.body.price);
-
-      const user = await User.findOne({
-        where: {
-          id: decoded.id,
-        },
-      });
-
-      if (!user) {
-        return res.notFound();
-      }
-
-      if (user.completed === false) {
-        return res.unauthorized("Completed your profile!");
-      }
-
-      const isProductExist = await Product.findOne({
+      const product = await Product.findOne({
         where: {
           id: productId,
         },
       });
 
-      if (!isProductExist) {
+      if (!product) {
         return res.notFound();
       }
 
-      if (!productId || !price) {
-        return res.badRequest("productId and price is required");
+      if (!productId || !bidPrice) {
+        return res.badRequest("Product id and bid price is required");
+      }
+
+      if (product.userId === req.user.id) {
+        return res.unauthorized("You cant bid your own product");
       }
 
       const newTransaction = await Transaction.create({
-        buyerId: decoded.id,
+        buyerId: req.user.id,
         productId,
-        bidPrice: price,
+        bidPrice: parseInt(bidPrice, 10),
       });
 
       await Notification.create({
         providerId: newTransaction.id,
+        receiverId: product.userId,
         read: false,
         status: "Bid",
       });
@@ -67,13 +46,7 @@ module.exports = {
   // seller
   rejectTransaction: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("You not authorized");
-      }
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
       const { transactionId } = req.params;
-
       const transaction = await Transaction.findByPk(transactionId, {
         include: [
           {
@@ -91,7 +64,7 @@ module.exports = {
                 as: "seller",
                 attributes: ["id", "name", "email"],
                 where: {
-                  id: decoded.id,
+                  id: req.user.id,
                 },
               },
             ],
@@ -107,12 +80,25 @@ module.exports = {
         return res.badRequest("Transaction is not pending");
       }
 
+      if (transaction.buyerId === req.user.id) {
+        return res.unauthorized("You not authorized");
+      }
+
+      if (transaction.productTransactions === null) {
+        return res.unauthorized("You not authorized");
+      }
+
+      if (transaction.productTransactions.seller.id !== req.user.id) {
+        return res.unauthorized("You not authorized");
+      }
+
       await transaction.update({
         status: "Rejected",
       });
 
       await Notification.create({
         providerId: transaction.id,
+        receiverId: transaction.buyerId,
         read: false,
         status: "Buyer",
       });
@@ -126,11 +112,6 @@ module.exports = {
   // seller
   acceptTransaction: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("You not authorized");
-      }
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
       const { transactionId } = req.params;
 
       const transaction = await Transaction.findByPk(transactionId, {
@@ -150,7 +131,7 @@ module.exports = {
                 as: "seller",
                 attributes: ["id", "name", "email"],
                 where: {
-                  id: decoded.id,
+                  id: req.user.id,
                 },
               },
             ],
@@ -166,12 +147,25 @@ module.exports = {
         return res.badRequest("Transaction is not pending");
       }
 
+      if (transaction.buyerId === req.user.id) {
+        return res.unauthorized("You not authorized");
+      }
+
+      if (transaction.productTransactions === null) {
+        return res.unauthorized("You not authorized");
+      }
+
+      if (transaction.productTransactions.seller.id !== req.user.id) {
+        return res.unauthorized("You not authorized");
+      }
+
       await transaction.update({
         status: "Accepted",
       });
 
       await Notification.create({
         providerId: transaction.id,
+        receiverId: transaction.buyerId,
         read: false,
         status: "Buyer",
       });
@@ -185,11 +179,6 @@ module.exports = {
   // seller
   completeTransaction: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("You not authorized");
-      }
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
       const { transactionId } = req.params;
 
       const transaction = await Transaction.findByPk(transactionId, {
@@ -209,7 +198,7 @@ module.exports = {
                 as: "seller",
                 attributes: ["id", "name", "email"],
                 where: {
-                  id: decoded.id,
+                  id: req.user.id,
                 },
               },
             ],
@@ -223,6 +212,18 @@ module.exports = {
 
       if (transaction.status !== "Accepted") {
         return res.badRequest("Transaction is not accepted");
+      }
+
+      if (transaction.buyerId === req.user.id) {
+        return res.unauthorized("You not authorized");
+      }
+
+      if (transaction.productTransactions === null) {
+        return res.unauthorized("You not authorized");
+      }
+
+      if (transaction.productTransactions.seller.id !== req.user.id) {
+        return res.unauthorized("You not authorized");
       }
 
       await Product.update(
@@ -243,6 +244,7 @@ module.exports = {
 
       await Notification.create({
         providerId: transaction.id,
+        receiverId: transaction.buyerId,
         read: false,
         status: "Buyer",
       });
@@ -264,7 +266,7 @@ module.exports = {
                 as: "seller",
                 attributes: ["id", "name", "email"],
                 where: {
-                  id: decoded.id,
+                  id: req.user.id,
                 },
               },
             ],
