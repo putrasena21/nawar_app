@@ -5,7 +5,6 @@ const { JWT_SECRET_KEY } = process.env;
 
 const bcryptHelper = require("../helpers/bcrypt.helper");
 const validator = require("../validator/authentication");
-const regisValidator = require("../validator/regis.auth");
 
 module.exports = {
   login: async (req, res) => {
