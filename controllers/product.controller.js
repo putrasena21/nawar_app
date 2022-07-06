@@ -533,6 +533,7 @@ module.exports = {
 
       const { page = 1 } = req.query;
       const { categoryId } = req.params;
+
       const products = await Product.findAndCountAll({
         where: { published: true, sold: false },
         distinct: true,
