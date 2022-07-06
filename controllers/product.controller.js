@@ -1,7 +1,5 @@
-const jwt = require("jsonwebtoken");
 const Sequelize = require("sequelize");
 
-const { JWT_SECRET_KEY } = process.env;
 const { Op } = Sequelize;
 const {
   Product,
@@ -17,14 +15,6 @@ const validator = require("../validator/products");
 module.exports = {
   createProduct: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const { name, price, description, category } = req.body;
 
       // parse price to number
@@ -46,7 +36,7 @@ module.exports = {
         name,
         price: priceNumber,
         description,
-        userId: decoded.id,
+        userId: req.user.id,
         published: true,
       });
 
@@ -95,14 +85,6 @@ module.exports = {
 
   createProductNoPublish: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const { name, price, description, category } = req.body;
 
       // parse price to number
@@ -124,7 +106,7 @@ module.exports = {
         name,
         price: priceNumber,
         description,
-        userId: decoded.id,
+        userId: req.user.id,
         published: false,
       });
 
@@ -167,14 +149,6 @@ module.exports = {
 
   publishProduct: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const { productId } = req.params;
 
       const product = await Product.findOne({
@@ -183,7 +157,7 @@ module.exports = {
         },
       });
 
-      if (product.userId !== decoded.id) {
+      if (product.userId !== req.user.id) {
         return res.unauthorized("You are not authorized");
       }
 
@@ -210,20 +184,12 @@ module.exports = {
   // for seller page
   getAllProductByUser: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const perPage = 10;
       const { page = 1 } = req.query;
 
       const products = await Product.findAndCountAll({
         where: {
-          userId: decoded.id,
+          userId: req.user.id,
         },
         distinct: true,
         limit: perPage,
@@ -275,7 +241,11 @@ module.exports = {
         result.previosusPage = null;
       }
 
-      return res.success("Success get data product!", result);
+      return res.status(200).json({
+        success: true,
+        message: "Success get all data product",
+        list: result,
+      });
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -340,7 +310,11 @@ module.exports = {
         result.previosusPage = null;
       }
 
-      return res.success("Success get data product!", result);
+      return res.status(200).json({
+        success: true,
+        message: "Success get all data product",
+        list: result,
+      });
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -406,7 +380,11 @@ module.exports = {
         result.previosusPage = null;
       }
 
-      return res.success("Success get data product!", result);
+      return res.status(200).json({
+        success: true,
+        message: "Success get all data product",
+        list: result,
+      });
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -415,20 +393,12 @@ module.exports = {
   // for seller page
   getAllProductUnpublished: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const perPage = 10;
       const { page = 1 } = req.query;
 
       const products = await Product.findAndCountAll({
         where: {
-          userId: decoded.id,
+          userId: req.user.id,
           published: false,
         },
         distinct: true,
@@ -481,7 +451,11 @@ module.exports = {
         result.previosusPage = null;
       }
 
-      return res.success("Success get data product!", result);
+      return res.status(200).json({
+        success: true,
+        message: "Success get all data product",
+        list: result,
+      });
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -559,33 +533,33 @@ module.exports = {
 
       const { page = 1 } = req.query;
       const { categoryId } = req.params;
-      const products = await Category.findAndCountAll({
-        where: { id: categoryId, sold: false, published: true },
+      const products = await Product.findAndCountAll({
+        where: { published: true, sold: false },
         distinct: true,
         limit: perPage,
         offset: perPage * (page - 1),
         include: [
+          {
+            model: ProductImage,
+            as: "productImages",
+            attributes: { exclude: ["id", "createdAt", "updatedAt"] },
+          },
           {
             model: ProductCategory,
             as: "productCategories",
             attributes: ["categoryId"],
             include: [
               {
-                model: Product,
-                as: "product",
-                attributes: ["name", "price", "description"],
-                include: [
-                  {
-                    model: ProductImage,
-                    as: "productImages",
-                    attributes: { exclude: ["id", "createdAt", "updatedAt"] },
-                  },
-                ],
+                model: Category,
+                as: "category",
+                attributes: ["name"],
+                where: { id: categoryId },
               },
             ],
           },
         ],
-        attributes: { exclude: ["updatedAt", "createdAt"] },
+        order: [["name", "ASC"]],
+        attributes: { exclude: ["createdAt", "updatedAt"] },
       });
 
       const result = {
@@ -613,7 +587,11 @@ module.exports = {
         result.previosusPage = null;
       }
 
-      return res.success("Success get data product!", result);
+      return res.status(200).json({
+        success: true,
+        message: "Success get all data product",
+        list: result,
+      });
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -621,15 +599,11 @@ module.exports = {
 
   getAllProductSoldByUser: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const perPage = 10;
       const { page = 1 } = req.query;
 
       const products = await Product.findAndCountAll({
-        where: { published: true, sold: true, userId: decoded.id },
+        where: { published: true, sold: true, userId: req.user.id },
         distinct: true,
         limit: perPage,
         offset: perPage * (page - 1),
@@ -681,7 +655,11 @@ module.exports = {
         result.previosusPage = null;
       }
 
-      return res.success("Success get data product!", result);
+      return res.status(200).json({
+        success: true,
+        message: "Success get all data product",
+        list: result,
+      });
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -689,13 +667,6 @@ module.exports = {
 
   updateProduct: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const { productId } = req.params;
       const product = await Product.findOne({
         where: {
@@ -703,7 +674,7 @@ module.exports = {
         },
       });
 
-      if (product.userId !== decoded.id) {
+      if (product.userId !== req.user.id) {
         return res.unauthorized("You are not authorized");
       }
 
@@ -752,7 +723,15 @@ module.exports = {
         });
       }
 
-      return res.success("Success update product!", updateProduct);
+      const payload = {
+        id: productId,
+        name,
+        price,
+        description,
+        category,
+      };
+
+      return res.success("Success update product!", payload);
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -761,13 +740,6 @@ module.exports = {
   deleteProductById: async (req, res) => {
     try {
       const { productId } = req.params;
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
 
       const product = await Product.findOne({
         where: {
@@ -801,18 +773,18 @@ module.exports = {
         },
       });
 
-      if (decoded.id !== product.userId) {
+      if (!product) {
+        return res.notFound("Product not found");
+      }
+
+      if (req.user.id !== product.userId) {
         return res.unauthorized(
           "You are not authorized to delete this product"
         );
       }
 
-      if (!product) {
-        return res.notFound("Product not found");
-      }
-
       await product.destroy();
-      return res.success("Success delete data product!", product);
+      return res.success("Success delete data product!");
     } catch (err) {
       return res.serverError(err.message);
     }
