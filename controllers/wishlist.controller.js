@@ -42,7 +42,7 @@ module.exports = {
       });
 
       if (ownedProduct) {
-        return res.conflict(`You cant wishlist your own product`);
+        return res.unauthorized(`You cant wishlist your own product`);
       }
 
       const wishlist = await Wishlist.findOne({
@@ -101,7 +101,7 @@ module.exports = {
         ],
       });
 
-      return res.success("success get all wishlist", wishlist);
+      return res.success("Success get all wishlist", wishlist);
     } catch (err) {
       return res.serverError();
     }
@@ -156,7 +156,7 @@ module.exports = {
         return res.unauthorized("You not authorized");
       }
 
-      return res.success("success get detail wishlist", wishlist);
+      return res.success("Success get detail wishlist", wishlist);
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -191,7 +191,7 @@ module.exports = {
         query
       );
 
-      return res.success("success change wishlist", updated);
+      return res.success("Success change wishlist", updated);
     } catch (err) {
       return res.serverError();
     }
@@ -215,13 +215,13 @@ module.exports = {
         return res.unauthorized("You not authorized");
       }
 
-      const deleted = await Wishlist.destroy({
+      await Wishlist.destroy({
         where: {
           id: wishlistId,
         },
       });
 
-      return res.success("success delete wishlist", deleted);
+      return res.success("Success delete wishlist", null);
     } catch (err) {
       return res.serverError(err.message);
     }
