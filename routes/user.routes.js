@@ -2,6 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 const passport = require("../lib/passport");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 const upload = require("../middlewares/upload.middleware");
 
@@ -20,7 +21,8 @@ router.get(
 
 router.put(
   "/profile",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
+  // [passport.authenticate("jwt", { session: false })],
   upload.single("avatar"),
   userController.updateProfile
 );

@@ -84,7 +84,7 @@ module.exports = {
 
   updateProfile: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
+      const token = req.headers.authorization?.split(" ")[1];
 
       if (!token) {
         return res.unauthorized("Token is required");
@@ -118,7 +118,7 @@ module.exports = {
           avatar: uploadAvatar.url,
           completed: true,
         },
-        { where: { id: decoded.id } }
+        { where: { id: req.user.id } }
       );
 
       return res.success("User updated", updateProfile);
