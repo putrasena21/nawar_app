@@ -73,6 +73,7 @@ module.exports = {
 
       await Notification.create({
         providerId: newProduct.id,
+        receiverId: req.user.id,
         read: false,
         status: "Published",
       });
@@ -171,6 +172,7 @@ module.exports = {
 
       await Notification.create({
         providerId: product.id,
+        receiverId: req.user.id,
         read: false,
         status: "Published",
       });
