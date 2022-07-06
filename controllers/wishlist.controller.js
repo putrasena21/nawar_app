@@ -1,27 +1,24 @@
-const jwt = require("jsonwebtoken");
-const { User, Wishlist, Product, ProductImage } = require("../models");
-
-const { JWT_SECRET_KEY } = process.env;
+const {
+  User,
+  Wishlist,
+  Product,
+  Category,
+  ProductImage,
+  ProductCategory,
+} = require("../models");
 
 module.exports = {
   addWishlist: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
       const { productId } = req.body;
 
-      const isProductExist = await Product.findOne({
+      const product = await Product.findOne({
         where: {
           id: productId,
         },
       });
 
-      if (!isProductExist) {
+      if (!product) {
         return res.notFound("Product not found");
       }
 
@@ -29,47 +26,82 @@ module.exports = {
         return res.badRequest("ProductId is required!");
       }
 
+      const ownedProduct = await Product.findOne({
+        where: {
+          id: productId,
+        },
+        include: [
+          {
+            model: User,
+            as: "seller",
+            where: {
+              id: req.user.id,
+            },
+          },
+        ],
+      });
+
+      if (ownedProduct) {
+        return res.conflict(`You cant wishlist your own product`);
+      }
+
+      const wishlist = await Wishlist.findOne({
+        where: {
+          productId,
+          userId: req.user.id,
+        },
+      });
+
+      if (wishlist) {
+        return res.conflict("This product already on your wishlist");
+      }
+
       const addWishlist = await Wishlist.create({
-        userId: decoded.id,
+        userId: req.user.id,
         productId,
       });
 
       return res.created("Success add product to wishlist", addWishlist);
     } catch (err) {
-      return res.serverError(err);
+      return res.serverError(err.message);
     }
   },
 
   getWishlist: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
-      const all = await Wishlist.findAll({
+      const wishlist = await Wishlist.findAll({
         where: {
-          userId: decoded.id,
+          userId: req.user.id,
         },
         include: [
           {
             model: Product,
             as: "product",
-            attributes: ["id", "name", "price"],
+            attributes: ["id", "name", "price", "description"],
             include: [
               {
                 model: ProductImage,
                 as: "productImages",
                 attributes: ["url"],
               },
+              {
+                model: ProductCategory,
+                as: "productCategories",
+                attributes: ["id"],
+                include: [
+                  {
+                    model: Category,
+                    as: "category",
+                    attributes: ["name"],
+                  },
+                ],
+              },
             ],
           },
         ],
       });
 
-      return res.success("success get all wishlist", all);
+      return res.success("success get all wishlist", wishlist);
     } catch (err) {
       return res.serverError();
     }
@@ -79,7 +111,7 @@ module.exports = {
     try {
       const { wishlistId } = req.params;
 
-      const detail = await Wishlist.findOne({
+      const wishlist = await Wishlist.findOne({
         where: {
           id: wishlistId,
         },
@@ -94,6 +126,18 @@ module.exports = {
                 as: "productImages",
                 attributes: ["url"],
               },
+              {
+                model: ProductCategory,
+                as: "productCategories",
+                attributes: ["id"],
+                include: [
+                  {
+                    model: Category,
+                    as: "category",
+                    attributes: ["name"],
+                  },
+                ],
+              },
             ],
           },
           {
@@ -104,11 +148,15 @@ module.exports = {
         ],
       });
 
-      if (!detail) {
+      if (!wishlist) {
         return res.notFound();
       }
 
-      return res.success("success get detail wishlist", detail);
+      if (wishlist.userId !== req.user.id) {
+        return res.unauthorized("You not authorized");
+      }
+
+      return res.success("success get detail wishlist", wishlist);
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -153,14 +201,18 @@ module.exports = {
     try {
       const { wishlistId } = req.params;
 
-      const isWishlistExist = await Wishlist.findOne({
+      const wishlist = await Wishlist.findOne({
         where: {
           id: wishlistId,
         },
       });
 
-      if (!isWishlistExist) {
+      if (!wishlist) {
         return res.notFound();
+      }
+
+      if (req.user.id !== wishlist.userId) {
+        return res.unauthorized("You not authorized");
       }
 
       const deleted = await Wishlist.destroy({
