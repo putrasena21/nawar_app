@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   Notification.init(
     {
       providerId: DataTypes.INTEGER,
+      receiverId: DataTypes.INTEGER,
       read: DataTypes.BOOLEAN,
       status: DataTypes.STRING,
       notifDate: DataTypes.DATE,

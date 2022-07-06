@@ -2,17 +2,24 @@ const express = require("express");
 
 const router = express.Router();
 
-const passport = require("../lib/passport");
+const authMiddleware = require("../middlewares/auth.middleware");
 const wishlistController = require("../controllers/wishlist.controller");
 
-router.post("/add", wishlistController.addWishlist);
-router.get("/detail/:wishlistId", wishlistController.getDetail);
+router.post("/add", authMiddleware.userAuth, wishlistController.addWishlist);
+
 router.get(
-  "/",
-  [passport.authenticate("jwt", { session: false })],
-  wishlistController.getWishlist
+  "/detail/:wishlistId",
+  authMiddleware.userAuth,
+  wishlistController.getDetail
 );
+router.get("/", authMiddleware.userAuth, wishlistController.getWishlist);
+
 router.put("/update/:id", wishlistController.updateWishlist);
-router.delete("/delete/:wishlistId", wishlistController.deleteWishlist);
+
+router.delete(
+  "/delete/:wishlistId",
+  authMiddleware.userAuth,
+  wishlistController.deleteWishlist
+);
 
 module.exports = router;

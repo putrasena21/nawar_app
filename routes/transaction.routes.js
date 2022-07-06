@@ -1,28 +1,30 @@
 const express = require("express");
 
 const router = express.Router();
-const passport = require("../lib/passport");
+const authMiddleware = require("../middlewares/auth.middleware");
+const userMiddleware = require("../middlewares/user.middleware");
 
 const transactionController = require("../controllers/transaction.controller");
 
 router.post(
   "/create",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
+  userMiddleware.checkProfileCompleted,
   transactionController.createTransaction
 );
 
 router.put(
   "/reject/:transactionId",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   transactionController.rejectTransaction
 );
 router.put("/accept/:transactionId", [
-  passport.authenticate("jwt", { session: false }),
+  authMiddleware.userAuth,
   transactionController.acceptTransaction,
 ]);
 router.put(
   "/complete/:transactionId",
-  passport.authenticate("jwt", { session: false }),
+  authMiddleware.userAuth,
   transactionController.completeTransaction
 );
 

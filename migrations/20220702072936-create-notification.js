@@ -10,6 +10,9 @@ module.exports = {
       providerId: {
         type: Sequelize.INTEGER,
       },
+      receiverId: {
+        type: Sequelize.INTEGER,
+      },
       read: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,

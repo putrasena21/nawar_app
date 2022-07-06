@@ -1,21 +1,21 @@
 const express = require("express");
 
 const router = express.Router();
-const passport = require("../lib/passport");
 const upload = require("../middlewares/upload.middleware");
+const authMiddleware = require("../middlewares/auth.middleware");
 const userMiddleware = require("../middlewares/user.middleware");
 const productController = require("../controllers/product.controller");
 
 router.post(
   "/create",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   userMiddleware.checkProfileCompleted,
   upload.array("images", 4),
   productController.createProduct
 );
 router.post(
   "/draft",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   userMiddleware.checkProfileCompleted,
   upload.array("images", 4),
   productController.createProductNoPublish
@@ -23,17 +23,17 @@ router.post(
 
 router.get(
   "/user",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   productController.getAllProductByUser
 );
 router.get(
   "/user/sold",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   productController.getAllProductSoldByUser
 );
 router.get(
   "/user/draft",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   productController.getAllProductUnpublished
 );
 router.get("/filter/:categoryId", productController.getAllProductByCategory);
@@ -42,18 +42,18 @@ router.get("/", productController.getAllProductPublished);
 
 router.put(
   "/publish/:productId",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   productController.publishProduct
 );
 router.put(
   "/:productId",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   productController.updateProduct
 );
 
 router.delete(
   "/:productId",
-  [passport.authenticate("jwt", { session: false })],
+  authMiddleware.userAuth,
   productController.deleteProductById
 );
 

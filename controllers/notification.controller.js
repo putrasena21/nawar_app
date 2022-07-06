@@ -1,26 +1,17 @@
-const jwt = require("jsonwebtoken");
 const sequelize = require("sequelize");
 
 const { Op } = sequelize;
-const { JWT_SECRET_KEY } = process.env;
 const { Transaction, User, Product, Notification } = require("../models");
 
 module.exports = {
   getAllNotificationSeller: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required!");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const notifications = await Notification.findAll({
         where: {
           status: {
             [Op.or]: ["Bid", "Published"],
           },
+          receiverId: req.user.id,
         },
       });
 
@@ -34,7 +25,7 @@ module.exports = {
                   as: "seller",
                   attributes: ["name", "email", "phone"],
                   where: {
-                    id: decoded.id,
+                    id: req.user.id,
                   },
                 },
               ],
@@ -53,6 +44,14 @@ module.exports = {
                   model: User,
                   as: "buyer",
                   attributes: ["id", "name", "email", "phone"],
+                },
+                {
+                  model: Product,
+                  as: "productTransactions",
+                  attributes: ["name", "price"],
+                  where: {
+                    userId: req.user.id,
+                  },
                 },
               ],
             }
@@ -73,62 +72,35 @@ module.exports = {
 
   getAllNotificationBuyer: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required!");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const notifications = await Notification.findAll({
         where: {
           status: "Buyer",
+          receiverId: req.user.id,
         },
+        include: [
+          {
+            model: Transaction,
+            as: "transactions",
+            attributes: ["id", "status", "bidPrice"],
+            include: [
+              {
+                model: Product,
+                as: "productTransactions",
+                attributes: ["name", "price", "description"],
+                include: [
+                  {
+                    model: User,
+                    as: "seller",
+                    attributes: ["name", "phone"],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       });
 
-      const populatedNotif = notifications.map(
-        async ({ dataValues: notification }) => {
-          if (notification.status === "Published") {
-            const product = await Product.findByPk(notification.providerId, {
-              include: [
-                {
-                  model: User,
-                  as: "seller",
-                  attributes: ["name", "email", "phone"],
-                },
-              ],
-            });
-            return {
-              ...notification,
-              product,
-            };
-          }
-
-          const transaction = await Transaction.findByPk(
-            notification.providerId,
-            {
-              include: [
-                {
-                  model: User,
-                  as: "buyer",
-                  attributes: ["id", "name", "email", "phone"],
-                  where: {
-                    id: decoded.id,
-                  },
-                },
-              ],
-            }
-          );
-          return {
-            ...notification,
-            transaction,
-          };
-        }
-      );
-
-      const result = await Promise.all(populatedNotif);
-      return res.success("Success get notification", result);
+      return res.success("Success get notification", notifications);
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -136,16 +108,43 @@ module.exports = {
 
   getNotificationById: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required!");
-      }
-
       const { notificationId } = req.params;
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
+      const notification = await Notification.findOne({
+        where: {
+          id: notificationId,
+          receiverId: req.user.id,
+        },
+        include: [
+          {
+            model: Transaction,
+            as: "transactions",
+            attributes: ["bidPrice", "status"],
+            include: [
+              {
+                model: User,
+                as: "buyer",
+                attributes: ["name", "address", "phone"],
+              },
+              {
+                model: Product,
+                as: "productTransactions",
+                attributes: ["name", "price", "description"],
+                include: [
+                  {
+                    model: User,
+                    as: "seller",
+                    attributes: ["name", "address", "phone"],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
 
-      const notification = await Notification.findByPk(notificationId);
+      if (!notification) {
+        return res.notFound("Notification not found");
+      }
 
       await Notification.update(
         {
@@ -158,61 +157,7 @@ module.exports = {
         }
       );
 
-      if (notification.status === "Published") {
-        const product = await Product.findByPk(notification.providerId, {
-          attributes: ["id", "name", "price", "description"],
-          include: [
-            {
-              model: User,
-              as: "seller",
-              attributes: ["name", "email", "phone"],
-              where: {
-                id: decoded.id,
-              },
-            },
-          ],
-        });
-        return res.success("Success get notification", product);
-      }
-
-      const transaction = await Transaction.findByPk(notification.providerId, {
-        attributes: ["id", "bidPrice", "status"],
-        include: [
-          {
-            model: User,
-            as: "buyer",
-            attributes: ["id", "name", "email", "phone"],
-          },
-          {
-            model: Product,
-            as: "productTransactions",
-            attributes: ["id", "name", "price", "sold", "soldAt"],
-          },
-        ],
-      });
-
-      return res.success("Success get notification", transaction);
-    } catch (err) {
-      return res.serverError(err.message);
-    }
-  },
-
-  updateReadNotification: async (req, res) => {
-    try {
-      const { notificationId } = req.params;
-
-      const readNotification = await Notification.update(
-        {
-          read: true,
-        },
-        {
-          where: {
-            id: notificationId,
-          },
-        }
-      );
-
-      return res.success("Success get notification", readNotification);
+      return res.success("Success get notification", notification);
     } catch (err) {
       return res.serverError(err.message);
     }
