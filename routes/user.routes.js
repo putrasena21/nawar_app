@@ -1,7 +1,6 @@
 const express = require("express");
 
 const router = express.Router();
-const passport = require("../lib/passport");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 const upload = require("../middlewares/upload.middleware");
@@ -13,16 +12,11 @@ router.post("/register", userController.register);
 router.get("/provinces", userController.getProvinces);
 router.get("/provinces/:provinceId", userController.getCities);
 
-router.get(
-  "/profile",
-  [passport.authenticate("jwt", { session: false })],
-  userController.getProfile
-);
+router.get("/profile", authMiddleware.userAuth, userController.getProfile);
 
 router.put(
   "/profile",
   authMiddleware.userAuth,
-  // [passport.authenticate("jwt", { session: false })],
   upload.single("avatar"),
   userController.updateProfile
 );

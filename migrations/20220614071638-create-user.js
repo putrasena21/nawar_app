@@ -17,10 +17,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       province: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       city: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       address: {
         type: Sequelize.TEXT,

@@ -1,16 +1,12 @@
 const jwt = require("jsonwebtoken");
 
 const { JWT_SECRET_KEY } = process.env;
-
 const { User } = require("../models");
+const { imagekit } = require("../helpers/imagekit.helper");
 
 const bcryptHelper = require("../helpers/bcrypt.helper");
-
 const validator = require("../validator/user");
-
 const callApi = require("../services/callApi.service");
-
-const { imagekit } = require("../helpers/imagekit.helper");
 
 module.exports = {
   register: async (req, res) => {
@@ -53,17 +49,9 @@ module.exports = {
 
   getProfile: async (req, res) => {
     try {
-      const token = req.headers.authorization.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const user = await User.findOne({
         where: {
-          id: decoded.id,
+          id: req.user.id,
         },
       });
 
@@ -84,14 +72,6 @@ module.exports = {
 
   updateProfile: async (req, res) => {
     try {
-      const token = req.headers.authorization?.split(" ")[1];
-
-      if (!token) {
-        return res.unauthorized("Token is required");
-      }
-
-      const decoded = jwt.verify(token, JWT_SECRET_KEY);
-
       const { name, province, city, address, phone } = req.body;
 
       const check = validator.validateProfile(req.body);
@@ -111,8 +91,8 @@ module.exports = {
       const updateProfile = await User.update(
         {
           name,
-          province,
-          city,
+          province: parseInt(province, 10),
+          city: parseInt(city, 10),
           address,
           phone,
           avatar: uploadAvatar.url,
