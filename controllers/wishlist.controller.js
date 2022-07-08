@@ -77,7 +77,7 @@ module.exports = {
           {
             model: Product,
             as: "product",
-            attributes: ["id", "name", "price", "description"],
+            attributes: ["id", "name", "price", "description", "size"],
             include: [
               {
                 model: ProductImage,

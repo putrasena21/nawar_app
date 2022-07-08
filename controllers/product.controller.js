@@ -15,7 +15,7 @@ const validator = require("../validator/products");
 module.exports = {
   createProduct: async (req, res) => {
     try {
-      const { name, price, description, category } = req.body;
+      const { name, price, description, category, size } = req.body;
 
       // parse price to number
       const priceNumber = parseFloat(price);
@@ -25,6 +25,7 @@ module.exports = {
         price: priceNumber,
         description,
         category,
+        size
       };
 
       const check = validator.validateProduct(data);
@@ -36,6 +37,7 @@ module.exports = {
         name,
         price: priceNumber,
         description,
+        size,
         userId: req.user.id,
         published: true,
       });
@@ -86,7 +88,7 @@ module.exports = {
 
   createProductNoPublish: async (req, res) => {
     try {
-      const { name, price, description, category } = req.body;
+      const { name, price, description, category, size } = req.body;
 
       // parse price to number
       const priceNumber = parseFloat(price);
@@ -96,6 +98,7 @@ module.exports = {
         price: priceNumber,
         description,
         category,
+        size
       };
 
       const check = validator.validateProduct(data);
@@ -107,6 +110,7 @@ module.exports = {
         name,
         price: priceNumber,
         description,
+        size,
         userId: req.user.id,
         published: false,
       });
@@ -681,7 +685,7 @@ module.exports = {
         return res.unauthorized("You are not authorized");
       }
 
-      const { name, price, description, category } = req.body;
+      const { name, price, description, category, size } = req.body;
 
       const check = validator.validateProduct(req.body);
       if (check.length) {
@@ -693,6 +697,7 @@ module.exports = {
           name,
           price,
           description,
+          size
         },
         {
           where: {
@@ -732,6 +737,7 @@ module.exports = {
         price,
         description,
         category,
+        size
       };
 
       return res.success("Success update product!", payload);
