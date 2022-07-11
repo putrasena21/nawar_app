@@ -49,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       published: DataTypes.BOOLEAN,
       soldAt: DataTypes.INTEGER,
       sold: DataTypes.BOOLEAN,
+      size: DataTypes.INTEGER
     },
     {
       sequelize,

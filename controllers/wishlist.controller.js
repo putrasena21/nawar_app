@@ -77,7 +77,7 @@ module.exports = {
           {
             model: Product,
             as: "product",
-            attributes: ["id", "name", "price", "description"],
+            attributes: ["id", "name", "price", "size", "description"],
             include: [
               {
                 model: ProductImage,
@@ -119,7 +119,7 @@ module.exports = {
           {
             model: Product,
             as: "product",
-            attributes: ["id", "name", "price"],
+            attributes: ["id", "name", "price", "size", "description"],
             include: [
               {
                 model: ProductImage,
