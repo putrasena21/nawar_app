@@ -8,6 +8,7 @@ module.exports = {
       name: element.name,
       price: element.price,
       description: element.description,
+      size: element.size,
       published: element.published,
       sold: element.sold,
       createdAt: new Date(),
