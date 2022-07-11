@@ -57,7 +57,7 @@ module.exports = {
           {
             model: Product,
             as: "productTransactions",
-            attributes: ["id", "name", "price", "sold", "soldAt"],
+            attributes: ["id", "name", "price", "size", "sold", "soldAt"],
             include: [
               {
                 model: User,
@@ -124,7 +124,7 @@ module.exports = {
           {
             model: Product,
             as: "productTransactions",
-            attributes: ["id", "name", "price", "sold", "soldAt"],
+            attributes: ["id", "name", "price", "size", "sold", "soldAt"],
             include: [
               {
                 model: User,
@@ -191,7 +191,7 @@ module.exports = {
           {
             model: Product,
             as: "productTransactions",
-            attributes: ["id", "name", "price", "sold", "soldAt"],
+            attributes: ["id", "name", "price", "size", "sold", "soldAt"],
             include: [
               {
                 model: User,
@@ -259,7 +259,7 @@ module.exports = {
           {
             model: Product,
             as: "productTransactions",
-            attributes: ["id", "name", "price", "sold", "soldAt"],
+            attributes: ["id", "name", "price", "size", "sold", "soldAt"],
             include: [
               {
                 model: User,
