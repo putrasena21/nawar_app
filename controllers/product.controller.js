@@ -17,15 +17,12 @@ module.exports = {
     try {
       const { name, price, description, category, size } = req.body;
 
-      // parse price to number
-      const priceNumber = parseFloat(price);
-
       const data = {
         name,
-        price: priceNumber,
+        price: parseInt(price, 10),
         description,
         category,
-        size
+        size: parseInt(size, 10),
       };
 
       const check = validator.validateProduct(data);
@@ -35,7 +32,7 @@ module.exports = {
 
       const newProduct = await Product.create({
         name,
-        price: priceNumber,
+        price: parseInt(price, 10),
         description,
         size,
         userId: req.user.id,
@@ -90,15 +87,12 @@ module.exports = {
     try {
       const { name, price, description, category, size } = req.body;
 
-      // parse price to number
-      const priceNumber = parseFloat(price);
-
       const data = {
         name,
-        price: priceNumber,
+        price: parseInt(price, 10),
         description,
         category,
-        size
+        size: parseInt(size, 10),
       };
 
       const check = validator.validateProduct(data);
@@ -108,7 +102,7 @@ module.exports = {
 
       const newProduct = await Product.create({
         name,
-        price: priceNumber,
+        price: parseInt(price, 10),
         description,
         size,
         userId: req.user.id,
@@ -697,7 +691,7 @@ module.exports = {
           name,
           price,
           description,
-          size
+          size,
         },
         {
           where: {
@@ -737,7 +731,7 @@ module.exports = {
         price,
         description,
         category,
-        size
+        size,
       };
 
       return res.success("Success update product!", payload);
