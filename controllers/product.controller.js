@@ -15,16 +15,14 @@ const validator = require("../validator/products");
 module.exports = {
   createProduct: async (req, res) => {
     try {
-      const { name, price, description, category } = req.body;
-
-      // parse price to number
-      const priceNumber = parseFloat(price);
+      const { name, price, description, category, size } = req.body;
 
       const data = {
         name,
-        price: priceNumber,
+        price: parseInt(price, 10),
         description,
         category,
+        size: parseInt(size, 10),
       };
 
       const check = validator.validateProduct(data);
@@ -34,8 +32,9 @@ module.exports = {
 
       const newProduct = await Product.create({
         name,
-        price: priceNumber,
+        price: parseInt(price, 10),
         description,
+        size,
         userId: req.user.id,
         published: true,
       });
@@ -86,16 +85,14 @@ module.exports = {
 
   createProductNoPublish: async (req, res) => {
     try {
-      const { name, price, description, category } = req.body;
-
-      // parse price to number
-      const priceNumber = parseFloat(price);
+      const { name, price, description, category, size } = req.body;
 
       const data = {
         name,
-        price: priceNumber,
+        price: parseInt(price, 10),
         description,
         category,
+        size: parseInt(size, 10),
       };
 
       const check = validator.validateProduct(data);
@@ -105,8 +102,9 @@ module.exports = {
 
       const newProduct = await Product.create({
         name,
-        price: priceNumber,
+        price: parseInt(price, 10),
         description,
+        size,
         userId: req.user.id,
         published: false,
       });
@@ -681,7 +679,7 @@ module.exports = {
         return res.unauthorized("You are not authorized");
       }
 
-      const { name, price, description, category } = req.body;
+      const { name, price, description, category, size } = req.body;
 
       const check = validator.validateProduct(req.body);
       if (check.length) {
@@ -693,6 +691,7 @@ module.exports = {
           name,
           price,
           description,
+          size,
         },
         {
           where: {
@@ -732,6 +731,7 @@ module.exports = {
         price,
         description,
         category,
+        size,
       };
 
       return res.success("Success update product!", payload);
