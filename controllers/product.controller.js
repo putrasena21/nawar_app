@@ -16,7 +16,7 @@ module.exports = {
   createProduct: async (req, res) => {
     try {
       const { name, price, description, category, size } = req.body;
-
+      
       const data = {
         name,
         price: parseInt(price, 10),
@@ -29,7 +29,7 @@ module.exports = {
       if (check.length) {
         return res.badRequest("Invalid input", check);
       }
-
+      
       const newProduct = await Product.create({
         name,
         price: parseInt(price, 10),
@@ -38,9 +38,9 @@ module.exports = {
         userId: req.user.id,
         published: true,
       });
-
+      
       const categories = category;
-      if (categories.length > 1) {
+      if (Array.isArray(categories)) {
         categories.map(async (element) => {
           await ProductCategory.create({
             productId: newProduct.id,
@@ -53,7 +53,7 @@ module.exports = {
           categoryId: category,
         });
       }
-
+      
       req.files.map(async (file) => {
         const imageUrl = file.buffer.toString("base64");
         const fileName = `${Date.now()}-${file.originalname}`;
@@ -61,7 +61,7 @@ module.exports = {
           file: imageUrl,
           fileName,
         });
-
+        
         const image = await ProductImage.create({
           productId: newProduct.id,
           image: fileName,
@@ -69,20 +69,20 @@ module.exports = {
         });
         return image;
       });
-
+      
       await Notification.create({
         providerId: newProduct.id,
         receiverId: req.user.id,
         read: false,
         status: "Published",
       });
-
+      
       return res.created("Success add data product!", newProduct);
     } catch (err) {
       return res.serverError(err.message);
     }
   },
-
+  
   createProductNoPublish: async (req, res) => {
     try {
       const { name, price, description, category, size } = req.body;
@@ -110,7 +110,7 @@ module.exports = {
       });
 
       const categories = category;
-      if (categories.length > 1) {
+      if (Array.isArray(categories)) {
         categories.map(async (element) => {
           await ProductCategory.create({
             productId: newProduct.id,
