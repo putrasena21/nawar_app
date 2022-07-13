@@ -51,7 +51,8 @@
     "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
-    "sold": false
+    "sold": true,
+    "soldAt": 50000
   },
   {
     "userId": 4,
