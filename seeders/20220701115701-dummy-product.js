@@ -11,6 +11,7 @@ module.exports = {
       size: element.size,
       published: element.published,
       sold: element.sold,
+      soldAt: element.soldAt,
       createdAt: new Date(),
       updatedAt: new Date(),
     }));
