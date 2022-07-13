@@ -1,0 +1,26 @@
+[
+    {
+        "buyerId": 1,
+        "productId": 3,
+        "bidPrice": 50000,
+        "status": "Pending"
+    },
+    {
+        "buyerId": 1,
+        "productId": 4,
+        "bidPrice": 50000,
+        "status": "Rejected"
+    },
+    {
+        "buyerId": 1,
+        "productId": 5,
+        "bidPrice": 50000,
+        "status": "Accepted"
+    },
+    {
+        "buyerId": 1,
+        "productId": 6,
+        "bidPrice": 50000,
+        "status": "Complete"
+    }
+]
