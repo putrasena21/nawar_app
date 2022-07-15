@@ -1,7 +1,13 @@
 const sequelize = require("sequelize");
 
 const { Op } = sequelize;
-const { Transaction, User, Product, Notification } = require("../models");
+const {
+  Transaction,
+  User,
+  Product,
+  Notification,
+  ProductImage,
+} = require("../models");
 
 module.exports = {
   getAllNotificationSeller: async (req, res) => {
@@ -28,6 +34,11 @@ module.exports = {
                     id: req.user.id,
                   },
                 },
+                {
+                  model: ProductImage,
+                  as: "productImages",
+                  attributes: ["url"],
+                },
               ],
             });
             return {
@@ -52,6 +63,13 @@ module.exports = {
                   where: {
                     userId: req.user.id,
                   },
+                  include: [
+                    {
+                      model: ProductImage,
+                      as: "productImages",
+                      attributes: ["url"],
+                    },
+                  ],
                 },
               ],
             }
@@ -92,6 +110,11 @@ module.exports = {
                     model: User,
                     as: "seller",
                     attributes: ["name", "phone"],
+                  },
+                  {
+                    model: ProductImage,
+                    as: "productImages",
+                    attributes: ["url"],
                   },
                 ],
               },
@@ -134,6 +157,11 @@ module.exports = {
                     model: User,
                     as: "seller",
                     attributes: ["name", "address", "phone"],
+                  },
+                  {
+                    model: ProductImage,
+                    as: "productImages",
+                    attributes: ["url"],
                   },
                 ],
               },
