@@ -25,7 +25,7 @@ module.exports = {
         price: priceNumber,
         description,
         category,
-        size
+        size,
       };
 
       const check = validator.validateProduct(data);
@@ -98,7 +98,7 @@ module.exports = {
         price: priceNumber,
         description,
         category,
-        size
+        size,
       };
 
       const check = validator.validateProduct(data);
@@ -535,16 +535,17 @@ module.exports = {
 
   getAllProductByCategory: async (req, res) => {
     try {
-      const perPage = 10;
+      const perPage = 2;
 
       const { page = 1 } = req.query;
       const { categoryId } = req.params;
 
+      console.log(categoryId);
       const products = await Product.findAndCountAll({
         where: { published: true, sold: false },
         distinct: true,
-        limit: perPage,
-        offset: perPage * (page - 1),
+        // limit: perPage,
+        // offset: perPage * (page - 1),
         include: [
           {
             model: ProductImage,
@@ -555,12 +556,12 @@ module.exports = {
             model: ProductCategory,
             as: "productCategories",
             attributes: ["categoryId"],
+            where: { categoryId },
             include: [
               {
                 model: Category,
                 as: "category",
                 attributes: ["name"],
-                where: { id: categoryId },
               },
             ],
           },
@@ -572,7 +573,7 @@ module.exports = {
       const result = {
         totalItem: products.count,
         data: products.rows,
-        totalPages: Math.ceil(products.count / perPage),
+        totalPages: Math.ceil(this.totalItem / perPage),
         previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
           req.path
         }?page=${parseInt(page, 10) - 1}`,
@@ -697,7 +698,7 @@ module.exports = {
           name,
           price,
           description,
-          size
+          size,
         },
         {
           where: {
@@ -737,7 +738,7 @@ module.exports = {
         price,
         description,
         category,
-        size
+        size,
       };
 
       return res.success("Success update product!", payload);
