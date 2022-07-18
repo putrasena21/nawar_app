@@ -46,5 +46,29 @@
     "receiverId": 1,
     "read": false,
     "status": "Buyer"
+  },
+  {
+    "providerId": 5,
+    "receiverId": 1,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 6,
+    "receiverId": 1,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 7,
+    "receiverId": 1,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 8,
+    "receiverId": 1,
+    "read": false,
+    "status": "Bid"
   }
 ]

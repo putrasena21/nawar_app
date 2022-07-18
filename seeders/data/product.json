@@ -98,5 +98,59 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
     "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Flat Shoes Blue",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Flat Shoes Red",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Flat Shoes Green",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Flat Shoes Black",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "High Heels Yellow Blink",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "High Heels Yellow Ribbon",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
   }
 ]

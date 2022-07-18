@@ -22,5 +22,29 @@
         "productId": 6,
         "bidPrice": 50000,
         "status": "Complete"
+    },
+    {
+        "buyerId": 2,
+        "productId": 12,
+        "bidPrice": 50000,
+        "status": "Pending"
+    },
+    {
+        "buyerId": 2,
+        "productId": 13,
+        "bidPrice": 50000,
+        "status": "Pending"
+    },
+    {
+        "buyerId": 2,
+        "productId": 14,
+        "bidPrice": 50000,
+        "status": "Pending"
+    },
+    {
+        "buyerId": 2,
+        "productId": 15,
+        "bidPrice": 50000,
+        "status": "Pending"
     }
 ]
