@@ -549,12 +549,12 @@ module.exports = {
             model: ProductCategory,
             as: "productCategories",
             attributes: ["categoryId"],
+            where: { categoryId },
             include: [
               {
                 model: Category,
                 as: "category",
                 attributes: ["name"],
-                where: { id: categoryId },
               },
             ],
           },
@@ -566,7 +566,7 @@ module.exports = {
       const result = {
         totalItem: products.count,
         data: products.rows,
-        totalPages: Math.ceil(products.count / perPage),
+        totalPages: Math.ceil(this.totalItem / perPage),
         previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
           req.path
         }?page=${parseInt(page, 10) - 1}`,

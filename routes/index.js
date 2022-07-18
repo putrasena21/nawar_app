@@ -11,6 +11,7 @@ const wishlistRoutes = require("./wishlist.routes");
 const transactionRoutes = require("./transaction.routes");
 
 const notificationRoutes = require("./notification.routes");
+const whatsapp = require('./whatsapp.routes')
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
@@ -30,5 +31,6 @@ router.use("/wishlist", wishlistRoutes);
 router.use("/transactions", transactionRoutes);
 
 router.use("/notifications", notificationRoutes);
+router.use("/wa", whatsapp)
 
 module.exports = router;
