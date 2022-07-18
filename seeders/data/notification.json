@@ -1,0 +1,74 @@
+[
+  {
+    "providerId": 1,
+    "receiverId": 2,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 2,
+    "receiverId": 2,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 3,
+    "receiverId": 3,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 4,
+    "receiverId": 3,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 2,
+    "receiverId": 1,
+    "read": false,
+    "status": "Buyer"
+  },
+  {
+    "providerId": 3,
+    "receiverId": 1,
+    "read": false,
+    "status": "Buyer"
+  },
+  {
+    "providerId": 4,
+    "receiverId": 1,
+    "read": false,
+    "status": "Buyer"
+  },
+  {
+    "providerId": 4,
+    "receiverId": 1,
+    "read": false,
+    "status": "Buyer"
+  },
+  {
+    "providerId": 5,
+    "receiverId": 1,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 6,
+    "receiverId": 1,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 7,
+    "receiverId": 1,
+    "read": false,
+    "status": "Bid"
+  },
+  {
+    "providerId": 8,
+    "receiverId": 1,
+    "read": false,
+    "status": "Bid"
+  }
+]

@@ -8,8 +8,10 @@ module.exports = {
       name: element.name,
       price: element.price,
       description: element.description,
+      size: element.size,
       published: element.published,
       sold: element.sold,
+      soldAt: element.soldAt,
       createdAt: new Date(),
       updatedAt: new Date(),
     }));

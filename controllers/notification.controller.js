@@ -1,7 +1,13 @@
 const sequelize = require("sequelize");
 
 const { Op } = sequelize;
-const { Transaction, User, Product, Notification } = require("../models");
+const {
+  Transaction,
+  User,
+  Product,
+  Notification,
+  ProductImage,
+} = require("../models");
 
 module.exports = {
   getAllNotificationSeller: async (req, res) => {
@@ -28,6 +34,11 @@ module.exports = {
                     id: req.user.id,
                   },
                 },
+                {
+                  model: ProductImage,
+                  as: "productImages",
+                  attributes: ["url"],
+                },
               ],
             });
             return {
@@ -48,10 +59,17 @@ module.exports = {
                 {
                   model: Product,
                   as: "productTransactions",
-                  attributes: ["name", "price"],
+                  attributes: ["name", "price", "size", "description"],
                   where: {
                     userId: req.user.id,
                   },
+                  include: [
+                    {
+                      model: ProductImage,
+                      as: "productImages",
+                      attributes: ["url"],
+                    },
+                  ],
                 },
               ],
             }
@@ -86,12 +104,17 @@ module.exports = {
               {
                 model: Product,
                 as: "productTransactions",
-                attributes: ["name", "price", "description"],
+                attributes: ["name", "price", "size", "description"],
                 include: [
                   {
                     model: User,
                     as: "seller",
                     attributes: ["id", "name", "phone"],
+                  },
+                  {
+                    model: ProductImage,
+                    as: "productImages",
+                    attributes: ["url"],
                   },
                 ],
               },
@@ -128,12 +151,17 @@ module.exports = {
               {
                 model: Product,
                 as: "productTransactions",
-                attributes: ["name", "price", "description"],
+                attributes: ["name", "price", "size", "description"],
                 include: [
                   {
                     model: User,
                     as: "seller",
                     attributes: ["id", "name", "address", "phone"],
+                  },
+                  {
+                    model: ProductImage,
+                    as: "productImages",
+                    attributes: ["url"],
                   },
                 ],
               },

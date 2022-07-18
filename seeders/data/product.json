@@ -3,6 +3,7 @@
     "userId": 1,
     "name": "Vans",
     "price": 100000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
     "sold": false
@@ -11,6 +12,7 @@
     "userId": 1,
     "name": "Converse",
     "price": 100000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": false,
     "sold": false
@@ -19,6 +21,7 @@
     "userId": 2,
     "name": "Ventela",
     "price": 125000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
     "sold": false
@@ -27,6 +30,7 @@
     "userId": 2,
     "name": "Converse Old-school",
     "price": 150000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": false,
     "sold": false
@@ -35,6 +39,7 @@
     "userId": 3,
     "name": "Swallow",
     "price": 122000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
     "sold": false
@@ -43,14 +48,17 @@
     "userId": 3,
     "name": "Stars",
     "price": 160000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
-    "sold": false
+    "sold": true,
+    "soldAt": 50000
   },
   {
     "userId": 4,
     "name": "Eiger",
     "price": 180000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
     "sold": false
@@ -59,6 +67,7 @@
     "userId": 4,
     "name": "Hush Puppies",
     "price": 1200000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
     "sold": false
@@ -67,6 +76,7 @@
     "userId": 5,
     "name": "Carvil",
     "price": 90000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": false,
     "sold": false
@@ -75,6 +85,7 @@
     "userId": 5,
     "name": "Homyped",
     "price": 100000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
     "sold": false
@@ -83,6 +94,61 @@
     "userId": 5,
     "name": "Compass",
     "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Flat Shoes Blue",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Flat Shoes Red",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Flat Shoes Green",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "Flat Shoes Black",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "High Heels Yellow Blink",
+    "price": 155000,
+    "size": 41,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "published": true,
+    "sold": false
+  },
+  {
+    "userId": 1,
+    "name": "High Heels Yellow Ribbon",
+    "price": 155000,
+    "size": 41,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "published": true,
     "sold": false
