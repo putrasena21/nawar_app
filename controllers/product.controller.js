@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 
 const { Op } = Sequelize;
 const {
+  User,
   Product,
   ProductImage,
   ProductCategory,
@@ -16,7 +17,7 @@ module.exports = {
   createProduct: async (req, res) => {
     try {
       const { name, price, description, category, size } = req.body;
-      
+
       const data = {
         name,
         price: parseInt(price, 10),
@@ -29,7 +30,7 @@ module.exports = {
       if (check.length) {
         return res.badRequest("Invalid input", check);
       }
-      
+
       const newProduct = await Product.create({
         name,
         price: parseInt(price, 10),
@@ -38,7 +39,7 @@ module.exports = {
         userId: req.user.id,
         published: true,
       });
-      
+
       const categories = category;
       if (Array.isArray(categories)) {
         categories.map(async (element) => {
@@ -53,7 +54,7 @@ module.exports = {
           categoryId: category,
         });
       }
-      
+
       req.files.map(async (file) => {
         const imageUrl = file.buffer.toString("base64");
         const fileName = `${Date.now()}-${file.originalname}`;
@@ -61,7 +62,7 @@ module.exports = {
           file: imageUrl,
           fileName,
         });
-        
+
         const image = await ProductImage.create({
           productId: newProduct.id,
           image: fileName,
@@ -69,20 +70,20 @@ module.exports = {
         });
         return image;
       });
-      
+
       await Notification.create({
         providerId: newProduct.id,
         receiverId: req.user.id,
         read: false,
         status: "Published",
       });
-      
+
       return res.created("Success add data product!", newProduct);
     } catch (err) {
       return res.serverError(err.message);
     }
   },
-  
+
   createProductNoPublish: async (req, res) => {
     try {
       const { name, price, description, category, size } = req.body;
@@ -463,17 +464,14 @@ module.exports = {
 
   getProductById: async (req, res) => {
     try {
-      const perPage = 10;
-      const { page = 1 } = req.query;
       const { productId } = req.params;
-      const products = await Product.findAndCountAll({
-        where: {
-          id: productId,
-        },
-        distinct: true,
-        limit: perPage,
-        offset: perPage * (page - 1),
+      const products = await Product.findByPk(productId, {
         include: [
+          {
+            model: User,
+            as: "seller",
+            attributes: { exclude: ["createdAt", "updatedAt", "password"] },
+          },
           {
             model: ProductImage,
             as: "productImages",
@@ -496,32 +494,7 @@ module.exports = {
         attributes: { exclude: ["createdAt", "updatedAt"] },
       });
 
-      const result = {
-        totalItem: products.count,
-        data: products.rows,
-        totalPages: Math.ceil(products.count / perPage),
-        previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
-          req.path
-        }?page=${parseInt(page, 10) - 1}`,
-        currentPage: parseInt(page, 10),
-        nextPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
-          req.path
-        }?page=${parseInt(page, 10) + 1}`,
-      };
-
-      if (result.totalPages < page) {
-        return res.notFound("Product not found");
-      }
-
-      if (result.totalPages === result.currentPage) {
-        result.nextPage = null;
-      }
-
-      if (result.currentPage === 1) {
-        result.previosusPage = null;
-      }
-
-      return res.success("Success get data product!", result);
+      return res.success("Success get data product!", products);
     } catch (err) {
       return res.serverError(err.message);
     }
@@ -549,12 +522,12 @@ module.exports = {
             model: ProductCategory,
             as: "productCategories",
             attributes: ["categoryId"],
+            where: { categoryId },
             include: [
               {
                 model: Category,
                 as: "category",
                 attributes: ["name"],
-                where: { id: categoryId },
               },
             ],
           },
@@ -566,7 +539,7 @@ module.exports = {
       const result = {
         totalItem: products.count,
         data: products.rows,
-        totalPages: Math.ceil(products.count / perPage),
+        totalPages: Math.ceil(this.totalItem / perPage),
         previosusPage: `${req.protocol}:${req.get("host")}${req.baseUrl}${
           req.path
         }?page=${parseInt(page, 10) - 1}`,
