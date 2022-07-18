@@ -535,7 +535,7 @@ module.exports = {
 
   getAllProductByCategory: async (req, res) => {
     try {
-      const perPage = 2;
+      const perPage = 10;
 
       const { page = 1 } = req.query;
       const { categoryId } = req.params;
