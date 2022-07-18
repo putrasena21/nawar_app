@@ -540,12 +540,11 @@ module.exports = {
       const { page = 1 } = req.query;
       const { categoryId } = req.params;
 
-      console.log(categoryId);
       const products = await Product.findAndCountAll({
         where: { published: true, sold: false },
         distinct: true,
-        // limit: perPage,
-        // offset: perPage * (page - 1),
+        limit: perPage,
+        offset: perPage * (page - 1),
         include: [
           {
             model: ProductImage,
