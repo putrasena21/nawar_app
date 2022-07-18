@@ -23,7 +23,7 @@ module.exports = {
                 {
                   model: User,
                   as: "seller",
-                  attributes: ["name", "email", "phone"],
+                  attributes: ["id", "name", "email", "phone"],
                   where: {
                     id: req.user.id,
                   },
@@ -91,7 +91,7 @@ module.exports = {
                   {
                     model: User,
                     as: "seller",
-                    attributes: ["name", "phone"],
+                    attributes: ["id", "name", "phone"],
                   },
                 ],
               },
@@ -123,7 +123,7 @@ module.exports = {
               {
                 model: User,
                 as: "buyer",
-                attributes: ["name", "address", "phone"],
+                attributes: ["id", "name", "address", "phone"],
               },
               {
                 model: Product,
@@ -133,7 +133,7 @@ module.exports = {
                   {
                     model: User,
                     as: "seller",
-                    attributes: ["name", "address", "phone"],
+                    attributes: ["id", "name", "address", "phone"],
                   },
                 ],
               },

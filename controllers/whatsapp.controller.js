@@ -1,24 +1,20 @@
-const {User} = require('../models')
+const { User } = require("../models");
+
 module.exports = {
-    redirect: async (req,res) => {
-        try{
-            const user_id = req.params.userId;
+  redirect: async (req, res) => {
+    try {
+      const { buyerId } = req.body;
 
-            const user = await User.findOne({
-                where: {
-                    id: user_id
-                }
-            })
-            const link = `http://wa.me/${user.phone}`
+      const user = await User.findOne({
+        where: {
+          id: buyerId,
+        },
+      });
+      const link = `http://wa.me/${user.phone}`;
 
-            // window.open(link)
-            res.redirect(link)
-        }catch(err){
-            return res.status(500).json({
-                status: false,
-                message: err.message,
-                data: null
-            });
-        }
+      return res.success("Success generate whatsapp link", link);
+    } catch (err) {
+      return res.serverError();
     }
-}
+  },
+};
