@@ -31,6 +31,19 @@ module.exports = {
         return res.badRequest("Invalid input", check);
       }
 
+      const checkProduct = await Product.findAndCountAll({
+        where: {
+          userId: req.user.id,
+          sold: false,
+          published: true,
+        },
+      });
+
+      console.log(checkProduct);
+      if (checkProduct.count >= 4) {
+        return res.unauthorized("Max post product is 4!");
+      }
+
       const newProduct = await Product.create({
         name,
         price: parseInt(price, 10),
