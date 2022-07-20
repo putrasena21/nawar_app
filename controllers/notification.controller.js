@@ -59,7 +59,7 @@ module.exports = {
                 {
                   model: Product,
                   as: "productTransactions",
-                  attributes: ["name", "price", "size", "description"],
+                  attributes: ["id", "name", "price", "size", "description"],
                   where: {
                     userId: req.user.id,
                   },
@@ -104,7 +104,7 @@ module.exports = {
               {
                 model: Product,
                 as: "productTransactions",
-                attributes: ["name", "price", "size", "description"],
+                attributes: ["id", "name", "price", "size", "description"],
                 include: [
                   {
                     model: User,
@@ -141,7 +141,7 @@ module.exports = {
           {
             model: Transaction,
             as: "transactions",
-            attributes: ["bidPrice", "status"],
+            attributes: ["id", "bidPrice", "status"],
             include: [
               {
                 model: User,
@@ -151,7 +151,7 @@ module.exports = {
               {
                 model: Product,
                 as: "productTransactions",
-                attributes: ["name", "price", "size", "description"],
+                attributes: ["id", "name", "price", "size", "description"],
                 include: [
                   {
                     model: User,
