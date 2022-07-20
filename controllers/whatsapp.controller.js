@@ -10,7 +10,7 @@ module.exports = {
           id: buyerId,
         },
       });
-      const link = `http://wa.me/${user.phone}`;
+      const link = `https://wa.me/${user.phone}`;
 
       return res.success("Success generate whatsapp link", link);
     } catch (err) {
