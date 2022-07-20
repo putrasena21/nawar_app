@@ -80,16 +80,12 @@ module.exports = {
         return res.badRequest("Transaction is not pending");
       }
 
-      if (transaction.buyerId === req.user.id) {
-        return res.unauthorized("You not authorized");
-      }
-
       if (transaction.productTransactions === null) {
         return res.unauthorized("You not authorized");
       }
 
       if (transaction.productTransactions.seller.id !== req.user.id) {
-        return res.unauthorized("You not authorized");
+        return res.unauthorized("You not the seller");
       }
 
       await transaction.update({
@@ -147,16 +143,12 @@ module.exports = {
         return res.badRequest("Transaction is not pending");
       }
 
-      if (transaction.buyerId === req.user.id) {
-        return res.unauthorized("You not authorized");
-      }
-
       if (transaction.productTransactions === null) {
         return res.unauthorized("You not authorized");
       }
 
       if (transaction.productTransactions.seller.id !== req.user.id) {
-        return res.unauthorized("You not authorized");
+        return res.unauthorized("You not the seller");
       }
 
       await transaction.update({
@@ -214,16 +206,12 @@ module.exports = {
         return res.badRequest("Transaction is not accepted");
       }
 
-      if (transaction.buyerId === req.user.id) {
-        return res.unauthorized("You not authorized");
-      }
-
       if (transaction.productTransactions === null) {
         return res.unauthorized("You not authorized");
       }
 
       if (transaction.productTransactions.seller.id !== req.user.id) {
-        return res.unauthorized("You not authorized");
+        return res.unauthorized("You not the seller");
       }
 
       await Product.update(
