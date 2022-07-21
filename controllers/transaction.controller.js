@@ -71,21 +71,25 @@ module.exports = {
           },
         ],
       });
+      console.log(transaction.status);
 
       if (!transaction) {
         return res.notFound("Transaction not found");
       }
 
-      if (transaction.status !== "Pending") {
-        return res.badRequest("Transaction is not pending");
+      if (transaction.productTransactions.seller.id !== req.user.id) {
+        return res.unauthorized("You not the seller");
+      }
+
+      if (
+        transaction.status !== "Accepted" &&
+        transaction.status !== "Pending"
+      ) {
+        return res.badRequest("Transaction is not pending or accepted");
       }
 
       if (transaction.productTransactions === null) {
         return res.unauthorized("You not authorized");
-      }
-
-      if (transaction.productTransactions.seller.id !== req.user.id) {
-        return res.unauthorized("You not the seller");
       }
 
       await transaction.update({
