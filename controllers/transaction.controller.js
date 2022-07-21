@@ -71,7 +71,6 @@ module.exports = {
           },
         ],
       });
-      console.log(transaction.status);
 
       if (!transaction) {
         return res.notFound("Transaction not found");
