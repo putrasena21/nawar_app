@@ -39,7 +39,6 @@ module.exports = {
         },
       });
 
-      console.log(checkProduct);
       if (checkProduct.count >= 4) {
         return res.unauthorized("Max post product is 4!");
       }
